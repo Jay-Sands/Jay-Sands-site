@@ -49,7 +49,7 @@ body {
   }
 }
 
- #welcomeText {
+#welcomeText {
   position: absolute;
   top: 60%;
   left: 50%;
@@ -62,8 +62,7 @@ body {
   z-index: 10;
 }
 
-.title 
-{
+.title {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -72,7 +71,6 @@ body {
   opacity: 0;
   animation: fadeIn 4s ease-in 2s forwards;
 }
-
 .title h1 {
   font-size: 3rem;
   margin: 0;
@@ -97,7 +95,3 @@ body {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
-
-
-
