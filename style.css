@@ -37,7 +37,7 @@ body {
   width: 300px;
   max-width: 100%;
   height: auto;
-  background: transparent;
+  background: rgb(14, 0, 0);
   border: none !important;
   z-index: 2;
   opacity: 0;
