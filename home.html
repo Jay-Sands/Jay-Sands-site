@@ -5,16 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - Jay Sands</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
 </head>
-<body style="background-color:#111; color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-    <div style="max-width:700px;margin:80px auto;padding:40px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
-      <img src="images/jsands-logo.png" alt="Jay Sands Logo" style="width:120px;margin:0 auto 24px auto;display:block;">
-      <div style="margin-bottom:32px;">
-        <span style="font-size:2.2em;color:#FFD700;font-weight:bold;text-shadow:2px 2px 8px #B22222;">🚧</span>
-        <span style="font-size:2em;color:#FFD700;font-weight:bold;letter-spacing:2px;">Under Construction</span>
-      </div>
-      <p style="font-size:1.3em;color:#fff;margin-bottom:2em;">Coming Soon</p>
-      <a href="index.html" style="display:inline-block;text-decoration:none;"><button id="enterHome">Back to Landing Page</button></a>
+<body style="background-color:#000; color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <div style="max-width:700px;margin:80px auto;padding:40px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
+    <div style="margin-bottom:32px;">
+      <!-- Booking button removed -->
     </div>
-  </body>
+    <img src="images/jsands-logo.png" alt="Jay Sands Logo" style="width:300px;margin:0 auto 12px auto;display:block;">
+    <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;">Jay Sands – Vocalist & Entertainer</h1>
+    <p style="font-size:1.4em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
+    <hr style="border:0;height:4px;background:linear-gradient(90deg,#FFD700,#B22222);margin:18px 0 24px 0;">
+    <div style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:40px;">
+      <div style="flex:1;min-width:250px;">
+        <h2 style="color:#FFD700;">Featured Work</h2>
+        <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my new and recent releases:</p>
+        <div style="margin-bottom:18px;">
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/The Summer Wind.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">That Old Devil Moon</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/That Old Devil Moon.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">The Tender Trap</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/The Tender Trap.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">Witchcraft</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/Witchcraft.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">More</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/More.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">The World We Knew</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/The World We Knew.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+        <!-- Feedback Form -->
+        <div style="margin:32px 0 0 0;padding:24px;background:rgba(34,34,34,0.7);border-radius:16px;box-shadow:0 2px 8px #B22222;">
+          <h3 style="color:#FFD700;">Share Your Experience</h3>
+          <form action="https://formspree.io/f/mnqeygqv" method="POST" style="text-align:left;max-width:400px;margin:0 auto;">
+            <label style="color:#FFD700;">Your Quote or Feedback:</label><br>
+            <textarea name="quote" rows="3" required style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;"></textarea>
+            <label style="color:#FFD700;">Your Name (optional):</label><br>
+            <input type="text" name="name" style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;">
+            <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;">Send Feedback</button>
+          </form>
+          <div style="text-align:center;margin-top:24px;">
+            <img src="images/qr-code-72048304.png" alt="Scan to leave feedback" style="width:120px;height:auto;margin-bottom:8px;">
+            <div style="color:#FFD700;font-size:1.1em;">Scan this QR code at the show to leave your feedback or quote!</div>
+          </div>
+        </div>
+        <!-- Booking Button at Bottom -->
+        <a href="booking.html" style="display:inline-block;background:#FFD700;color:#111;font-weight:bold;padding:12px 32px;border-radius:16px;border:none;box-shadow:0 2px 8px #B22222;letter-spacing:1px;text-decoration:none;margin-top:32px;">Book Jay Sands</a>
+        <a href="feedback.html" style="display:inline-block;background:#FFD700;color:#111;font-weight:bold;padding:12px 32px;border-radius:16px;border:none;box-shadow:0 2px 8px #B22222;letter-spacing:1px;text-decoration:none;margin-top:16px;margin-left:16px;">Show Feedback</a>
+        <a href="quotes.html" style="display:inline-block;background:#FFD700;color:#111;font-weight:bold;padding:12px 32px;border-radius:16px;border:none;box-shadow:0 2px 8px #B22222;letter-spacing:1px;text-decoration:none;margin-top:16px;margin-left:16px;">Guest Quotes</a>
+      </div>
+      <div style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:24px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);">
+        <h2 style="color:#FFD700;">About Jay Sands</h2>
+        <p style="color:#fff;font-size:1.05em;line-height:1.6;">
+          For over four decades, I’ve had the privilege of sharing timeless music with audiences across the East Coast and beyond. My passion lies in bringing the golden age of song to life—whether I’m channeling Sinatra’s swing or delivering the romantic warmth of Engelbert, Paul Anka, Dean Martin, or The Duprees, to mention a few.<br><br>
+          I’ve performed in venues ranging from intimate cabarets to grand stages—from Don't Tell Mama's in New York City to The Ormond Beach Performing Arts Center in Ormond Beach Florida, and Universal’s Portofino Bay Hotel in Orlando, Florida. Every show is a chance to connect, to move people, and to celebrate music that never goes out of style.<br><br>
+          When asked to give a quote about me, Don K. Reed of New York’s 101.1 FM said, “Jay Sands not only swings on stage but on his CD as well.” That kind of praise means a lot, because I put my heart into every note I sing.<br><br>
+          Whether it’s a private celebration, a corporate event, a public concert, or an online performance, I tailor each show to fit the moment. I’m here to make your event unforgettable—with music that speaks to the soul and leaves a lasting impression.<br><br>
+          Entertainingly Yours,<br><br>
+          <span style="font-family: 'Brush Script MT', cursive; font-size:2em; color:#FFD700; letter-spacing:2px;">Jay Sands</span><br><br>
+          <!-- Booking Info removed -->
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
