@@ -28,12 +28,21 @@ body {
   transform-origin: right;
 }
 
+@keyframes openCurtain {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0.5);
+  }
+}
+
 #logo {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
+  width: 320px;
   max-width: 100%;
   height: auto;
   background: transparent;
@@ -67,14 +76,6 @@ body {
   animation: fadeInEnterHome 1.5s ease-in 5.2s forwards;
 }
 
-@keyframes openCurtain {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0.5);
-  }
-}
 @keyframes fadeInLogo {
   to {
     opacity: 1;
