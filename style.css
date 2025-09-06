@@ -28,6 +28,7 @@ body {
   transform-origin: right;
 }
 
+
 #logo {
   position: absolute;
   top: 40%; /* Adjust as needed */
@@ -63,7 +64,7 @@ body {
 }
 
 .title 
-{
+v
   position: absolute;
   top: 50%;
   left: 50%;
