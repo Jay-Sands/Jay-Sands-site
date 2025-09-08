@@ -11,12 +11,11 @@ body {
 /* Curtain Animation Reset */
 #curtainLeft,
 #curtainRight {
-  position: absolute;
+  position: fixed;
   width: 50vw;
   height: 100vh;
   top: 0;
-  background: #B22222;
-  z-index: 20;
+  z-index: 30;
   animation: openCurtain 2s ease-out forwards;
 }
 
@@ -24,10 +23,16 @@ body {
 #curtainLeft {
   left: 0;
   transform-origin: left;
+  animation-delay: 0s;
+  border-right: none;
+  box-shadow: none;
 }
 #curtainRight {
   right: 0;
   transform-origin: right;
+  animation-delay: 0s;
+  border-left: none;
+  box-shadow: none;
 }
 
 @keyframes openCurtain {
@@ -52,14 +57,14 @@ body {
 }
 
 #logo {
-  width: 200px;
-  max-width: 80vw;
+  width: 400px;
+  max-width: 90vw;
   height: auto;
   background: transparent;
   border: none !important;
   opacity: 0;
   filter: brightness(0);
-  animation: logoPopIn 2.5s cubic-bezier(0.23, 1.12, 0.32, 1) 2.5s forwards;
+  animation: logoPopIn 2.5s cubic-bezier(0.23, 1.12, 0.32, 1) 2s forwards;
 }
 
 @keyframes logoPopIn {
@@ -101,12 +106,17 @@ body {
   text-shadow: 0 1px 0 #fff, 0 2px 4px #FFD700;
   margin-top: 2rem;
   opacity: 0;
-  animation: fadeInEnterHome 1.5s ease-in 1s forwards;
+  animation: fadeInEnterHome 1.5s ease-in 2.5s forwards;
 }
 
 @keyframes fadeInEnterHome {
   to {
     opacity: 1;
   }
+}
+
+.curtainImg {
+  background: url('images/bright-curtain.png') center center no-repeat;
+  background-size: cover;
 }
 
