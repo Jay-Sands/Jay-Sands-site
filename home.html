@@ -7,8 +7,15 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
 </head>
-<body style="background-color:#000; color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-  <div style="max-width:900px;margin:0 auto 0 auto;padding:0 40px 0 40px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
+<body style="background-color:#000; color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; opacity:0; transition:opacity 2s linear;">
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        document.body.style.opacity = '1';
+      }, 100); // Start fade-in on load
+    });
+  </script>
+  <div style="max-width:900px;margin:0 auto;padding:0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
     <div style="margin-bottom:32px;">
       <!-- Booking button removed -->
     </div>
@@ -17,7 +24,7 @@
     <p style="font-size:1.4em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
   <hr style="border:0;height:4px;background:linear-gradient(90deg,#FFD700,#B22222);margin:18px 0 0 0;">
   <div style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:0;padding-top:0;">
-  <div style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 24px 24px 24px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:1400px;">
+  <div style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
         <h2 style="color:#FFD700;">Featured Work</h2>
         <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my new and recent releases:</p>
   <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
@@ -83,7 +90,7 @@
         <!-- Booking Button at Bottom -->
   <a href="booking.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:block;font-family:inherit;margin:16px auto 0 auto;font-size:1em;text-align:center;width:max-content;">Book Jay Sands</a>
       </div>
-  <div style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 24px 24px 24px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:1400px;">
+  <div style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
         <h2 style="color:#FFD700;">About Jay Sands</h2>
         <p style="color:#fff;font-size:1.05em;line-height:1.6;">
           For over four decades, I’ve had the privilege of sharing timeless music with audiences across the East Coast and beyond. My passion lies in bringing the golden age of song to life—whether I’m channeling Sinatra’s swing or delivering the romantic warmth of Engelbert, Paul Anka, Dean Martin, or The Duprees, to mention a few.<br><br>

@@ -11,7 +11,23 @@
   <div id="curtainRight" class="curtainImg"></div>
   <div class="centerWrapper">
     <img id="logo" src="images/jsands-logo.png" alt="Jay Sands Logo">
-    <button id="enterHome" onclick="location.href='home.html'">Home Page</button>
   </div>
+  <script>
+  // Wait for logo animation to finish, then redirect
+  window.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      document.body.style.transition = 'opacity 2s linear';
+      document.body.style.opacity = '0';
+      document.body.addEventListener('transitionend', function handler(e) {
+        if (e.propertyName === 'opacity') {
+          setTimeout(function() {
+            window.location.href = 'home.html';
+          }, 500); // Wait 0.5s after fade out
+          document.body.removeEventListener('transitionend', handler);
+        }
+      });
+    }, 9000); // Start fade out after 9s
+  });
+  </script>
 </body>
 </html>
