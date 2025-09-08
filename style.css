@@ -7,6 +7,30 @@ body {
   min-height: 100vh;
 }
 
+/* Welcome text styling and animation */
+#welcomeText {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Dancing Script', cursive;
+  font-size: 4.5rem;
+  color: #ffd700;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px #000, 0 0 6px #ffd700;
+  opacity: 0;
+  z-index: 40;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+#welcomeText.show {
+  opacity: 1;
+}
+#welcomeText.hide {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
 /* Curtain Animation Reset */
 #curtainLeft,
 #curtainRight {

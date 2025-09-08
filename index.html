@@ -5,16 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jay Sands Landing Page</title>
   <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Dancing Script for Welcome text -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="curtainLeft" class="curtainImg"></div>
   <div id="curtainRight" class="curtainImg"></div>
+    <div id="welcomeText">Welcome</div>
   <div class="centerWrapper">
     <img id="logo" src="images/jsands-logo.png" alt="Jay Sands Logo">
   </div>
   <script>
   // Wait for logo animation to finish, then redirect
   window.addEventListener('DOMContentLoaded', function() {
+      // Show Welcome text, fade in, then fade out before curtain opens
+      var welcome = document.getElementById('welcomeText');
+      welcome.classList.add('show');
+      setTimeout(function() {
+        welcome.classList.add('hide');
+      }, 2000); // Hold Welcome for 2 seconds before fading out
     setTimeout(function() {
       document.body.style.transition = 'opacity 2s linear';
       document.body.style.opacity = '0';
