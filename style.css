@@ -23,14 +23,14 @@ body {
 #curtainLeft {
   left: 0;
   transform-origin: left;
-  animation-delay: 0s;
+  animation-delay: 1.2s;
   border-right: none;
   box-shadow: none;
 }
 #curtainRight {
   right: 0;
   transform-origin: right;
-  animation-delay: 0s;
+  animation-delay: 1.2s;
   border-left: none;
   box-shadow: none;
 }
