@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   padding: 0;
@@ -6,20 +7,19 @@ body {
   color: #fff;
 }
 
+/* Curtain Animation Reset */
 #curtainLeft,
 #curtainRight {
   position: absolute;
   width: 50%;
   height: 100vh;
   top: 0;
-  background-image: url('images/bright-curtain.png');
-  background-size: cover;
-  background-position: center;
-  animation: openCurtain 3s ease-out forwards;
+  background: #B22222;
   z-index: 10;
-}
+  animation: openCurtain 2s ease-out forwards;
 }
 
+/* Left curtain slides left, right curtain slides right */
 #curtainLeft {
   left: 0;
   transform-origin: left;
@@ -28,39 +28,7 @@ body {
   right: 0;
   transform-origin: right;
 }
-  transform: translate(-50%, -50%);
-  text-align: center;
-  opacity: 0;
-  animation: fadeIn 4s ease-in 2s forwards;
-}
-.title h1 {
-  font-size: 3rem;
-  margin: 0;
-}
 
-.title p {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-  color: #ccc;
-}
-
-=======
->>>>>>> 9f58b16748c16f9492c215f989628443a8a89f51
-@keyframes openCurtain {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0.5);
-  }
-}
-
-<<<<<<< HEAD
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-=======
 #logo {
   position: absolute;
   top: 40%;
@@ -74,8 +42,42 @@ body {
   z-index: 15;
   opacity: 0;
   filter: brightness(0);
-  transform: translate(-50%, -50%) scale(0.6);
   animation: logoPopIn 2.5s cubic-bezier(0.23, 1.12, 0.32, 1) 2.5s forwards;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 4s ease-in 2s forwards;
+}
+
+.title h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.title p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #ccc;
+}
+
+@keyframes openCurtain {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 #enterHome {
@@ -99,7 +101,7 @@ body {
   transform: translate(-50%, -50%);
   z-index: 15;
   opacity: 0;
-  animation: fadeInEnterHome 1.5s ease-in 5.2s forwards;
+  animation: fadeInEnterHome 1.5s ease-in 1s forwards;
 }
 
 @keyframes logoPopIn {
@@ -123,9 +125,10 @@ body {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
 @keyframes fadeInEnterHome {
   to {
     opacity: 1;
   }
 }
->>>>>>> 9f58b16748c16f9492c215f989628443a8a89f51
+
