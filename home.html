@@ -96,4 +96,16 @@
     </div>
   </div>
 </body>
+<script>
+  // Pause other audio tracks when one starts playing
+  document.querySelectorAll('audio').forEach(function(audio) {
+    audio.addEventListener('play', function() {
+      document.querySelectorAll('audio').forEach(function(other) {
+        if (other !== audio) {
+          other.pause();
+        }
+      });
+    });
+  });
+</script>
 </html>
