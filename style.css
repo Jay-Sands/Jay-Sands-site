@@ -40,6 +40,13 @@
     margin-bottom: 24px !important;
     display: block !important;
   }
+  /* About column first, Featured second on mobile */
+  .home-flex-col:first-child {
+    order: 1 !important;
+  }
+  .home-flex-col:nth-child(2) {
+    order: 2 !important;
+  }
 }
 body {
   margin: 0;
