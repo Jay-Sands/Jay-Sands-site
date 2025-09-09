@@ -1,3 +1,9 @@
+body {
+  background-color: #000 !important;
+  color: #FFD700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
 /* Bright red glow for artist cards on Other Artists page */
 .other-artist-card {
   box-shadow:
@@ -50,10 +56,7 @@
     margin-bottom: 24px !important;
     display: block !important;
   }
-  /* About column first, Featured second on mobile using class names */
-  .about-col {
-    order: 1 !important;
-  }
+  /* Removed mobile-only column order reversal for consistent layout. */
   /* Removed unused accordion and panel styles after restoring dropdown list layout. */
 }
 #welcomeText.show {
