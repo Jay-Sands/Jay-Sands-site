@@ -11,60 +11,9 @@
   <div style="max-width:900px;margin:40px auto;padding:32px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);">
     <img src="images/jsands-logo.png" alt="Jay Sands Logo" style="width:180px;margin:0 auto 24px auto;display:block;">
     <h1 style="font-size:2.2em;color:#FFD700;text-align:center;">Other Artists & Tributes</h1>
-  <p style="font-size:1.3em;color:#fff;margin-bottom:2em;text-align:center;">Explore the range of artists Jay Sands covers in his performances and themed shows.<br><span style="color:#FFD700;font-size:1em;">Below are just a few songs from each artist—Jay’s full repertoire is much larger!</span></p>
+    <p style="font-size:1.3em;color:#fff;margin-bottom:2em;text-align:center;">Explore the range of artists Jay Sands covers in his performances and themed shows.<br><span style="color:#FFD700;font-size:1em;">Below are just a few songs from each artist—Jay’s full repertoire is much larger!</span></p>
     <div style="max-width:700px;margin:0 auto;">
-  <h2 style="color:#FFD700;text-align:center;font-size:1.15em;margin-bottom:18px;letter-spacing:1px;">Select an artist below to view a few sample songs from Jay's repertoire.</h2>
-      <style>
-        .accordion-list {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-        .accordion {
-          <!DOCTYPE html>
-          border: 2px solid #FFD700;
-          outline: none;
-          color: #FFD700;
-          font-size: 1em;
-          font-weight: bold;
-          width: 100%;
-          text-align: left;
-          padding: 10px 16px;
-          cursor: pointer;
-          border-radius: 14px;
-          margin-bottom: 12px;
-          box-shadow: 0 0 8px 1px rgba(0,64,255,0.10);
-          transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
-        }
-        .accordion.active, .accordion:hover {
-          <!DOCTYPE html>
-          border-color: #fff;
-          box-shadow: 0 0 24px 4px rgba(0,64,255,0.22);
-        }
-        .accordion-list {
-          margin-top: 8px;
-        }
-        .panel {
-          padding: 0 24px 18px 24px;
-          background: rgba(34,34,34,0.95);
-          border-radius: 0 0 18px 18px;
-          color: #fff;
-          display: none;
-        }
-        .panel.show {
-          display: block;
-        }
-        .artist-img {
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          object-fit: cover;
-          display: flex;
-          align-items: center;
-          margin-bottom: 8px;
-          margin-right: 10px;
-        }
-      </style>
+      <h2 style="color:#FFD700;text-align:center;font-size:1.15em;margin-bottom:18px;letter-spacing:1px;">Select an artist below to view a few sample songs from Jay's repertoire.</h2>
       <ul style="list-style:none;padding:0;margin:0;">
         <li style="margin-bottom:18px;">
           <span style="color:#FFD700;font-weight:bold;font-size:1.1em;">Frank Sinatra</span><br>
@@ -130,3 +79,10 @@
           </select>
         </li>
       </ul>
+    </div>
+    <div style="margin-top:32px;text-align:center;">
+      <a href="home.html" style="display:inline-block;background:#FFD700;color:#111;font-weight:bold;padding:10px 28px;border-radius:16px;border:none;box-shadow:0 2px 8px #B22222;letter-spacing:1px;text-decoration:none;">Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

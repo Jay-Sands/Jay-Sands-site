@@ -1,11 +1,11 @@
 /* Bright red glow for artist cards on Other Artists page */
 .other-artist-card {
   box-shadow:
-    0 0 240px 80px rgba(255,23,68,0.7), /* extreme red glow, very soft */
-    0 0 160px 40px rgba(255,23,68,0.5), /* secondary red glow, even softer */
-    0 0 96px 24px rgba(255,215,0,0.4),  /* gold outer glow, soft */
-    0 0 48px 12px rgba(255,215,0,0.6) inset, /* gold inner glow */
-    0 2px 24px rgba(255,215,0,0.7);     /* gold accent for depth */
+    0 0 34px 11px rgba(0,64,255,0.28), /* blue glow further reduced */
+    0 0 22px 5px rgba(0,64,255,0.16), /* secondary blue glow further reduced */
+    0 0 13px 3px rgba(255,215,0,0.07),  /* gold outer glow further reduced */
+    0 0 7px 1px rgba(255,215,0,0.10) inset, /* gold inner glow further reduced */
+    0 2px 3px rgba(255,215,0,0.12);     /* gold accent for depth further reduced */
   border-radius: 18px;
 }
 /* Force desktop two-column layout for home page */
@@ -54,34 +54,7 @@
   .about-col {
     order: 1 !important;
   }
-  .featured-col {
-    order: 2 !important;
-  }
-}
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #000;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
-  min-height: 100vh;
-}
-
-/* Welcome text styling and animation */
-#welcomeText {
-  position: absolute;
-  top: 38%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Dancing Script', cursive;
-  font-size: 4.5rem;
-  color: #ffd700;
-  font-weight: bold;
-  text-shadow: 2px 2px 8px #000, 0 0 6px #ffd700;
-  opacity: 0;
-  z-index: 40;
-  pointer-events: none;
-  transition: opacity 1s ease;
+  /* Removed unused accordion and panel styles after restoring dropdown list layout. */
 }
 #welcomeText.show {
   opacity: 1;
