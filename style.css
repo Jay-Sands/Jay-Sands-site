@@ -40,11 +40,11 @@
     margin-bottom: 24px !important;
     display: block !important;
   }
-  /* About column first, Featured second on mobile */
-  .home-flex-col:first-child {
+  /* About column first, Featured second on mobile using class names */
+  .about-col {
     order: 1 !important;
   }
-  .home-flex-col:nth-child(2) {
+  .featured-col {
     order: 2 !important;
   }
 }
