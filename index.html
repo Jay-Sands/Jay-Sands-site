@@ -18,12 +18,13 @@
   <script>
   // Wait for logo animation to finish, then redirect
   window.addEventListener('DOMContentLoaded', function() {
-      // Show Welcome text, fade in, then fade out before curtain opens
-      var welcome = document.getElementById('welcomeText');
-      welcome.classList.add('show');
-      setTimeout(function() {
-        welcome.classList.add('hide');
-      }, 2000); // Hold Welcome for 2 seconds before fading out
+    // Show Welcome text, fade in, then fade out just as logo starts to appear
+    var welcome = document.getElementById('welcomeText');
+    welcome.classList.add('show');
+    // Logo animation starts at 3.5s, so fade out Welcome just before that
+    setTimeout(function() {
+      welcome.classList.add('hide');
+    }, 3300); // Hold Welcome for 3.3 seconds before fading out
     setTimeout(function() {
       document.body.style.transition = 'opacity 2s linear';
       document.body.style.opacity = '0';
