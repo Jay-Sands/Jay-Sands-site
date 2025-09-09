@@ -1,4 +1,27 @@
-/* Strong mobile fix for home page columns, desktop untouched */
+/* Force desktop two-column layout for home page */
+@media only screen and (min-width: 701px) {
+  .home-flex-row {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 40px !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .home-flex-col {
+    min-width: 250px !important;
+    width: 50% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    min-height: 900px !important;
+  }
+}
+/* Mobile fix for home page columns, desktop untouched */
 @media only screen and (max-width: 700px) {
   .home-flex-row {
     display: flex !important;
@@ -16,44 +39,6 @@
     box-sizing: border-box !important;
     margin-bottom: 24px !important;
     display: block !important;
-  }
-}
-/* Mobile fix for home page columns */
-@media (max-width: 700px) {
-  .home-flex-row {
-    flex-direction: column !important;
-    gap: 0 !important;
-    align-items: stretch !important;
-  }
-  .home-flex-col {
-    min-width: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-bottom: 24px !important;
-  }
-}
-/* Minimal mobile fix: only affects screens <= 600px wide */
-@media (max-width: 600px) {
-  body {
-    font-size: 1em;
-    min-width: 100vw;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  #logo {
-    width: 90vw;
-    max-width: 320px;
-  }
-  #welcomeText {
-    font-size: 2.2rem;
-    top: 30%;
-  }
-  .centerWrapper {
-    width: 100vw;
-    left: 50%;
-    top: 48%;
-    transform: translate(-50%, -50%);
-    padding: 0 8px;
   }
 }
 body {
