@@ -1,8 +1,11 @@
 /* Bright red glow for artist cards on Other Artists page */
 .other-artist-card {
   box-shadow:
-    0 0 32px 8px #FF1744, /* bright red outer glow */
-    0 2px 8px #FFD700;    /* gold accent for depth */
+    0 0 240px 80px rgba(255,23,68,0.7), /* extreme red glow, very soft */
+    0 0 160px 40px rgba(255,23,68,0.5), /* secondary red glow, even softer */
+    0 0 96px 24px rgba(255,215,0,0.4),  /* gold outer glow, soft */
+    0 0 48px 12px rgba(255,215,0,0.6) inset, /* gold inner glow */
+    0 2px 24px rgba(255,215,0,0.7);     /* gold accent for depth */
   border-radius: 18px;
 }
 /* Force desktop two-column layout for home page */
