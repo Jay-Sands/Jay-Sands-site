@@ -203,37 +203,36 @@ window.addEventListener('DOMContentLoaded', function() {
     homeSection.style.opacity = '0';
   }
   
-  // Show welcome text after a brief delay, then fade out
+  // Start with curtains opening first
   setTimeout(function() {
-    welcomeText.classList.add('show');
+    curtainLeft.classList.add('open');
+    curtainRight.classList.add('open');
     
-    // Hide welcome text after 1.3s
+    // After curtains open, show welcome text
     setTimeout(function() {
-      welcomeText.classList.remove('show');
+      welcomeText.classList.add('show');
       
-      // Curtains open after welcome fades out (700ms)
+      // Keep welcome text visible for 3 seconds, then fade out
       setTimeout(function() {
-        curtainLeft.classList.add('open');
-        curtainRight.classList.add('open');
+        welcomeText.classList.remove('show');
         
-        // Logo zooms in after curtains finish opening (2500ms)
+        // After welcome fades out, logo zooms in
         setTimeout(function() {
           logo.classList.add('visible');
           
-          // Transition to home section (4000ms after logo appears)
+          // Wait for logo to fully settle before starting fade-out
           setTimeout(function() {
-            // First fade out the logo using CSS class
             logo.classList.add('fade-out');
             
             // Then redirect to home page after logo fades out
             setTimeout(function() {
               window.location.href = 'home.html';
-            }, 2000); // Wait 2 seconds for logo to fade out
-          }, 4000);
-        }, 2500);
-      }, 700);
-    }, 1300);
-  }, 500); // Wait 500ms before showing welcome text
+            }, 1500);
+          }, 6000);
+        }, 700);
+      }, 3000);
+    }, 1000);
+  }, 500);
 });
 </script>
 </body>
