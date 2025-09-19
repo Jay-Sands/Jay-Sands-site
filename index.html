@@ -17,7 +17,7 @@
       background: url('images/bright-curtain.png') no-repeat center center; 
       background-size: cover; 
       z-index: 10; 
-      transition: transform 2.5s cubic-bezier(.77,0,.18,1); 
+      transition: transform 4s cubic-bezier(.77,0,.18,1); 
     }
     #curtainLeft { 
       left: 0; 
@@ -33,17 +33,17 @@
     #curtainRight.open { 
       transform: translateX(100vw); 
     }
-    #welcomeText { 
-      position: absolute; 
-      top: 20%; 
-      left: 50%; 
-      transform: translateX(-50%); 
-      font-size: 3em; 
-      color: #FFD700; 
-      font-family: 'Dancing Script', cursive; 
-      z-index: 20; 
+    #welcomeText {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3em;
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      z-index: 20;
       opacity: 0;
-      transition: opacity 0.7s ease; 
+      transition: opacity 0.7s ease;
     }
     #welcomeText.show {
       opacity: 1;
