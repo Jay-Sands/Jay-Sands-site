@@ -115,8 +115,8 @@ body {
 }
 
 #logo {
-  width: 400px;
-  max-width: 90vw;
+  width: 300px;
+  max-width: 80vw;
   height: auto;
   background: transparent;
   border: none !important;

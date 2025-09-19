@@ -42,15 +42,15 @@
       color: #FFD700; 
       font-family: 'Dancing Script', cursive; 
       z-index: 20; 
-      opacity: 1;
+      opacity: 0;
       transition: opacity 0.7s ease; 
     }
-    #welcomeText.hide {
-      opacity: 0;
+    #welcomeText.show {
+      opacity: 1;
     }
     #logo { 
-      width: 400px; 
-      max-width: 90vw; 
+      width: 300px; 
+      max-width: 80vw; 
       opacity: 0; 
       transform: scale(0.1);
       z-index: 20; 
@@ -94,12 +94,12 @@
   <div id="curtainRight" class="curtainImg"></div>
   <div id="welcomeText">Welcome</div>
   <div class="centerWrapper">
-    <img id="logo" src="images/jsands-logo.png" alt="Jay Sands Logo">
+    <img id="logo" src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo">
   </div>
 </div>
 <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
-  <div style="max-width:900px;margin:0 auto 0 auto;padding:0 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
-    <img src="images/jsands-logo.png" alt="Jay Sands Logo" style="width:300px;margin:0 auto 12px auto;display:block;">
+  <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
+    <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo" style="width:150px;margin:0 auto 40px auto;display:block;">
     <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;">Jay Sands – Vocalist & Entertainer</h1>
     <p style="font-size:1.4em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
     <hr style="border:0;height:4px;background:linear-gradient(90deg,#FFD700,#B22222);margin:18px 0 0 0;">
@@ -198,41 +198,42 @@ window.addEventListener('DOMContentLoaded', function() {
   logo.classList.remove('visible', 'fade-out');
   logo.removeAttribute('style'); // Remove any inline styles that might conflict
   landingSection.style.display = 'block';
-  homeSection.style.display = 'none';
-  homeSection.style.opacity = '0';
+  if (homeSection) {
+    homeSection.style.display = 'none';
+    homeSection.style.opacity = '0';
+  }
   
-  // Show welcome text for 1.3s, then fade out
+  // Show welcome text after a brief delay, then fade out
   setTimeout(function() {
-    welcomeText.classList.add('hide');
+    welcomeText.classList.add('show');
     
-    // Curtains open after welcome fades out (700ms)
+    // Hide welcome text after 1.3s
     setTimeout(function() {
-      curtainLeft.classList.add('open');
-      curtainRight.classList.add('open');
+      welcomeText.classList.remove('show');
       
-      // Logo zooms in after curtains finish opening (2500ms)
+      // Curtains open after welcome fades out (700ms)
       setTimeout(function() {
-        logo.classList.add('visible');
+        curtainLeft.classList.add('open');
+        curtainRight.classList.add('open');
         
-        // Transition to home section (4000ms after logo appears)
+        // Logo zooms in after curtains finish opening (2500ms)
         setTimeout(function() {
-          // First fade out the logo using CSS class
-          logo.classList.add('fade-out');
+          logo.classList.add('visible');
           
-          // Then transition to home section after logo fades out
+          // Transition to home section (4000ms after logo appears)
           setTimeout(function() {
-            landingSection.style.display = 'none';
-            homeSection.style.display = 'block';
+            // First fade out the logo using CSS class
+            logo.classList.add('fade-out');
             
-            // Fade in home section
+            // Then redirect to home page after logo fades out
             setTimeout(function() {
-              homeSection.style.opacity = '1';
-            }, 100);
-          }, 2000); // Wait 2 seconds for logo to fade out
-        }, 4000);
-      }, 2500);
-    }, 700);
-  }, 1300);
+              window.location.href = 'home.html';
+            }, 2000); // Wait 2 seconds for logo to fade out
+          }, 4000);
+        }, 2500);
+      }, 700);
+    }, 1300);
+  }, 500); // Wait 500ms before showing welcome text
 });
 </script>
 </body>

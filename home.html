@@ -19,7 +19,7 @@
   <div style="margin-bottom:0;">
       <!-- Booking button removed -->
     </div>
-    <img src="images/jsands-logo.png" alt="Jay Sands Logo" style="width:300px;margin:0 auto 12px auto;display:block;">
+    <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo" style="width:200px;margin:0 auto 12px auto;display:block;">
     <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;">Jay Sands – Vocalist & Entertainer</h1>
     <p style="font-size:1.4em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
   <hr style="border:0;height:4px;background:linear-gradient(90deg,#FFD700,#B22222);margin:18px 0 0 0;">
@@ -71,21 +71,6 @@
           </audio>
         </div>
       </div>
-      <!-- Feedback Form -->
-      <div style="margin:32px 0 0 0;padding:24px;background:rgba(34,34,34,0.7);border-radius:16px;box-shadow:0 2px 8px #B22222;">
-        <h3 style="color:#FFD700;">Share your show experience with us.</h3>
-        <form name="feedback" method="POST" data-netlify="true" style="text-align:left;max-width:400px;margin:0 auto;">
-          <input type="hidden" name="form-name" value="feedback">
-          <label style="color:#FFD700;">Your Quote or Feedback:</label><br>
-          <textarea name="quote" rows="3" required style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;"></textarea>
-          <label style="color:#FFD700;">Your Name (optional):</label><br>
-          <input type="text" name="name" style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
-            <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;">Send Feedback</button>
-            <a href="feedback.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:inline-block;font-family:inherit;font-size:1em;text-decoration:none;">Show Feedback</a>
-          </div>
-        </form>
-      </div>
       <!-- Booking Button at Bottom -->
       <a href="booking.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:block;font-family:inherit;margin:16px auto 0 auto;font-size:1em;text-align:center;width:max-content;">Book Jay Sands</a>
     </div>
@@ -101,6 +86,7 @@
         </p>
       </div>
   </div>
+  <audio id="landingAudio" src="tracks/landing-music.mp3" autoplay hidden></audio>
 </body>
 <script>
   // Pause other audio tracks when one starts playing
@@ -112,6 +98,26 @@
         }
       });
     });
+  });
+  // Fade out landing music after home page loads
+  window.addEventListener('DOMContentLoaded', function() {
+    var audio = document.getElementById('landingAudio');
+    if (audio) {
+      audio.currentTime = 2.16;
+      audio.volume = 1;
+      var fadeOut = setInterval(function() {
+        if (audio.volume > 0) {
+          audio.volume = Math.max(audio.volume - 0.005, 0);
+        } else {
+          clearInterval(fadeOut);
+          audio.pause();
+        }
+      }, 50);
+      setTimeout(function() {
+        clearInterval(fadeOut);
+        audio.pause();
+      }, 2500); // Fade out duration (2.5s)
+    }
   });
 </script>
 </html>
