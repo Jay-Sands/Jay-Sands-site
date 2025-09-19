@@ -149,6 +149,21 @@ body {
   }
 }
 
+#logo.fade-out {
+  animation: logoFadeOut 1s ease-out forwards;
+}
+
+@keyframes logoFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
 #enterHome {
   background: linear-gradient(135deg, #FFD700 0%, #FFF700 40%, #FFD700 100%);
   color: #111;

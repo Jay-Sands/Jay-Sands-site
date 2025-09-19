@@ -220,7 +220,7 @@ window.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
           logo.classList.add('visible');
           
-          // Transition to home section (2000ms after logo appears)
+          // Wait for logo to fully settle before starting fade-out (3500ms after logo appears)
           setTimeout(function() {
             // First fade out the logo using CSS class
             logo.classList.add('fade-out');
@@ -229,7 +229,7 @@ window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
               window.location.href = 'home.html';
             }, 1000); // Wait 1 second for logo to fade out
-          }, 2000);
+          }, 3500);
         }, 2500);
       }, 700);
     }, 1300);
