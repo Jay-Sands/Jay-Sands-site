@@ -227,7 +227,7 @@ window.addEventListener('DOMContentLoaded', function() {
             // Then redirect to home page after logo fades out
             setTimeout(function() {
               window.location.href = 'home.html';
-            }, 1500);
+            }, /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 500 : 1500);
           }, 6000);
         }, 700);
       }, 3000);
