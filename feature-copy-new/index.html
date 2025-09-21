@@ -191,19 +191,18 @@
             </audio>
           </div>
         </div>
-        <!-- Contact Section (replaces booking button) -->
-        <div style="margin-top:30px;padding:20px;background:rgba(50,50,50,0.9);border-radius:12px;border:2px solid #FFD700;">
-          <p style="color:#fff;text-align:center;font-size:1.1em;margin-bottom:15px;">Ready to bring timeless music to your event?</p>
-          <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
-            <a href="shows.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:inline-block;font-family:inherit;margin:0 0 8px 0;font-size:1em;text-align:center;width:max-content;text-decoration:none;">Where I Will Be</a>
-            <a href="booking.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:inline-block;font-family:inherit;margin:0 0 8px 0;font-size:1em;text-align:center;width:max-content;text-decoration:none;">Book Jay Sands</a>
-          </div>
-        </div>
-        <!-- Email Contact -->
-        <div style="text-align:center;margin-top:20px;">
-          <p style="color:#FFD700;font-size:2.5em;font-weight:900;font-family:'Dancing Script', cursive;text-shadow:1px 1px 3px #B22222;">
-            Contact us: <a href="mailto:jay@jsands.net" style="color:#FFD700;text-decoration:none;font-family:'Brush Script MT', cursive;font-size:1.3em;">Jay@Jsands.net</a>
-          </p>
+        <!-- Small Contact Form (now in left column) -->
+        <div style="width:100%;margin-top:32px;display:flex;justify-content:center;">
+          <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 2px 8px #B22222;">
+            <h3 style="color:#FFD700;margin-bottom:10px;font-size:1.1em;">Contact Jay Sands</h3>
+            <label style="color:#FFD700;font-size:0.95em;">Your Name:</label><br>
+            <input type="text" name="name" style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;"><br>
+            <label style="color:#FFD700;font-size:0.95em;">Your Email:</label><br>
+            <input type="email" name="email" required style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;"><br>
+            <label style="color:#FFD700;font-size:0.95em;">Message:</label><br>
+            <textarea name="message" rows="3" required style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;font-size:0.95em;"></textarea><br>
+            <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Message</button>
+          </form>
         </div>
       </div>
   <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
@@ -216,6 +215,9 @@
           Entertainingly Yours,<br><br>
           <span style="font-family: 'Brush Script MT', cursive; font-size:2em; color:#FFD700; letter-spacing:2px;">Jay Sands</span><br><br>
         </p>
+        <div style="width:100%;display:flex;justify-content:center;margin-bottom:24px;">
+          <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo" style="width:80px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 2px 8px #B22222);">
+        </div>
       </div>
     </div>
   </div>
