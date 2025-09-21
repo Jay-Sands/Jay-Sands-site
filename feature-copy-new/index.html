@@ -87,6 +87,11 @@
       opacity: 0; 
       transition: opacity 2s linear; 
     }
+      /* Temporary class to force flexbox redraw for home page */
+      .force-flex-redraw {
+        display: flex !important;
+        align-items: stretch !important;
+      }
       .main-nav a {
         color: #FFD700;
         font-family: 'Dancing Script', cursive;
@@ -201,7 +206,6 @@
           </p>
         </div>
       </div>
-  <div style="width:3px;min-height:900px;background:linear-gradient(to bottom, #FFD700 0%, #FFD700 100%);border-radius:2px;margin:0 0 0 0;box-shadow:0 0 6px #FFD700;align-self:stretch;"></div>
   <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
         <h2 style="color:#FFD700;">About Jay Sands</h2>
         <p style="color:#fff;font-size:1.05em;line-height:1.6;">
@@ -238,6 +242,15 @@ window.addEventListener('DOMContentLoaded', function() {
   if (homeSection) {
     homeSection.style.display = 'none';
     homeSection.style.opacity = '0';
+                  // Remove and re-insert the centerline divider to force layout recalculation
+                  var flexRow = homeSection.querySelector('.home-flex-row');
+                  var divider = flexRow && flexRow.querySelector('div[style*="width:3px"][style*="min-height:900px"]');
+                  if (divider && flexRow) {
+                    flexRow.removeChild(divider);
+                    setTimeout(function() {
+                      flexRow.insertBefore(divider, flexRow.children[1]);
+                    }, 50);
+                  }
   }
 
   // Always show start prompt and block all interaction until clicked
@@ -273,6 +286,18 @@ window.addEventListener('DOMContentLoaded', function() {
                   homeSection.style.display = 'block';
                   setTimeout(function() {
                     homeSection.style.opacity = '1';
+                      // Add temporary class to force flexbox redraw
+                      var flexRow = homeSection.querySelector('.home-flex-row');
+                      if (flexRow) {
+                        flexRow.classList.add('force-flex-redraw');
+                        // Remove after short delay to avoid side effects
+                        setTimeout(function() {
+                          flexRow.classList.remove('force-flex-redraw');
+                        }, 100);
+                      }
+                      // Force reflow to fix flexbox layout after showing homeSection
+                      void homeSection.offsetHeight;
+                      window.dispatchEvent(new Event('resize'));
                     setTimeout(function() {
                       var fadeOut = setInterval(function() {
                         if (!landingMusic.muted && landingMusic.volume > 0.01) {

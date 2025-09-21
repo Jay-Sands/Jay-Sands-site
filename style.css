@@ -76,7 +76,12 @@ body {
   top: 0;
   z-index: 30;
   transform: scaleX(1); /* Visually closed by default */
-  /* No animation by default. Animation only on .open class. */
+    /* No animation by default. Animation only on .open class. */
+  animation: openCurtain 3.5s ease-out forwards;
+  animation: openCurtain 3.5s ease-out forwards;
+  animation: openCurtain 3.5s ease-out forwards;
+  animation: openCurtain 3.5s ease-out forwards;
+  animation: openCurtain 3.5s ease-out forwards;
 }
 
 /* Left curtain slides left, right curtain slides right */
@@ -115,36 +120,35 @@ body {
 }
 
 #logo {
-  width: 300px;
-  max-width: 80vw;
+  width: 400px;
+  max-width: 90vw;
   height: auto;
   background: transparent;
   border: none !important;
   opacity: 0;
-  transform: scale(0.1);
+  filter: brightness(0);
+  /* No animation by default. Only animate when .visible is added. */
+  animation: logoPopIn 2.5s cubic-bezier(0.23, 1.12, 0.32, 1) forwards;
 }
 
-#logo.visible {
-  animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards !important;
-}
-
-@keyframes logoZoomIn {
+@keyframes logoPopIn {
   0% {
     opacity: 0;
-    transform: scale(0.1);
+    filter: brightness(0);
+    transform: scale(0.6);
   }
   60% {
     opacity: 1;
-    transform: scale(1.25);
+    filter: brightness(0.7);
+    transform: scale(1.15);
   }
   80% {
+    filter: brightness(1);
     transform: scale(0.98);
-  }
-  90% {
-    transform: scale(1.02);
   }
   100% {
     opacity: 1;
+    filter: brightness(1);
     transform: scale(1);
   }
 }
