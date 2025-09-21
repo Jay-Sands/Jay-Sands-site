@@ -237,6 +237,28 @@ window.addEventListener('DOMContentLoaded', function() {
   var logo = document.getElementById('logo');
   var landingSection = document.getElementById('landingSection');
   var homeSection = document.getElementById('homeSection');
+
+  // Fix: Pause landing music when leaving landing section
+  function pauseLandingMusic() {
+    if (landingMusic && !landingSection.style.display.includes('none')) {
+      landingMusic.pause();
+      landingMusic.currentTime = 0;
+    }
+  }
+
+  // When switching to homeSection, pause landing music
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+        if (homeSection.style.display !== 'none') {
+          pauseLandingMusic();
+        }
+      }
+    });
+  });
+  if (homeSection) {
+    observer.observe(homeSection, { attributes: true });
+  }
   var welcomeText = document.getElementById('welcomeText');
   var landingMusic = document.getElementById('landingMusic');
   var startPrompt = document.getElementById('startPrompt');
