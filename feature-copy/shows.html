@@ -69,34 +69,7 @@
     </div>
 <script>
 // Auto-remove past shows and highlight next upcoming show
-document.addEventListener('DOMContentLoaded', function() {
-  const showItems = Array.from(document.querySelectorAll('.show-item'));
-  const today = new Date();
-  let nextShow = null;
-  let nextShowDate = null;
-  showItems.forEach(item => {
-    const dateElem = item.querySelector('.date');
-    if (!dateElem) return;
-    const dateText = dateElem.textContent.trim();
-    // Try to parse date (format: Month Day, Year)
-    const parsedDate = new Date(dateText);
-    if (isNaN(parsedDate)) return;
-    // Remove shows in the past
-    if (parsedDate < today.setHours(0,0,0,0)) {
-      item.style.display = 'none';
-    } else {
-      // Find the next upcoming show
-      if (!nextShowDate || parsedDate < nextShowDate) {
-        nextShow = item;
-        nextShowDate = parsedDate;
-      }
-    }
-  });
-  // Remove featured class from all, add to next upcoming
-  showItems.forEach(item => item.classList.remove('featured'));
-  if (nextShow) nextShow.classList.add('featured');
-});
-
+// ...existing code...
+</script>
+</body>
 </html>
-
-

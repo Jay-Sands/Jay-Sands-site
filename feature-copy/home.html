@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Jay Sands</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
+</head>
+<body style="color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; opacity:0; transition:opacity 2s linear;">
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        document.body.style.opacity = '1';
+      }, 100); // Start fade-in on load
+    });
+  </script>
+  <div style="max-width:900px;margin:0 auto 0 auto;padding:0 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
+  <div style="margin-bottom:0;">
+      <!-- Booking button removed -->
+    </div>
+    <img src="images/jsands-logo.png" alt="Jay Sands Logo" style="width:300px;margin:0 auto 12px auto;display:block;">
+    <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;">Jay Sands – Vocalist & Entertainer</h1>
+    <p style="font-size:1.4em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
+  <hr style="border:0;height:4px;background:linear-gradient(90deg,#FFD700,#B22222);margin:18px 0 0 0;">
+  <div class="home-flex-row" style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:0;padding-top:0;">
+    <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
+      <h2 style="color:#FFD700;">Featured Work</h2>
+      <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my new and recent releases:</p>
+      <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
+        <div style="margin-bottom:12px;">
+          <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
+          <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
+            <source src="tracks/The Summer Wind.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span style="color:#FFD700;font-weight:bold;">That Old Devil Moon</span><br>
+          <audio controls style="width:100%;max-width:400px;">
+            <source src="tracks/That Old Devil Moon.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span style="color:#FFD700;font-weight:bold;">The Tender Trap</span><br>
+          <audio controls style="width:100%;max-width:400px;">
+            <source src="tracks/The Tender Trap.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span style="color:#FFD700;font-weight:bold;">Witchcraft</span><br>
+          <audio controls style="width:100%;max-width:400px;">
+            <source src="tracks/Witchcraft.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span style="color:#FFD700;font-weight:bold;">More</span><br>
+          <audio controls style="width:100%;max-width:400px;">
+            <source src="tracks/More.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span style="color:#FFD700;font-weight:bold;">The World We Knew</span><br>
+          <audio controls style="width:100%;max-width:400px;">
+            <source src="tracks/The World We Knew.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+      <!-- Feedback Form -->
+      <div style="margin:32px 0 0 0;padding:24px;background:rgba(34,34,34,0.7);border-radius:16px;box-shadow:0 2px 8px #B22222;">
+        <h3 style="color:#FFD700;">Share your show experience with us.</h3>
+        <form name="feedback" method="POST" data-netlify="true" style="text-align:left;max-width:400px;margin:0 auto;">
+          <input type="hidden" name="form-name" value="feedback">
+          <label style="color:#FFD700;">Your Quote or Feedback:</label><br>
+          <textarea name="quote" rows="3" required style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;"></textarea>
