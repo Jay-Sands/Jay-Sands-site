@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Shows | Jay Sands</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+  body { background: #111; color: #FFD700; font-family: 'Dancing Script', cursive; margin: 0; }
+  .container { max-width: 600px; margin: 40px auto; background: rgba(34,34,34,0.92); border-radius: 24px; box-shadow: 0 8px 32px rgba(178,34,34,0.3); padding: 32px 24px; animation: fadeIn 1.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  h1 { font-size: 3em; text-align: center; margin-bottom: 24px; text-shadow: 2px 2px 8px #B22222; }
+  .show-list { list-style: none; padding: 0; }
+  .show-item { margin-bottom: 32px; padding-bottom: 24px; border-bottom: none; position: relative; background: rgba(34,34,34,0.98); border-radius: 16px; box-shadow: 0 2px 12px rgba(255,215,0,0.08); transition: box-shadow 0.3s, transform 0.3s; display: flex; align-items: center; gap: 18px; }
+  .show-item:hover { box-shadow: 0 4px 24px #FFD700, 0 2px 8px #B22222; transform: scale(1.03); }
+  .show-item.featured { border: 2px solid #FFD700; box-shadow: 0 0 24px #FFD700, 0 2px 8px #B22222; }
+  .venue-img { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg,#FFD700,#B8860B); display: flex; align-items: center; justify-content: center; color: #111; font-size: 1.5em; font-weight: bold; margin-right: 12px; box-shadow: 0 2px 8px #B22222; }
+  .venue { font-size: 1.5em; font-weight: bold; color: #FFD700; }
+  .details { color: #fff; font-size: 1.1em; margin: 8px 0; }
+  .date { font-size: 1.2em; color: #FFD700; margin-top: 8px; }
+  .gold-divider { width: 80%; height: 4px; background: linear-gradient(90deg,#FFD700,#B8860B,#FFD700); border-radius: 2px; margin: 18px auto; }
+  .main-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background: transparent;
+  padding: 8px 0 4px 0;
+  border-radius: 0 0 8px 8px;
+  box-shadow: none;
+  margin-bottom: 18px;
+  }
+  .main-nav a {
+    color: #FFD700;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1em;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    transition: color 0.2s, border-bottom 0.2s;
+    position: relative;
+  }
+  .main-nav a:hover, .main-nav a:focus {
+    color: #FFD700;
+    background: transparent;
+    border-bottom: 2px solid #FFD700;
+  }
+  </style>
+</head>
+<body>
+  <div style="width:100%;">
+    <nav class="main-nav">
+  <a href="home.html">Home</a>
+  <a href="booking.html">Booking</a>
+  <a href="feedback.html">Feedback</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h1>Upcoming Shows</h1>
+    <ul class="show-list">
+      <li class="show-item featured">
+        <div class="venue-img">GC</div>
+        <span class="venue">Grand Central Ballroom</span>
+        <div class="details">Saturday, September 27, 2025 &mdash; 8:00 PM</div>
+        <div class="date">September 27, 2025</div>
+      </li>
+      <li class="show-item">
+        <div class="venue-img">PL</div>
+        <span class="venue">Park Lane Lounge</span>
+        <div class="details">Friday, October 10, 2025 &mdash; 7:30 PM</div>
+        <div class="date">October 10, 2025</div>
+      </li>
+      <!-- Add more shows as needed -->
+<script>
+// Auto-remove past shows and highlight next upcoming show
+document.addEventListener('DOMContentLoaded', function() {
+  const showItems = Array.from(document.querySelectorAll('.show-item'));
+  const today = new Date();
+  let nextShow = null;
+  let nextShowDate = null;
+  showItems.forEach(item => {
+    const dateElem = item.querySelector('.date');
+    if (!dateElem) return;
+    const dateText = dateElem.textContent.trim();
+    // Try to parse date (format: Month Day, Year)
+    const parsedDate = new Date(dateText);
+    if (isNaN(parsedDate)) return;
+    // Remove shows in the past
+    if (parsedDate < today.setHours(0,0,0,0)) {
+      item.style.display = 'none';
+    } else {
+      // Find the next upcoming show
+      if (!nextShowDate || parsedDate < nextShowDate) {
+        nextShow = item;
+        nextShowDate = parsedDate;
+      }
+    }
+  });
+  // Remove featured class from all, add to next upcoming
+  showItems.forEach(item => item.classList.remove('featured'));
+  if (nextShow) nextShow.classList.add('featured');
+});
+
+</html>
+
+

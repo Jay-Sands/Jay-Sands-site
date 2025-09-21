@@ -6,8 +6,43 @@
   <title>Home - Jay Sands</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
+  <style>
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      background: transparent;
+      padding: 8px 0 4px 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+    .main-nav a {
+      color: #FFD700;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1em;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      transition: color 0.2s, border-bottom 0.2s;
+      position: relative;
+    }
+    .main-nav a:hover, .main-nav a:focus {
+      color: #FFD700;
+      background: transparent;
+      border-bottom: 2px solid #FFD700;
+    }
+  </style>
 </head>
 <body style="color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; opacity:0; transition:opacity 2s linear;">
+  <nav class="main-nav">
+  <a href="shows.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:700;padding:4px 14px;border-radius:6px;text-decoration:none;font-size:1.25em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Shows</a>
+  <a href="booking.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:700;padding:4px 14px;border-radius:6px;text-decoration:none;font-size:1.25em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Booking</a>
+  <a href="feedback.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:700;padding:4px 14px;border-radius:6px;text-decoration:none;font-size:1.25em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Feedback</a>
+  </nav>
   <script>
     window.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {

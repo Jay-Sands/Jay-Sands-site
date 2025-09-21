@@ -87,9 +87,31 @@
       opacity: 0; 
       transition: opacity 2s linear; 
     }
+      .main-nav a {
+        color: #FFD700;
+        font-family: 'Dancing Script', cursive;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 1.25em;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        transition: color 0.2s, border-bottom 0.2s;
+        position: relative;
+      }
+      .main-nav a:hover, .main-nav a:focus {
+        color: #FFD700;
+        background: transparent;
+        border-bottom: 2px solid #FFD700;
+      }
   </style>
 </head>
 <body>
+
+
+
 <div id="landingSection">
   <div id="curtainLeft" class="curtainImg"></div>
   <div id="curtainRight" class="curtainImg"></div>
@@ -101,6 +123,13 @@
   <audio id="landingMusic" src="tracks/landing-music.mp3"></audio>
 </div>
 <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
+  <div style="width:100%;">
+    <nav class="main-nav" style="display:flex;justify-content:center;align-items:center;gap:16px;background:transparent;padding:8px 0 4px 0;border-radius:0 0 8px 8px;box-shadow:none;margin-bottom:18px;">
+  <a href="shows.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Shows</a>
+  <a href="booking.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Booking</a>
+  <a href="feedback.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Feedback</a>
+    </nav>
+  </div>
   <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
     <h1 style="font-family:'Dancing Script', cursive;font-size:4em;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 10px auto;font-weight:700;">Jay Sands</h1>
     <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 40px auto;">Vocalist & Entertainer</h1>
@@ -110,7 +139,7 @@
     <p style="font-size:2.2em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
     <div style="color:#FFD700;font-size:1.5em;text-align:center;margin:25px 0 20px 0;">────── ❖ ──────</div>
     <div class="home-flex-row" style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:0;padding-top:0;">
-      <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
+  <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
         <h2 style="color:#FFD700;">Featured Work</h2>
         <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my new and recent releases:</p>
         <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
@@ -160,7 +189,10 @@
         <!-- Contact Section (replaces booking button) -->
         <div style="margin-top:30px;padding:20px;background:rgba(50,50,50,0.9);border-radius:12px;border:2px solid #FFD700;">
           <p style="color:#fff;text-align:center;font-size:1.1em;margin-bottom:15px;">Ready to bring timeless music to your event?</p>
-          <a href="booking.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:block;font-family:inherit;margin:0 auto;font-size:1em;text-align:center;width:max-content;text-decoration:none;">Book Jay Sands</a>
+          <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+            <a href="shows.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:inline-block;font-family:inherit;margin:0 0 8px 0;font-size:1em;text-align:center;width:max-content;text-decoration:none;">Where I Will Be</a>
+            <a href="booking.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:inline-block;font-family:inherit;margin:0 0 8px 0;font-size:1em;text-align:center;width:max-content;text-decoration:none;">Book Jay Sands</a>
+          </div>
         </div>
         <!-- Email Contact -->
         <div style="text-align:center;margin-top:20px;">
@@ -169,9 +201,8 @@
           </p>
         </div>
       </div>
-      <!-- Simple Vertical Separator -->
-      <div style="width:2px;background:linear-gradient(to bottom, #FFD700, #B8860B, #FFD700);min-height:900px;margin:0 20px;border-radius:1px;box-shadow:0 0 4px rgba(255,215,0,0.3);"></div>
-      <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
+  <div style="width:3px;min-height:900px;background:linear-gradient(to bottom, #FFD700 0%, #FFD700 100%);border-radius:2px;margin:0 0 0 0;box-shadow:0 0 6px #FFD700;align-self:stretch;"></div>
+  <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
         <h2 style="color:#FFD700;">About Jay Sands</h2>
         <p style="color:#fff;font-size:1.05em;line-height:1.6;">
           For over four decades, I’ve had the privilege of sharing timeless music with audiences across the East Coast and beyond. My passion lies in bringing the golden age of song to life, whether I’m channeling Sinatra’s swing or delivering the romantic warmth of Engelbert, Paul Anka, Dean Martin, or The Duprees, to mention a few.<br><br>
