@@ -97,7 +97,7 @@
   <div class="centerWrapper">
     <img id="logo" src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo">
   </div>
-  <button id="enterButton" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px 28px;font-size:1.3em;color:#FFD700;background:rgba(34,34,34,0.9);border-radius:12px;border:2px solid #FFD700;box-shadow:0 2px 8px #B22222;opacity:0;transition:opacity 1.5s;z-index:30;cursor:pointer;font-family:'Dancing Script',cursive;">Enter Here</button>
+  <div id="startPrompt" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:30;background:rgba(0,0,0,0.8);color:#FFD700;padding:20px;border-radius:12px;text-align:center;font-family:'Dancing Script',cursive;font-size:1.5em;cursor:pointer;border:2px solid #FFD700;">Click to Enter</div>
   <audio id="landingMusic" src="tracks/landing-music.mp3"></audio>
 </div>
 <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
@@ -183,7 +183,6 @@
         </p>
       </div>
     </div>
-    <audio id="landingAudio" src="tracks/landing-music.mp3" autoplay hidden></audio>
   </div>
 </div>
 <script>
@@ -194,12 +193,8 @@ window.addEventListener('DOMContentLoaded', function() {
   var landingSection = document.getElementById('landingSection');
   var homeSection = document.getElementById('homeSection');
   var welcomeText = document.getElementById('welcomeText');
-  var enterButton = document.getElementById('enterButton');
   var landingMusic = document.getElementById('landingMusic');
-
-  // Show button immediately
-  enterButton.style.opacity = '1';
-  enterButton.style.pointerEvents = 'auto';
+  var startPrompt = document.getElementById('startPrompt');
 
   // Hide everything else initially
   curtainLeft.classList.remove('open');
@@ -214,50 +209,60 @@ window.addEventListener('DOMContentLoaded', function() {
     homeSection.style.opacity = '0';
   }
 
-  // Only start animation after button click
-  enterButton.addEventListener('click', function() {
-    enterButton.style.opacity = '0';
-    enterButton.style.pointerEvents = 'none';
-    // Start music
-    landingMusic.volume = 1; // Ensure full volume at start
-    landingMusic.currentTime = 0;
+  // Always show start prompt and block all interaction until clicked
+  startPrompt.style.display = 'block';
+  landingMusic.pause();
+  landingMusic.currentTime = 0;
+  landingMusic.muted = true;
+  // Prevent animation/music until prompt is clicked
+  function startSequence() {
+    startPrompt.style.display = 'none';
     landingMusic.muted = false;
+    landingMusic.volume = 1;
+    landingMusic.currentTime = 0;
     landingMusic.play().catch(function(error) {
       console.log('Audio autoplay prevented:', error);
     });
-    // Animation sequence
     setTimeout(function() {
       curtainLeft.classList.add('open');
       curtainRight.classList.add('open');
       setTimeout(function() {
         welcomeText.style.opacity = '1';
+        welcomeText.style.transition = 'opacity 2s ease';
         setTimeout(function() {
-          welcomeText.style.opacity = '0';
-          logo.classList.add('visible');
           setTimeout(function() {
-            logo.classList.add('fade-out');
+            welcomeText.style.transition = 'opacity 2.5s ease';
+            welcomeText.style.opacity = '0';
             setTimeout(function() {
-              landingSection.style.display = 'none';
-              homeSection.style.display = 'block';
+              logo.classList.add('visible');
               setTimeout(function() {
-                homeSection.style.opacity = '1';
-                // Fade out music as home page opens
-                var fadeOut = setInterval(function() {
-                  if (!landingMusic.muted && landingMusic.volume > 0.01) {
-                    landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0); // faster fade
-                  } else {
-                    landingMusic.volume = 0;
-                    clearInterval(fadeOut);
-                    landingMusic.pause();
-                  }
-                }, 30); // faster interval for quicker fade
-              }, 50);
-            }, 2000);
-          }, 3500);
+                logo.classList.add('fade-out');
+                setTimeout(function() {
+                  landingSection.style.display = 'none';
+                  homeSection.style.display = 'block';
+                  setTimeout(function() {
+                    homeSection.style.opacity = '1';
+                    setTimeout(function() {
+                      var fadeOut = setInterval(function() {
+                        if (!landingMusic.muted && landingMusic.volume > 0.01) {
+                          landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0);
+                        } else {
+                          landingMusic.volume = 0;
+                          clearInterval(fadeOut);
+                          landingMusic.pause();
+                        }
+                      }, 30);
+                    }, 2000);
+                  }, 50);
+                }, 2000);
+              }, 3500);
+            }, 2500);
+          }, 2200);
         }, 2000);
       }, 1200);
     }, 500);
-  });
+  }
+  startPrompt.addEventListener('click', startSequence);
 });
 </script>
 </body>
