@@ -218,6 +218,20 @@
 </div>
 <script>
 window.addEventListener('DOMContentLoaded', function() {
+  // Lower landing track volume to match home page tracks
+  var landingMusic = document.getElementById('landingMusic');
+  if (landingMusic) landingMusic.volume = 0.6;
+  // Pause all other audio tracks when one is played
+  var audios = document.querySelectorAll('audio');
+  audios.forEach(function(audio) {
+    audio.addEventListener('play', function() {
+      audios.forEach(function(other) {
+        if (other !== audio) {
+          other.pause();
+        }
+      });
+    });
+  });
   var curtainLeft = document.getElementById('curtainLeft');
   var curtainRight = document.getElementById('curtainRight');
   var logo = document.getElementById('logo');
