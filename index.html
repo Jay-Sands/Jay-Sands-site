@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!DOCTYPE html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jay Sands Landing Page</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -194,12 +193,8 @@ window.addEventListener('DOMContentLoaded', function() {
   var landingSection = document.getElementById('landingSection');
   var homeSection = document.getElementById('homeSection');
   var welcomeText = document.getElementById('welcomeText');
-  var enterButton = document.getElementById('enterButton');
   var landingMusic = document.getElementById('landingMusic');
-
-  // Show button immediately
-  enterButton.style.opacity = '1';
-  enterButton.style.pointerEvents = 'auto';
+  var startPrompt = document.getElementById('startPrompt');
 
   // Hide everything else initially
   curtainLeft.classList.remove('open');
@@ -214,30 +209,30 @@ window.addEventListener('DOMContentLoaded', function() {
     homeSection.style.opacity = '0';
   }
 
-  // Only start animation after button click
-  enterButton.addEventListener('click', function() {
-    enterButton.style.opacity = '0';
-    enterButton.style.pointerEvents = 'none';
-    // Start music
-    landingMusic.volume = 1; // Ensure full volume at start
-    landingMusic.currentTime = 0;
+  // Always show start prompt and block all interaction until clicked
+  startPrompt.style.display = 'block';
+  landingMusic.pause();
+  landingMusic.currentTime = 0;
+  landingMusic.muted = true;
+  // Prevent animation/music until prompt is clicked
+  function startSequence() {
+    startPrompt.style.display = 'none';
     landingMusic.muted = false;
+    landingMusic.volume = 1;
+    landingMusic.currentTime = 0;
     landingMusic.play().catch(function(error) {
       console.log('Audio autoplay prevented:', error);
     });
-    // Animation sequence
     setTimeout(function() {
       curtainLeft.classList.add('open');
       curtainRight.classList.add('open');
       setTimeout(function() {
         welcomeText.style.opacity = '1';
-        welcomeText.style.transition = 'opacity 2s ease'; // slower fade-in
+        welcomeText.style.transition = 'opacity 2s ease';
         setTimeout(function() {
-          // Keep welcome visible longer
           setTimeout(function() {
-            welcomeText.style.transition = 'opacity 2.5s ease'; // slower fade-out
+            welcomeText.style.transition = 'opacity 2.5s ease';
             welcomeText.style.opacity = '0';
-            // Delay logo fade-in until welcome is fully faded out
             setTimeout(function() {
               logo.classList.add('visible');
               setTimeout(function() {
@@ -247,7 +242,6 @@ window.addEventListener('DOMContentLoaded', function() {
                   homeSection.style.display = 'block';
                   setTimeout(function() {
                     homeSection.style.opacity = '1';
-                    // Wait 2 seconds before fading out music
                     setTimeout(function() {
                       var fadeOut = setInterval(function() {
                         if (!landingMusic.muted && landingMusic.volume > 0.01) {
@@ -258,529 +252,17 @@ window.addEventListener('DOMContentLoaded', function() {
                           landingMusic.pause();
                         }
                       }, 30);
-                    }, 2000); // 2 second delay
+                    }, 2000);
                   }, 50);
                 }, 2000);
               }, 3500);
-            }, 2500); // logo appears after welcome fade-out completes
-          }, 2200); // welcome stays visible longer (2.2s)
-        }, 2000); // original pause duration for welcome
+            }, 2500);
+          }, 2200);
+        }, 2000);
       }, 1200);
     }, 500);
-  });
-});
-</script>
-</body>
-</html>
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-    #homeSection { 
-      display: none; 
-      opacity: 0; 
-      transition: opacity 2s linear; 
-    }
-  </style>
-</head>
-<body>
-<div id="landingSection">
-  <div id="curtainLeft" class="curtainImg"></div>
-  <div id="curtainRight" class="curtainImg"></div>
-  <div id="welcomeText">Welcome</div>
-  <div class="centerWrapper">
-    <img id="logo" src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo">
-  </div>
-</div>
-<div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
-  <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
-    <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo" style="width:150px;margin:0 auto 40px auto;display:block;">
-    <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;">Jay Sands – Vocalist & Entertainer</h1>
-    <p style="font-size:1.4em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
-    <hr style="border:0;height:4px;background:linear-gradient(90deg,#FFD700,#B22222);margin:18px 0 0 0;">
-    <div class="home-flex-row" style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:0;padding-top:0;">
-      <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
-        <h2 style="color:#FFD700;">Featured Work</h2>
-        <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my new and recent releases:</p>
-        <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
-            <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
-              <source src="tracks/The Summer Wind.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">That Old Devil Moon</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/That Old Devil Moon.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">The Tender Trap</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/The Tender Trap.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">Witchcraft</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/Witchcraft.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">More</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/More.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">The World We Knew</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/The World We Knew.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-        </div>
-        <!-- Feedback Form -->
-        <div style="margin:32px 0 0 0;padding:24px;background:rgba(34,34,34,0.7);border-radius:16px;box-shadow:0 2px 8px #B22222;">
-          <h3 style="color:#FFD700;">Share your show experience with us.</h3>
-          <form name="feedback" method="POST" data-netlify="true" style="text-align:left;max-width:400px;margin:0 auto;">
-            <input type="hidden" name="form-name" value="feedback">
-            <label style="color:#FFD700;">Your Quote or Feedback:</label><br>
-            <textarea name="quote" rows="3" required style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;"></textarea>
-            <label style="color:#FFD700;">Your Name (optional):</label><br>
-            <input type="text" name="name" style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
-              <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;">Send Feedback</button>
-              <a href="feedback.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:inline-block;font-family:inherit;font-size:1em;text-decoration:none;">Show Feedback</a>
-            </div>
-          </form>
-        </div>
-        <!-- Booking Button at Bottom -->
-        <a href="booking.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:block;font-family:inherit;margin:16px auto 0 auto;font-size:1em;text-align:center;width:max-content;">Book Jay Sands</a>
-      </div>
-      <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
-          <h2 style="color:#FFD700;">About Jay Sands</h2>
-          <p style="color:#fff;font-size:1.05em;line-height:1.6;">
-            For over four decades, I’ve had the privilege of sharing timeless music with audiences across the East Coast and beyond. My passion lies in bringing the golden age of song to life, whether I’m channeling Sinatra’s swing or delivering the romantic warmth of Engelbert, Paul Anka, Dean Martin, or The Duprees, to mention a few.<br><br>
-            I’ve performed in venues ranging from intimate cabarets to grand stages, from Don't Tell Mama's in New York City to The Ormond Beach Performing Arts Center in Ormond Beach Florida, and Universal’s Portofino Bay Hotel in Orlando, Florida. Every show is a chance to connect, to move people, and to celebrate music that never goes out of style.<br><br>
-            When asked to give a quote about me, Don K. Reed of New York’s 101.1 FM said, “Jay Sands not only swings on stage but on his CD as well.” That kind of praise means a lot, because I put my heart into every note I sing.<br><br>
-            Whether it’s a private celebration, a corporate event, a public concert, or an online performance, I tailor each show to fit the moment. I’m here to make your event unforgettable, with music that speaks to the soul and leaves a lasting impression.<br><br>
-            Entertainingly Yours,<br><br>
-            <span style="font-family: 'Brush Script MT', cursive; font-size:2em; color:#FFD700; letter-spacing:2px;">Jay Sands</span><br><br>
-          </p>
-        </div>
-    </div>
-  </div>
-</div>
-<script>
-
-
-
-window.addEventListener('DOMContentLoaded', function() {
-  var curtainLeft = document.getElementById('curtainLeft');
-  var curtainRight = document.getElementById('curtainRight');
-  var logo = document.getElementById('logo');
-  var landingSection = document.getElementById('landingSection');
-  var homeSection = document.getElementById('homeSection');
-  var welcomeText = document.getElementById('welcomeText');
-
-  // Reset initial states
-  curtainLeft.classList.remove('open');
-  curtainRight.classList.remove('open');
-  logo.classList.remove('visible', 'fade-out');
-  logo.style.opacity = '0';
-  landingSection.style.display = 'block';
-  if (homeSection) {
-    homeSection.style.display = 'none';
-    homeSection.style.opacity = '0';
   }
-  welcomeText.style.opacity = '0';
-
-  // Sequence: Welcome fades in, then out; curtains open; logo zooms in; logo fades out; home fades in
-  setTimeout(function() {
-    // Welcome fades in
-    welcomeText.classList.add('show');
-    welcomeText.style.opacity = '1';
-    // Welcome fades out
-    setTimeout(function() {
-      welcomeText.classList.remove('show');
-      welcomeText.style.opacity = '0';
-      // Curtains open
-      setTimeout(function() {
-        curtainLeft.classList.add('open');
-        curtainRight.classList.add('open');
-        // Logo zooms in
-        setTimeout(function() {
-          logo.classList.add('visible');
-          logo.style.opacity = '1';
-          // Pause, then logo fades out
-          setTimeout(function() {
-            logo.classList.add('fade-out');
-            logo.style.opacity = '0';
-            // Fade in home section
-            setTimeout(function() {
-              landingSection.style.display = 'none';
-              if (homeSection) {
-                homeSection.style.display = 'block';
-                setTimeout(function() {
-                  homeSection.style.opacity = '1';
-                }, 50); // Allow display to take effect before opacity transition
-              }
-            }, 2000); // Wait 2s for logo fade out
-          }, 2000); // Pause after logo appears
-        }, 2500); // After curtains open
-      }, 700); // After welcome fades out
-    }, 1300); // Welcome stays visible
-  }, 500); // Initial delay before welcome
-});
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jay Sands Landing Page</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-  <style>
-    body { background: #000; margin: 0; }
-    #landingSection { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
-    .curtainImg { 
-      position: absolute; 
-      top: 0; 
-      width: 50vw; 
-      height: 100vh; 
-      background: url('images/bright-curtain.png') no-repeat center center; 
-      background-size: cover; 
-      z-index: 10; 
-      transition: transform 4s cubic-bezier(.77,0,.18,1); 
-    }
-    #curtainLeft { 
-      left: 0; 
-      transform: translateX(0); 
-    }
-    #curtainLeft.open { 
-      transform: translateX(-100vw); 
-    }
-    #curtainRight { 
-      right: 0; 
-      transform: translateX(0); 
-    }
-    #curtainRight.open { 
-      transform: translateX(100vw); 
-    }
-    #welcomeText {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(5);
-      font-size: 4.5em;
-      color: #FFD700;
-      font-family: 'Dancing Script', cursive;
-      z-index: 20;
-      opacity: 0;
-    }
-    #welcomeText.show {
-      animation: welcomeZoomIn 4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
-    @keyframes welcomeZoomIn {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(5);
-      }
-      60% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0.8);
-      }
-      80% {
-        transform: translate(-50%, -50%) scale(1.05);
-      }
-      92% {
-        transform: translate(-50%, -50%) scale(0.98);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
-    #welcomeText.hide {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(1);
-      transition: opacity 0.7s ease;
-    }
-    .centerWrapper {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 15;
-    }
-    #logo { 
-      width: 300px; 
-      max-width: 80vw; 
-      opacity: 0; 
-      transform: scale(0.1);
-      z-index: 20; 
-    }
-    #logo.visible { 
-      animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
-    #logo.fade-out {
-      opacity: 0 !important;
-      transform: scale(1) !important;
-      transition: opacity 2s ease !important;
-      animation: none !important;
-    }
-    @keyframes logoZoomIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.1);
-      }
-      70% {
-        opacity: 1;
-        transform: scale(1.2);
-      }
-      85% {
-        transform: scale(0.95);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-    #homeSection { 
-      display: none; 
-      opacity: 0; 
-      transition: opacity 2s linear; 
-    }
-  </style>
-</head>
-<body>
-<div id="landingSection">
-  <div id="curtainLeft" class="curtainImg"></div>
-  <div id="curtainRight" class="curtainImg"></div>
-  <div id="welcomeText">Welcome</div>
-  <div class="centerWrapper">
-    <img id="logo" src="images/NEW LOGOS/jsands-logo-8.png" alt="Jay Sands Logo">
-  </div>
-  <audio id="landingMusic" preload="auto" muted>
-    <source src="tracks/landing-music.mp3" type="audio/mpeg">
-  </audio>
-  <div id="startPrompt" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:30;background:rgba(0,0,0,0.8);color:#FFD700;padding:20px;border-radius:12px;text-align:center;font-family:'Dancing Script',cursive;font-size:1.5em;cursor:pointer;border:2px solid #FFD700;">
-    Click to Enter
-  </div>
-</div>
-<div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
-  <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
-    <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo" style="width:150px;margin:0 auto 40px auto;display:block;">
-    <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;">Jay Sands – Vocalist & Entertainer</h1>
-    <p style="font-size:1.4em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
-    <hr style="border:0;height:4px;background:linear-gradient(90deg,#FFD700,#B22222);margin:18px 0 0 0;">
-    <div class="home-flex-row" style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:0;padding-top:0;">
-      <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
-        <h2 style="color:#FFD700;">Featured Work</h2>
-        <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my new and recent releases:</p>
-        <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
-            <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
-              <source src="tracks/The Summer Wind.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">That Old Devil Moon</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/That Old Devil Moon.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">The Tender Trap</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/The Tender Trap.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">Witchcraft</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/Witchcraft.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">More</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/More.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-          <div style="margin-bottom:12px;">
-            <span style="color:#FFD700;font-weight:bold;">The World We Knew</span><br>
-            <audio controls style="width:100%;max-width:400px;">
-              <source src="tracks/The World We Knew.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-        </div>
-        <!-- Feedback Form -->
-        <div style="margin:32px 0 0 0;padding:24px;background:rgba(34,34,34,0.7);border-radius:16px;box-shadow:0 2px 8px #B22222;">
-          <h3 style="color:#FFD700;">Share your show experience with us.</h3>
-          <form name="feedback" method="POST" data-netlify="true" style="text-align:left;max-width:400px;margin:0 auto;">
-            <input type="hidden" name="form-name" value="feedback">
-            <label style="color:#FFD700;">Your Quote or Feedback:</label><br>
-            <textarea name="quote" rows="3" required style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;"></textarea>
-            <label style="color:#FFD700;">Your Name (optional):</label><br>
-            <input type="text" name="name" style="width:100%;padding:8px;margin-bottom:16px;border-radius:8px;border:none;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
-              <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;">Send Feedback</button>
-              <a href="feedback.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:inline-block;font-family:inherit;font-size:1em;text-decoration:none;">Show Feedback</a>
-            </div>
-          </form>
-        </div>
-        <!-- Booking Button at Bottom -->
-        <a href="booking.html" style="background:#FFD700;color:#111;font-weight:bold;padding:10px 24px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 2px 8px #B22222;display:block;font-family:inherit;margin:16px auto 0 auto;font-size:1em;text-align:center;width:max-content;">Book Jay Sands</a>
-      </div>
-      <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
-          <h2 style="color:#FFD700;">About Jay Sands</h2>
-          <p style="color:#fff;font-size:1.05em;line-height:1.6;">
-            For over four decades, I’ve had the privilege of sharing timeless music with audiences across the East Coast and beyond. My passion lies in bringing the golden age of song to life, whether I’m channeling Sinatra’s swing or delivering the romantic warmth of Engelbert, Paul Anka, Dean Martin, or The Duprees, to mention a few.<br><br>
-            I’ve performed in venues ranging from intimate cabarets to grand stages, from Don't Tell Mama's in New York City to The Ormond Beach Performing Arts Center in Ormond Beach Florida, and Universal’s Portofino Bay Hotel in Orlando, Florida. Every show is a chance to connect, to move people, and to celebrate music that never goes out of style.<br><br>
-            When asked to give a quote about me, Don K. Reed of New York’s 101.1 FM said, “Jay Sands not only swings on stage but on his CD as well.” That kind of praise means a lot, because I put my heart into every note I sing.<br><br>
-            Whether it’s a private celebration, a corporate event, a public concert, or an online performance, I tailor each show to fit the moment. I’m here to make your event unforgettable, with music that speaks to the soul and leaves a lasting impression.<br><br>
-            Entertainingly Yours,<br><br>
-            <span style="font-family: 'Brush Script MT', cursive; font-size:2em; color:#FFD700; letter-spacing:2px;">Jay Sands</span><br><br>
-          </p>
-        </div>
-    </div>
-  </div>
-</div>
-<script>
-window.addEventListener('DOMContentLoaded', function() {
-  var curtainLeft = document.getElementById('curtainLeft');
-  var curtainRight = document.getElementById('curtainRight');
-  var logo = document.getElementById('logo');
-  var landingSection = document.getElementById('landingSection');
-  var homeSection = document.getElementById('homeSection');
-  var welcomeText = document.getElementById('welcomeText');
-  var landingMusic = document.getElementById('landingMusic');
-  
-  // Initialize states - remove any conflicting inline styles
-  curtainLeft.classList.remove('open');
-  curtainRight.classList.remove('open');
-  logo.classList.remove('visible', 'fade-out');
-  logo.removeAttribute('style'); // Remove any inline styles that might conflict
-  welcomeText.classList.remove('show', 'hide'); // Reset welcome text
-  welcomeText.style.opacity = '0';
-  welcomeText.style.transform = 'translate(-50%, -50%) scale(5)';
-  landingSection.style.display = 'block';
-  
-  // Set up landing music
-  landingMusic.volume = 0.6; // Moderate volume
-  landingMusic.currentTime = 0;
-  landingMusic.muted = false;
-  landingMusic.play().catch(function(error) {
-    console.log('Audio autoplay prevented:', error);
-  });
-  
-  // Click to start handler
-  // Sequence will start automatically on page load
-  setTimeout(function() {
-    startLandingSequence();
-  }, 300);
-  
-  function startLandingSequence() {
-    if (homeSection) {
-      homeSection.style.display = 'none';
-      homeSection.style.opacity = '0';
-    }
-    
-    // Start with curtains opening first and music
-    setTimeout(function() {
-      // Start the landing music
-      landingMusic.play().catch(function(error) {
-        console.log('Audio autoplay prevented:', error);
-      });
-      
-      curtainLeft.classList.add('open');
-      curtainRight.classList.add('open');
-    
-    // After curtains open, show welcome text
-    setTimeout(function() {
-      welcomeText.classList.add('show');
-      
-      // Keep welcome text visible for 4.5 seconds to let it settle, then fade out smoothly
-      setTimeout(function() {
-        // First stop the animation and lock in the final state
-        welcomeText.style.animation = 'none';
-        welcomeText.style.transform = 'translate(-50%, -50%) scale(1)';
-        welcomeText.style.opacity = '1';
-        welcomeText.classList.remove('show');
-        
-        // Small pause to let it settle, then fade out
-        setTimeout(function() {
-          welcomeText.style.transition = 'opacity 1s ease';
-          welcomeText.style.opacity = '0';
-          
-          // After fade completes, clean up and start logo
-          setTimeout(function() {
-            welcomeText.style.display = 'none';
-            welcomeText.classList.remove('hide');
-            
-            // Small pause before logo starts
-              setTimeout(function() {
-                // Start fading out the landing music
-                var fadeDuration = 2000; // 2 seconds fade
-                var fadeSteps = 40;
-                var fadeStepTime = fadeDuration / fadeSteps;
-              logo.classList.add('visible');
-              // Wait for logo animation to finish, then fade out logo and music together
-              setTimeout(function() {
-                logo.classList.add('fade-out');
-                // Fade in home section after logo fade
-                setTimeout(function() {
-                  landingSection.style.display = 'none';
-                  homeSection.style.display = 'block';
-                  setTimeout(function() {
-                    homeSection.style.opacity = '1';
-                    // Start fading out music 2.5 seconds after home page is fully visible
-                    setTimeout(function() {
-                      var fadeDuration = 2000; // 2 seconds fade for music
-                      var fadeSteps = 40;
-                      var fadeStepTime = fadeDuration / fadeSteps;
-                      var fadeStepAmount = landingMusic.volume / fadeSteps;
-                      var fadeStep = 0;
-                      var fadeOutInterval = setInterval(function() {
-                        if (fadeStep < fadeSteps) {
-                          landingMusic.volume = Math.max(landingMusic.volume - fadeStepAmount, 0);
-                          fadeStep++;
-                        } else {
-                          clearInterval(fadeOutInterval);
-                          landingMusic.pause();
-                          landingMusic.currentTime = 0;
-                        }
-                      }, fadeStepTime);
-                    }, 2500); // Wait 2.5 seconds after home page is visible
-                  }, 50);
-                }, 2000); // Wait for logo fade-out to finish
-              }, 3500); // Wait for logo animation to finish
-            }, 100);
-          }, 1200);
-        }, 200);
-      }, 4500);
-    }, 1000);
-  }, 500);
-  } // Close startLandingSequence function
+  startPrompt.addEventListener('click', startSequence);
 });
 </script>
 </body>
