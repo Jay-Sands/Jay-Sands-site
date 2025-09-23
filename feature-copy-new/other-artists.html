@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Other Artists - Jay Sands</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
   <style>
     .main-nav {
+      width: 100%;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 16px;
       background: transparent;
       padding: 8px 0 4px 0;
@@ -19,11 +16,50 @@
     }
     .main-nav a {
       color: #FFD700;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 6px;
+      font-family: 'Dancing Script', cursive;
+      font-weight: 900;
+      padding: 8px 24px;
+      border-radius: 8px;
       text-decoration: none;
-      font-size: 1em;
+      font-size: 2em;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      transition: color 0.2s, border-bottom 0.2s;
+      position: relative;
+    }
+    .main-nav a:hover, .main-nav a:focus {
+      color: #FFD700;
+      background: transparent;
+      border-bottom: 2px solid #FFD700;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Other Artists - Jay Sands</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
+  <style>
+    .main-nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: transparent;
+      padding: 8px 0 4px 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+    .main-nav a {
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      font-weight: 900;
+      padding: 8px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 2em;
       background: transparent;
       box-shadow: none;
       border: none;
@@ -40,13 +76,13 @@
 <body style="color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0;">
   <div style="width:100%;">
     <nav class="main-nav">
-      <a href="index.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Home</a>
-      <a href="shows.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Shows</a>
-      <a href="quotes.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Quotes</a>
-      <a href="booking.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Booking</a>
-      <a href="other-artists.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Other Artists</a>
-      <a href="feedback.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Feedback</a>
-    <a href="press.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Press</a>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shows.html" class="nav-link">Shows</a>
+      <a href="quotes.html" class="nav-link">Quotes</a>
+      <a href="booking.html" class="nav-link">Booking</a>
+      <a href="other-artists.html" class="nav-link">Other Artists</a>
+      <a href="feedback.html" class="nav-link">Feedback</a>
+    <a href="press.html" class="nav-link">Press</a>
     </nav>
   </div>
   <div style="max-width:900px;margin:40px auto;padding:32px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);">
@@ -56,6 +92,26 @@
     <div style="max-width:700px;margin:0 auto;">
   <h2 style="color:#FFD700;text-align:center;font-size:1.15em;margin-bottom:18px;letter-spacing:1px;">Select an artist below to view a few sample songs from Jay's repertoire.</h2>
       <style>
+        .nav-link {
+          color: #FFD700;
+          font-family: 'Dancing Script',cursive;
+          font-weight: 900;
+          padding: 8px 24px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-size: 2em;
+          background: transparent;
+          box-shadow: none;
+          border: none;
+          transition: color 0.2s, border-bottom 0.2s;
+          position: relative;
+        }
+        .nav-link:hover, .nav-link:focus {
+          color: #fff;
+          border-bottom: 4px solid #FFD700;
+          background: transparent;
+        }
+      </style>
         .accordion-list {
           display: flex;
           flex-direction: column;

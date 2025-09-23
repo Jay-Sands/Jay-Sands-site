@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+    .main-nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: transparent;
+      padding: 8px 0 4px 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+    .main-nav a {
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      font-weight: 900;
+      padding: 8px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 2em;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      transition: color 0.2s, border-bottom 0.2s;
+      position: relative;
+    }
+    .main-nav a:hover, .main-nav a:focus {
+      color: #FFD700;
+      background: transparent;
+      border-bottom: 2px solid #FFD700;
+    }
+  </style>
   <meta charset="UTF-8">
   <title>Press | Jay Sands</title>
   <!-- Google Fonts: Dancing Script -->
@@ -13,7 +46,69 @@
       background-color: #000;
       color: #fff;
     }
-
+    .main-nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: transparent;
+      padding: 8px 0 4px 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+    }
+    .main-nav a {
+      color: #FFD700;
+      font-family: 'Dancing Script',cursive;
+      font-weight: 900;
+      padding: 8px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 2em;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      transition: color 0.2s, border-bottom 0.2s;
+      position: relative;
+    }
+    .main-nav a:hover, .main-nav a:focus {
+      color: #fff;
+      border-bottom: 4px solid #FFD700;
+      background: transparent;
+    }
+    .main-nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: transparent;
+      padding: 8px 0 4px 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+    .main-nav a {
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      font-weight: 900;
+      padding: 8px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 2em;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      transition: color 0.2s, border-bottom 0.2s;
+      position: relative;
+    }
+    .main-nav a:hover, .main-nav a:focus {
+      color: #FFD700;
+      background: transparent;
+      border-bottom: 2px solid #FFD700;
+    }
     .press-release {
       max-width: 800px;
       margin: 4rem auto;
@@ -21,74 +116,47 @@
       background-color: #111;
       border-left: 8px solid #FFD700;
       box-shadow: 0 0 32px 4px rgba(255,215,0,0.15);
-  /* position: relative; */
-  /* overflow: hidden; */
     }
-    /* Sparkle effect for gold bar */
-    .press-release::before {
-  /* sparkle effect removed */
-    }
-    @keyframes sparkle {
-  /* sparkle animation removed */
-    }
-    }
-
     .press-release h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #FFD700;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #FFD700;
     }
-
     .press-release h2 {
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #FFD700;
-  margin-bottom: 0.5rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #FFD700;
+      margin-bottom: 0.5rem;
     }
-
-    .press-release p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  color: #fff;
-    }
-
-    .press-release ul {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-  color: #fff;
-    }
-
+    .press-release p,
+    .press-release ul,
     .press-release li {
-  margin-bottom: 0.5rem;
-  color: #fff;
+      color: #fff;
     }
-
     .press-release blockquote {
-  font-style: italic;
-  margin: 1.5rem 0;
-  padding-left: 1rem;
-  border-left: 3px solid #FFD700;
-  color: #FFD700;
+      font-style: italic;
+      margin: 1.5rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid #FFD700;
+      color: #FFD700;
     }
-
     .press-release a {
-  color: #FFD700;
-  text-decoration: none;
+      color: #FFD700;
+      text-decoration: none;
     }
-
     .press-release a:hover {
-  text-decoration: underline;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div>
     <nav class="main-nav" aria-label="Main Navigation" style="display:flex;justify-content:center;align-items:center;gap:16px;background:transparent;padding:8px 0 4px 0;border-radius:0 0 8px 8px;box-shadow:none;margin-bottom:18px;">
-  <a href="home.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Home</a>
-  <a href="shows.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Shows</a>
-  <a href="booking.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Booking</a>
-  <a href="feedback.html" style="color:#FFD700;font-family:'Dancing Script',cursive;font-weight:900;padding:8px 24px;border-radius:8px;text-decoration:none;font-size:2em;background:transparent;box-shadow:none;border:none;transition:color 0.2s,border-bottom 0.2s;position:relative;">Feedback</a>
+  <a href="home.html">Home</a>
+  <a href="shows.html">Shows</a>
+  <a href="booking.html">Booking</a>
+  <a href="feedback.html">Feedback</a>
     </nav>
   </div>
   <section class="press-release">
