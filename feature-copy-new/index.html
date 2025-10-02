@@ -296,6 +296,18 @@ window.addEventListener('DOMContentLoaded', function() {
   var landingMusic = document.getElementById('landingMusic');
   var startPrompt = document.getElementById('startPrompt');
 
+  // Ensure only one audio track plays at a time
+  var audioEls = document.querySelectorAll('audio');
+  audioEls.forEach(function(audio) {
+    audio.addEventListener('play', function() {
+      audioEls.forEach(function(other) {
+        if (other !== audio) {
+          other.pause();
+        }
+      });
+    });
+  });
+
   // Hide everything else initially
   curtainLeft.classList.remove('open');
   curtainRight.classList.remove('open');
