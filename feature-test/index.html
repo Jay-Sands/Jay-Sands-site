@@ -189,6 +189,21 @@
   </style>
 </head>
 <body>
+  <div id="backToTop" style="display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:1000;font-size:1em;color:#FFD700;background:transparent;padding:4px 12px;border-radius:6px;cursor:pointer;text-align:center;box-shadow:none;">Back to Top</div>
+  <script>
+    // Show/hide Back to Top text link
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 200) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 
   
 <div id="landingSection">
