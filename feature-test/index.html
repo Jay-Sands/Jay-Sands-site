@@ -299,7 +299,8 @@
         </div>
         <!-- Small Contact Form (now in left column) -->
         <div style="width:100%;margin-top:32px;display:flex;justify-content:center;">
-          <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 2px 8px #B22222;">
+          <div style="display:flex;flex-direction:column;align-items:center;width:100%;margin-top:32px;">
+            <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 2px 8px #B22222;">
             <h3 style="color:#FFD700;margin-bottom:10px;font-size:1.1em;">Contact Jay Sands</h3>
             <label style="color:#FFD700;font-size:0.95em;">Your Name:</label><br>
             <input type="text" name="name" style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;"><br>
@@ -308,7 +309,11 @@
             <label style="color:#FFD700;font-size:0.95em;">Message:</label><br>
             <textarea name="message" rows="3" required style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;font-size:0.95em;"></textarea><br>
             <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Message</button>
-          </form>
+            </form>
+            <div style="text-align:center;margin-top:10px;">
+              <span style="color:#FFD700;font-size:1em;">Or Contact Jay directly: <a href="mailto:Jay@jsands.net" style="color:#FFD700;text-decoration:underline;">Jay@jsands.net</a></span>
+            </div>
+          </div>
         </div>
       </div>
   <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
