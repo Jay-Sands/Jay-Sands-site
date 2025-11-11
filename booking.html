@@ -4,8 +4,8 @@
   <style>
     .main-nav a.active {
       color: #fff !important;
-      border-bottom: 3px solid #FFD700;
-      background: rgba(34,34,34,0.5);
+      border-bottom: 3px solid #B22222;
+      box-shadow: 0 0 20px 8px rgba(178,34,34,0.8), 0 0 40px 12px rgba(255,255,255,0.4);
     }
   </style>
   <style>
@@ -46,15 +46,31 @@
   <title>Booking - Jay Sands</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    #snowfall-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 3s ease;
+    }
+    #snowfall-canvas.hide-snow {
+      opacity: 0 !important;
+    }
+  </style>
 </head>
 <body>
+  <canvas id="snowfall-canvas"></canvas>
   <div style="width:100%; margin-top:8px;">
     <nav class="main-nav">
-  <a href="index.html" style="background:#B22222;">Home</a>
-  <a href="shows.html" style="background:#FFD700;color:#000;">Show Dates</a>
-  <a href="booking.html" class="active" style="background:#4169E1;">Booking</a>
-  <a href="feedback.html" style="background:#228B22;">Feedback</a>
-  <a href="press.html" style="background:#FF8C00;">Press</a>
+  <a href="index.html" style="background:#4169E1;">Home</a>
+  <a href="shows.html" style="background:#228B22;">Show Dates</a>
+  <a href="booking.html" class="active" style="background:#B22222;">Booking</a>
+  <a href="feedback.html" style="background:#FF8C00;">Feedback</a>
+  <a href="press.html" style="background:#FFD700;color:#000;">Press</a>
     </nav>
   <div style="display:flex;justify-content:center;align-items:flex-start;width:100vw;margin-top:32px;">
     <div style="max-width:400px;width:75vw;padding:8px 15px 15px 15px;background:rgba(34,34,34,0.85);border-radius:16px;box-shadow:0 0 24px 6px #FFD700, 0 2px 8px #B22222; text-align:center;">
@@ -89,6 +105,81 @@
       </form>
     </div>
   </div>
+
+  <script>
+// Snowfall effect that fades after 5 seconds
+(function() {
+  const canvas = document.getElementById('snowfall-canvas');
+  if (!canvas) return;
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  const ctx = canvas.getContext('2d');
+  const snowflakes = [];
+  const SNOWFLAKE_COUNT = 80;
+  for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
+    snowflakes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 4 + Math.random() * 4,
+      d: 1 + Math.random() * 1.5,
+      drift: Math.random() * 2 * Math.PI,
+      angle: Math.random() * 2 * Math.PI
+    });
+  }
+  function drawSnowflake(x, y, r, angle) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+    ctx.lineWidth = 1.2;
+    for (let i = 0; i < 6; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, r);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0, r * 0.6);
+      ctx.lineTo(r * 0.18, r * 0.78);
+      ctx.moveTo(0, r * 0.6);
+      ctx.lineTo(-r * 0.18, r * 0.78);
+      ctx.stroke();
+      ctx.rotate(Math.PI / 3);
+    }
+    ctx.restore();
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
+      const f = snowflakes[i];
+      drawSnowflake(f.x, f.y, f.r, f.angle);
+    }
+    update();
+    requestAnimationFrame(draw);
+  }
+  function update() {
+    for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
+      const f = snowflakes[i];
+      f.y += f.d;
+      f.x += Math.sin(f.drift + f.y / 40) * 0.7;
+      f.angle += 0.01 * (Math.random() - 0.5);
+      if (f.y > canvas.height) {
+        f.y = -5;
+        f.x = Math.random() * canvas.width;
+      }
+      if (f.x > canvas.width) f.x = 0;
+      if (f.x < 0) f.x = canvas.width;
+    }
+  }
+  draw();
+  // Fade out after 5 seconds
+  setTimeout(function() {
+    canvas.classList.add('hide-snow');
+  }, 5000);
+})();
+  </script>
 </body>
 </html>
-
