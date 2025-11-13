@@ -290,11 +290,12 @@
   <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
     <div style="width:100%;">
     <nav class="main-nav" aria-label="Main Navigation">
-  <a href="index.html" class="home-link active">Home</a>
-  <a href="shows.html" class="shows-link">Show Dates</a>
-  <a href="booking.html" class="booking-link">Booking</a>
-  <a href="feedback.html" class="feedback-link">Feedback</a>
-  <a href="press.html" class="press-link">Press</a>
+  <a href="index.html" class="home-link active" style="background:#B22222;">Home</a>
+  <a href="shows.html" class="shows-link" style="background:#FFD700;color:#000;">Show Dates</a>
+  <a href="booking.html" class="booking-link" style="background:#4169E1;">Booking</a>
+  <a href="feedback.html" class="feedback-link" style="background:#228B22;">Feedback</a>
+  <a href="press.html" class="press-link" style="background:#FF8C00;">Press</a>
+  <a href="christmas.html" class="christmas-link" style="background:#FFD700;color:#B22222;font-weight:900;font-family:'Dancing Script',cursive;box-shadow:0 0 8px 2px #FFD700;position:relative;animation:glow-xmas 1.5s infinite alternate;">❄️ Christmas</a>
       </nav>
     </div>
     <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;" role="main">
@@ -320,7 +321,7 @@
     <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
           <h2 style="color:#FFD700;">Featured Work</h2>
     <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my latest tracks:</p>
-          <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
+          <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #00FF00, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
             <div style="margin-bottom:12px;">
               <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
               <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
@@ -367,7 +368,7 @@
           <!-- Small Contact Form (now in left column) -->
           <div style="width:100%;margin-top:32px;display:flex;justify-content:center;">
             <div style="display:flex;flex-direction:column;align-items:center;width:100%;margin-top:32px;">
-              <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 2px 8px #B22222;">
+              <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 0 20px 6px rgba(220,20,60,0.8);">
                 <input type="hidden" name="form-name" value="contact">
                 <h3 style="color:#FFD700;margin-bottom:10px;font-size:1.1em;">Contact Jay Sands</h3>
                 <label style="color:#FFD700;font-size:0.95em;">Your Name:</label><br>
@@ -651,7 +652,7 @@
         if (snowCap) snowCap.style.opacity = '0';
       }
     }
-    // Wait for homeSection to be visible, then fade snow after 3 seconds
+    // Wait for homeSection to be visible, then fade snow after 5 seconds
     if (startPrompt) {
       startPrompt.addEventListener('click', function() {
         var checkHome = setInterval(function() {
@@ -662,6 +663,12 @@
         }, 100);
       });
     }
+    // Also fade snow if coming directly to home section (from other pages)
+    window.addEventListener('load', function() {
+      if (homeSection && homeSection.style.display === 'block') {
+        setTimeout(fadeSnow, 5000);
+      }
+    });
   })();
   </script>
   </body>

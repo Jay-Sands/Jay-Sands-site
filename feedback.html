@@ -62,32 +62,32 @@
 </head>
 <body style="background-color:#000; color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; height:100vh; overflow:hidden;">
   <canvas id="snowfall-canvas"></canvas>
-  <div style="width:100%; margin-top:8px;">
-    <nav class="main-nav">
-    <a href="index.html" style="background:#228B22;">Home</a>
-    <a href="shows.html" style="background:#B22222;">Show Dates</a>
-    <a href="booking.html" style="background:#FFD700;color:#000;">Booking</a>
-    <a href="feedback.html" class="active" style="background:#4169E1;">Feedback</a>
-    <a href="press.html" style="background:#FF8C00;">Press</a>
+  <div style="width:100%; margin-top:28px; display:flex; justify-content:center; align-items:center; gap:40px; min-height:90vh;">
+    <div style="min-width:280px; max-width:420px; width:90vw; padding:12px 16px; background:rgba(34,34,34,0.85); border-radius:18px; box-shadow:0 0 20px 4px #FFD700, 0 2px 8px #B22222; text-align:center; display:flex; flex-direction:column; align-items:center;">
+      <h1 style="font-size:2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin-top:0;margin-bottom:0.1em;">Show Feedback</h1>
+      <p style="font-size:1.2em;color:#FFD700;margin-bottom:0.5em;font-family:'Dancing Script', cursive;">Thank you for attending! Please share your experience below.</p>
+      <form name="feedback" method="POST" data-netlify="true" style="text-align:left;max-width:400px;margin:0 auto 0.5em auto;">
+          <input type="hidden" name="form-name" value="feedback">
+          <label style="color:#FFD700;">Your Quote or Feedback:</label><br>
+      <textarea name="quote" rows="2" required style="width:100%;padding:6px;margin-bottom:8px;border-radius:8px;border:none;"></textarea>
+          <label style="color:#FFD700;">Your Name (optional):</label><br>
+      <input type="text" name="name" style="width:100%;padding:6px;margin-bottom:8px;border-radius:8px;border:none;">
+          <div style="margin-top:12px;margin-bottom:8px;text-align:left;">
+            <input type="checkbox" id="agreeQuote" name="agreeQuote" value="yes" style="margin-right:8px;">
+            <label for="agreeQuote" style="color:#FFD700;">I agree to allow my quote or feedback to be added to the public feedback page.</label>
+          </div>
+          <div style="display:flex;justify-content:center;gap:16px;margin-top:18px;">
+      <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:6px 14px;border-radius:8px;border:none;cursor:pointer;font-size:0.85em;">Send Feedback</button>
+          </div>
+        </form>
+    </div>
+    <nav class="main-nav" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:auto;gap:12px;padding:16px 0 16px 0;border-radius:8px;box-shadow:0 0 12px 2px #FFD700;background:rgba(34,34,34,0.95);width:auto;min-width:140px;max-width:180px;">
+      <a href="index.html" style="background:#228B22;padding:4px 14px;font-size:1em;width:auto;">Home</a>
+      <a href="shows.html" style="background:#B22222;padding:4px 14px;font-size:1em;width:auto;">Show Dates</a>
+      <a href="booking.html" style="background:#FFD700;color:#000;padding:4px 14px;font-size:1em;width:auto;">Booking</a>
+      <a href="feedback.html" class="active" style="background:#4169E1;padding:4px 14px;font-size:1em;width:auto;">Feedback</a>
+      <a href="press.html" style="background:#FF8C00;padding:4px 14px;font-size:1em;width:auto;">Press</a>
     </nav>
-  </div>
-  <div style="min-width:280px; max-width:420px; width:90vw; position:fixed; top:60%; left:50%; transform:translate(-50%,-50%); padding:12px 16px; background:rgba(34,34,34,0.85); border-radius:18px; box-shadow:0 0 20px 4px #FFD700, 0 2px 8px #B22222; text-align:center;">
-  <h1 style="font-size:2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin-top:0;margin-bottom:0.1em;">Show Feedback</h1>
-  <p style="font-size:1.2em;color:#FFD700;margin-bottom:0.5em;font-family:'Dancing Script', cursive;">Thank you for attending! Please share your experience below.</p>
-  <form name="feedback" method="POST" data-netlify="true" style="text-align:left;max-width:400px;margin:0 auto 0.5em auto;">
-      <input type="hidden" name="form-name" value="feedback">
-      <label style="color:#FFD700;">Your Quote or Feedback:</label><br>
-  <textarea name="quote" rows="2" required style="width:100%;padding:6px;margin-bottom:8px;border-radius:8px;border:none;"></textarea>
-      <label style="color:#FFD700;">Your Name (optional):</label><br>
-  <input type="text" name="name" style="width:100%;padding:6px;margin-bottom:8px;border-radius:8px;border:none;">
-      <div style="margin-top:12px;margin-bottom:8px;text-align:left;">
-        <input type="checkbox" id="agreeQuote" name="agreeQuote" value="yes" style="margin-right:8px;">
-        <label for="agreeQuote" style="color:#FFD700;">I agree to allow my quote or feedback to be added to the public feedback page.</label>
-      </div>
-      <div style="display:flex;justify-content:center;gap:16px;margin-top:18px;">
-  <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:6px 14px;border-radius:8px;border:none;cursor:pointer;font-size:0.85em;">Send Feedback</button>
-      </div>
-    </form>
   </div>
 
   <script>

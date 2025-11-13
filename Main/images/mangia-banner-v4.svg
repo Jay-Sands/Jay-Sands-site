@@ -1,0 +1,11 @@
+<svg width="520" height="170" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mangia Info Smaller and Centered -->
+  <text x="260" y="38" text-anchor="middle" font-family="'Dancing Script', cursive" font-size="24" fill="#FFD700" font-weight="bold">Mangia Italian Restaurant</text>
+  <text x="260" y="62" text-anchor="middle" font-family="'Dancing Script', cursive" font-size="16" fill="#FFD700">3831 Avalon Park E Blvd, Orlando, FL 32828</text>
+  <text x="260" y="80" text-anchor="middle" font-family="'Dancing Script', cursive" font-size="16" fill="#FFD700">Phone: +1 407 737 7499</text>
+  <text x="260" y="98" text-anchor="middle" font-family="'Dancing Script', cursive" font-size="16" fill="#FFD700">Hours: Tues - Sun 2-10pm</text>
+  <!-- Show Info Left Side -->
+  <text x="30" y="130" text-anchor="start" font-family="'Dancing Script', cursive" font-size="18" fill="#FFD700">Showtime:</text>
+  <text x="30" y="150" text-anchor="start" font-family="'Dancing Script', cursive" font-size="18" fill="#FFD700">7-9:30 pm October 10, 2025</text>
+  <text x="30" y="168" text-anchor="start" font-family="'Dancing Script', cursive" font-size="14" fill="#FFD700" font-weight="bold">Reservations are strongly suggested as this show will sell out</text>
+</svg>
