@@ -1,3 +1,5 @@
+
+
 @media (max-width: 600px) {
   .main-nav {
     flex-wrap: wrap;
@@ -10,9 +12,9 @@
   }
 }
 body {
-  background-color: #000 !important;
+  background-color: #222 !important; /* dark background */
   color: #FFD700;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI',Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
 }
 /* Bright red glow for artist cards on Other Artists page */
@@ -193,4 +195,3 @@ body {
   height: 100%;
   display: block;
 }
-

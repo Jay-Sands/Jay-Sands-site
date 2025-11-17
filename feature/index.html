@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-  .main-nav a {
-    color: #FFD700;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 1em;
-    background: transparent;
-    box-shadow: none;
-    border: none;
-    transition: color 0.2s, border-bottom 0.2s;
-    position: relative;
-  }
-</style>
+<head>
+  <style>
+    .main-nav a:focus {
+      outline: 3px solid #FFD700;
+      outline-offset: 2px;
+      background: #222;
+    }
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <style>
+      .main-nav a:focus {
+        outline: 3px solid #FFD700;
+        outline-offset: 2px;
+        background: #222;
+      }
     </style>
     <style>
       .main-nav a.active {
@@ -97,19 +98,31 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(0.1);
         font-size: 5em;
         color: #FFD700;
         font-family: 'Dancing Script', cursive;
         z-index: 20;
         opacity: 0;
-        transition: opacity 1.2s ease;
+  transition: opacity 2.5s cubic-bezier(0.23, 1, 0.32, 1), transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
         width: 100%;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+      }
+      #welcomeText.visible {
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+      }
+      #welcomeText.crossfade {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1);
+      }
+      #welcomeText.crossfade {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1);
       }
       #welcomeText.snow-capped {
         position: absolute;
@@ -155,10 +168,10 @@
         animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
       }
       #logo.fade-out {
-        opacity: 0 !important;
-        transform: scale(1) !important;
-        transition: opacity 2s ease !important;
-        animation: none !important;
+  opacity: 0 !important;
+  transform: scale(0.1) !important;
+  transition: opacity 3s cubic-bezier(0.23, 1, 0.32, 1), transform 3s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  animation: none !important;
       }
       @keyframes logoZoomIn {
         0% {
@@ -257,6 +270,29 @@
 
   
   <div id="landingSection">
+    <!-- Thanksgiving Transition (hidden by default) -->
+    <div id="thanksgiving-transition" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:100; justify-content:center; align-items:center; flex-direction:column;">
+      <style>
+        #thanksgiving-transition {
+          transition: opacity 4s ease, transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
+          opacity: 0;
+          transform: scale(0.1);
+        }
+        #thanksgiving-transition.visible {
+          opacity: 1;
+          transform: scale(1);
+        }
+      </style>
+      <div style="font-family:'Dancing Script',cursive; font-size:3.2em; color:#FFD700; text-shadow:0 2px 12px #B86B1B, 0 0 2px #fff; margin-bottom:18px; letter-spacing:2px;">
+        🦃 Happy Thanksgiving! 🍁
+      </div>
+      <div style="font-size:1.5em; color:#fffbe6; font-family:'Georgia',serif; max-width:600px; text-align:center; margin-bottom:18px;">
+        May your holiday be filled with warmth, joy, and gratitude.<br>
+        Enjoy the music, the season, and the moments that matter most.
+      </div>
+      <!-- Falling leaves container -->
+      <div id="falling-leaves"></div>
+    </div>
     <div id="curtainLeft" class="curtainImg"></div>
     <div id="curtainRight" class="curtainImg"></div>
     <div id="welcomeText" class="snow-capped">
@@ -407,6 +443,43 @@
 <canvas id="snowfall-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:100;"></canvas>
   <script>
   window.addEventListener('DOMContentLoaded', function() {
+    // --- Thanksgiving Transition Logic ---
+    function createLeaf() {
+      const leaf = document.createElement('span');
+      leaf.textContent = '🍂';
+      leaf.style.position = 'absolute';
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.top = '-40px';
+      leaf.style.fontSize = (1.5 + Math.random() * 1.5) + 'em';
+      leaf.style.opacity = 0.7 + Math.random() * 0.3;
+      leaf.style.transition = 'transform 4.5s linear, opacity 4.5s linear';
+      document.getElementById('falling-leaves').appendChild(leaf);
+      setTimeout(() => {
+        leaf.style.transform = `translateY(${window.innerHeight + 60}px) rotate(${Math.random() * 360}deg)`;
+        leaf.style.opacity = 0;
+      }, 50);
+      setTimeout(() => leaf.remove(), 4700);
+    }
+    let leafInterval;
+    function showThanksgivingTransition(nextStepCallback) {
+      const tg = document.getElementById('thanksgiving-transition');
+      tg.style.display = 'flex';
+      setTimeout(function() {
+        tg.classList.add('visible');
+      }, 10);
+      leafInterval = setInterval(createLeaf, 350);
+      setTimeout(() => {
+        clearInterval(leafInterval);
+        tg.classList.remove('visible');
+        tg.addEventListener('transitionend', function handler(e) {
+          if (e.target === tg && e.propertyName === 'opacity') {
+            tg.removeEventListener('transitionend', handler);
+            tg.style.display = 'none';
+            if (typeof nextStepCallback === 'function') nextStepCallback();
+          }
+        });
+      }, 8000); // Show for 8 seconds (original duration)
+    }
     var curtainLeft = document.getElementById('curtainLeft');
     var curtainRight = document.getElementById('curtainRight');
     var logo = document.getElementById('logo');
@@ -433,8 +506,9 @@
     curtainRight.classList.remove('open');
     logo.classList.remove('visible', 'fade-out');
     logo.removeAttribute('style');
-    welcomeText.style.opacity = '0';
-    welcomeText.style.transform = 'translate(-50%, -50%)';
+    welcomeText.classList.remove('crossfade', 'visible');
+    welcomeText.style.opacity = '';
+    welcomeText.style.transform = '';
     landingSection.style.display = 'block';
     if (homeSection) {
       homeSection.style.display = 'none';
@@ -477,56 +551,85 @@
       landingMusic.play().catch(function(error) {
         console.log('Audio autoplay prevented:', error);
       });
-      setTimeout(function() {
+      // Animation timings (ms)
+      const curtainOpenDelay = 500;
+      const welcomeFadeInDelay = 1200;
+      const welcomeVisibleDuration = 2000;
+      const welcomeFadeOutDuration = 2500;
+      const logoFadeInDelay = welcomeFadeInDelay + welcomeVisibleDuration + welcomeFadeOutDuration;
+      const logoVisibleDuration = 3500;
+      const logoFadeOutDuration = 2000;
+      const thanksgivingDelay = logoFadeInDelay + logoVisibleDuration + logoFadeOutDuration;
+
+      // Curtains
+      setTimeout(() => {
         curtainLeft.classList.add('open');
         curtainRight.classList.add('open');
-        setTimeout(function() {
-          welcomeText.style.opacity = '1';
-          welcomeText.style.transition = 'opacity 2s ease';
-          setTimeout(function() {
-            setTimeout(function() {
-              welcomeText.style.transition = 'opacity 2.5s ease';
-              welcomeText.style.opacity = '0';
-              setTimeout(function() {
-                logo.classList.add('visible');
-                setTimeout(function() {
-                  logo.classList.add('fade-out');
-                  setTimeout(function() {
-                    landingSection.style.display = 'none';
-                    homeSection.style.display = 'block';
-                    setTimeout(function() {
-                      homeSection.style.opacity = '1';
-                        // Add temporary class to force flexbox redraw
-                        var flexRow = homeSection.querySelector('.home-flex-row');
-                        if (flexRow) {
-                          flexRow.classList.add('force-flex-redraw');
-                          // Remove after short delay to avoid side effects
-                          setTimeout(function() {
-                            flexRow.classList.remove('force-flex-redraw');
-                          }, 100);
-                        }
-                        // Force reflow to fix flexbox layout after showing homeSection
-                        void homeSection.offsetHeight;
-                        window.dispatchEvent(new Event('resize'));
-                      setTimeout(function() {
-                        var fadeOut = setInterval(function() {
-                          if (!landingMusic.muted && landingMusic.volume > 0.01) {
-                            landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0);
-                          } else {
-                            landingMusic.volume = 0;
-                            clearInterval(fadeOut);
-                            landingMusic.pause();
-                          }
-                        }, 30);
-                      }, 2000);
-                    }, 50);
-                  }, 2000);
-                }, 3500);
-              }, 2500);
-            }, 2200);
-          }, 2000);
-        }, 1200);
-      }, 500);
+      }, curtainOpenDelay);
+
+      // Welcome text
+      setTimeout(() => {
+        welcomeText.style.display = '';
+        welcomeText.classList.add('visible');
+        setTimeout(() => {
+          welcomeText.classList.remove('visible');
+          welcomeText.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'opacity') {
+              welcomeText.style.display = 'none';
+              welcomeText.removeEventListener('transitionend', handler);
+            }
+          });
+        }, welcomeVisibleDuration);
+      }, welcomeFadeInDelay);
+
+      // Logo
+      setTimeout(() => {
+        logo.style.display = '';
+        logo.classList.add('visible');
+        setTimeout(() => {
+          logo.style.animation = 'none';
+          logo.classList.remove('visible');
+          logo.classList.add('fade-out');
+          logo.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'opacity') {
+              logo.style.display = 'none';
+              logo.classList.remove('fade-out');
+              logo.removeEventListener('transitionend', handler);
+            }
+          });
+        }, logoVisibleDuration);
+      }, logoFadeInDelay);
+
+      // Thanksgiving transition and Home page
+      setTimeout(() => {
+        showThanksgivingTransition(() => {
+          landingSection.style.display = 'none';
+          homeSection.style.display = 'block';
+          setTimeout(() => {
+            homeSection.style.opacity = '1';
+            var flexRow = homeSection.querySelector('.home-flex-row');
+            if (flexRow) {
+              flexRow.classList.add('force-flex-redraw');
+              setTimeout(() => {
+                flexRow.classList.remove('force-flex-redraw');
+              }, 100);
+            }
+            void homeSection.offsetHeight;
+            window.dispatchEvent(new Event('resize'));
+            setTimeout(() => {
+              var fadeOut = setInterval(() => {
+                if (!landingMusic.muted && landingMusic.volume > 0.01) {
+                  landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0);
+                } else {
+                  landingMusic.volume = 0;
+                  clearInterval(fadeOut);
+                  landingMusic.pause();
+                }
+              }, 30);
+            }, 100);
+          }, 0);
+        });
+      }, thanksgivingDelay);
     }
   
     // Only add click listener if not coming from another page

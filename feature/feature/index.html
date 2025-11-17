@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-  .main-nav a {
-    color: #FFD700;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 1em;
-    background: transparent;
-    box-shadow: none;
-    border: none;
-    transition: color 0.2s, border-bottom 0.2s;
-    position: relative;
-  }
-</style>
+<head>
+  <style>
+    .main-nav a:focus {
+      outline: 3px solid #FFD700;
+      outline-offset: 2px;
+      background: #222;
+    }
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <style>
+      .main-nav a:focus {
+        outline: 3px solid #FFD700;
+        outline-offset: 2px;
+        background: #222;
+      }
     </style>
     <style>
       .main-nav a.active {
@@ -586,15 +587,16 @@
   });
   </script>
   <script>
-    // Test Countdown Timer for 11:41:00 on 11/09/2025
+    // Christmas Countdown Timer
     function updateChristmasCountdown() {
       const now = new Date();
-      // Target date: November 9, 2025, 11:41:00
-      const target = new Date(2025, 10, 9, 11, 41, 0, 0); // Month is 0-based: 10 = November
-      if (now >= target) {
+      const currentYear = now.getFullYear();
+      let christmas = new Date(currentYear, 11, 25, 0, 0, 0, 0); // December is month 11
+      if (now >= christmas) {
+        // If it's Christmas or after, show message
         document.getElementById('countdown-timer').textContent = 'Merry Christmas';
       } else {
-        const diff = target - now;
+        const diff = christmas - now;
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);

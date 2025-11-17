@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    .main-nav a:focus {
+      outline: 3px solid #FFD700;
+      outline-offset: 2px;
+      background: #222;
+    }
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <style>
+      .main-nav a:focus {
+        outline: 3px solid #FFD700;
+        outline-offset: 2px;
+        background: #222;
+      }
+    </style>
+    <style>
+      .main-nav a.active {
+        color: #fff !important;
+        border-bottom: 3px solid #FFD700;
+        background: rgba(34,34,34,0.5);
+      }
+    </style>
+    <style>
+      .main-nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        background: transparent;
+        padding: 8px 0 4px 0;
+        border-radius: 0 0 8px 8px;
+        box-shadow: none;
+        margin-bottom: 18px;
+      }
+      .main-nav a {
+        color: #FFD700;
+        font-family: 'Dancing Script', cursive;
+        font-weight: 900;
+        padding: 8px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 2em;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        transition: color 0.2s, border-bottom 0.2s;
+        position: relative;
+      }
+      .main-nav a:hover, .main-nav a:focus {
+        color: #FFD700;
+        background: transparent;
+        border-bottom: 2px solid #FFD700;
+      }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Sands – Vocalist & Entertainer</title>
+    <meta name="description" content="Jay Sands – A Sinatra-style vocalist bringing timeless swing and romance to every performance. Available for shows, bookings, and private events.">
+  <meta name="keywords" content="Jay Sands, vocalist, entertainer, classic music, booking, shows, Sinatra tribute artist, Sinatra-style singer, Dean Martin, Engelbert">
+    <meta name="author" content="Jay Sands">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jsands.net">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+      body { background: #000; margin: 0; }
+      #landingSection { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+      .curtainImg { 
+        position: absolute; 
+        top: 0; 
+        width: 50vw; 
+        height: 100vh; 
+        background: url('images/bright-curtain.png') no-repeat center center; 
+        background-size: cover; 
+        z-index: 10; 
+        transition: transform 2.5s cubic-bezier(.77,0,.18,1); 
+      }
+      #curtainLeft { 
+        left: 0; 
+        transform: translateX(0); 
+      }
+      #curtainLeft.open { 
+        transform: translateX(-100vw); 
+      }
+      #curtainRight { 
+        right: 0; 
+        transform: translateX(0); 
+      }
+      #curtainRight.open { 
+        transform: translateX(100vw); 
+      }
+      #welcomeText {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5em;
+        color: #FFD700;
+        font-family: 'Dancing Script', cursive;
+        z-index: 20;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      #welcomeText.snow-capped {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .snow-cap {
+        display: block;
+        position: relative;
+        width: 400px;
+        height: 50px;
+        margin: 0 auto;
+        pointer-events: none;
+        z-index: 21;
+        background: none;
+      }
+      .snow-cap svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #snowfall-canvas {
+        transition: opacity 3s ease;
+      }
+      #snowfall-canvas.hide-snow {
+        opacity: 0 !important;
+      }
+      #logo { 
+        width: 300px; 
+        max-width: 80vw; 
+        opacity: 0; 
+        transform: scale(0.1);
+        z-index: 20; 
+      }
+      #logo.visible { 
+        animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      }
+      #logo.fade-out {
+        opacity: 0 !important;
+        transform: scale(1) !important;
+        transition: opacity 2s ease !important;
+        animation: none !important;
+      }
+      @keyframes logoZoomIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.1);
+        }
+        70% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        85% {
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      #homeSection { 
+        display: none; 
+        opacity: 0; 
+        transition: opacity 2s linear; 
+      }
+        /* Temporary class to force flexbox redraw for home page */
+        .force-flex-redraw {
+          display: flex !important;
+          align-items: stretch !important;
+        }
+        .main-nav a {
+          color: #FFD700;
+          font-family: 'Dancing Script', cursive;
+          font-weight: 700;
+          padding: 4px 14px;
+          border-radius: 6px;
+          text-decoration: none;
+          font-size: 1.25em;
+          background: transparent;
+          box-shadow: none;
+          border: none;
+          transition: color 0.2s, border-bottom 0.2s;
+          position: relative;
+        }
+        .main-nav a:hover, .main-nav a:focus {
+          color: #FFD700;
+          background: transparent;
+          border-bottom: 2px solid #FFD700;
+        }
+        #sparkle-separator {
+      overflow: hidden;
+    }
+    /* Sparkle animation disabled */
+    /* Mobile-specific adjustments */
+    @media (max-width: 600px) {
+      .main-nav a {
+        font-size: 1.5em !important;
+        padding: 10px 10px !important;
+      }
+      .home-flex-row {
+        flex-direction: column !important;
+        gap: 0 !important;
+        align-items: center !important;
+      }
+      .home-flex-col.featured-col {
+        min-width: 0 !important;
+        width: 100% !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+      }
+      .home-flex-col.featured-col > div[style*="margin-top:32px"] {
+        margin-top: 12px !important;
+      }
+      .home-flex-col.featured-col form {
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div id="backToTop" style="display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:1000;font-size:1em;color:#FFD700;background:transparent;padding:4px 12px;border-radius:6px;cursor:pointer;text-align:center;box-shadow:none;">Back to Top</div>
+    <script>
+      // Show/hide Back to Top text link
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+  if (window.scrollY > 1200) {
+          backToTop.style.display = 'block';
+        } else {
+          backToTop.style.display = 'none';
+        }
+      });
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+
+  
+  <div id="landingSection">
+    <!-- Thanksgiving Transition (hidden by default) -->
+    <div id="thanksgiving-transition" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:100; justify-content:center; align-items:center; flex-direction:column;">
+      <div style="font-family:'Dancing Script',cursive; font-size:3.2em; color:#FFD700; text-shadow:0 2px 12px #B86B1B, 0 0 2px #fff; margin-bottom:18px; letter-spacing:2px;">
+        🦃 Happy Thanksgiving! 🍁
+      </div>
+      <div style="font-size:1.5em; color:#fffbe6; font-family:'Georgia',serif; max-width:600px; text-align:center; margin-bottom:18px;">
+        May your holiday be filled with warmth, joy, and gratitude.<br>
+        Enjoy the music, the season, and the moments that matter most.
+      </div>
+      <!-- Falling leaves container -->
+      <div id="falling-leaves"></div>
+    </div>
+  <script>
+  // --- Thanksgiving Transition Logic ---
+  function createLeaf() {
+    const leaf = document.createElement('span');
+    leaf.textContent = '🍂';
+    leaf.style.position = 'absolute';
+    leaf.style.left = Math.random() * 100 + 'vw';
+    leaf.style.top = '-40px';
+    leaf.style.fontSize = (1.5 + Math.random() * 1.5) + 'em';
+    leaf.style.opacity = 0.7 + Math.random() * 0.3;
+    leaf.style.transition = 'transform 4.5s linear, opacity 4.5s linear';
+    document.getElementById('falling-leaves').appendChild(leaf);
+    setTimeout(() => {
+      leaf.style.transform = `translateY(${window.innerHeight + 60}px) rotate(${Math.random() * 360}deg)`;
+      leaf.style.opacity = 0;
+    }, 50);
+    setTimeout(() => leaf.remove(), 4700);
+  }
+  let leafInterval;
+  function showThanksgivingTransition(nextStepCallback) {
+    const tg = document.getElementById('thanksgiving-transition');
+    tg.style.display = 'flex';
+    tg.style.opacity = 1;
+    leafInterval = setInterval(createLeaf, 350);
+    setTimeout(() => {
+      clearInterval(leafInterval);
+      tg.style.opacity = 0;
+      setTimeout(() => {
+        tg.style.display = 'none';
+        if (typeof nextStepCallback === 'function') nextStepCallback();
+      }, 1200);
+    }, 6000); // Show for 6 seconds
+  }
+  </script>
+    <div id="curtainLeft" class="curtainImg"></div>
+    <div id="curtainRight" class="curtainImg"></div>
+    <div id="welcomeText" class="snow-capped">
+      <span style="position:relative;display:inline-block;">
+        Welcome
+        <span class="snow-cap">
+          <svg viewBox="0 0 400 50" preserveAspectRatio="none">
+            <path d="M0,30 Q20,10 40,30 T80,30 T120,30 T160,30 T200,30 T240,30 T280,30 T320,30 T360,30 T400,30 L400,50 L0,50 Z"
+              fill="#fff" stroke="#eee" stroke-width="2"/>
+            <ellipse cx="20" cy="20" rx="8" ry="5" fill="#fff"/>
+            <ellipse cx="60" cy="18" rx="7" ry="4" fill="#fff"/>
+            <ellipse cx="110" cy="22" rx="6" ry="3.5" fill="#fff"/>
+            <ellipse cx="180" cy="16" rx="9" ry="5" fill="#fff"/>
+            <ellipse cx="250" cy="20" rx="7" ry="4" fill="#fff"/>
+            <ellipse cx="320" cy="18" rx="8" ry="4.5" fill="#fff"/>
+            <ellipse cx="370" cy="22" rx="6" ry="3.5" fill="#fff"/>
+          </svg>
+        </span>
+      </span>
+    </div>
+    <div class="centerWrapper">
+      <picture>
+        <source srcset="images/NEW LOGOS/jsands-logo-8.webp" type="image/webp">
+    <img id="logo" src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands main logo, gold and black, circular design" width="300" height="300" loading="lazy" style="max-width:80vw;" />
+      </picture>
+    </div>
+    <div id="startPrompt" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:30;background:rgba(0,0,0,0.8);color:#FFD700;padding:20px;border-radius:12px;text-align:center;font-family:'Dancing Script',cursive;font-size:1.5em;cursor:pointer;border:2px solid #FFD700;">Click to Enter</div>
+    <audio id="landingMusic" src="tracks/landing-music.mp3"></audio>
+  </div>
+  <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
+    <div style="width:100%;">
+    <nav class="main-nav" aria-label="Main Navigation">
+  <a href="index.html" class="home-link active">Home</a>
+  <a href="shows.html" class="shows-link">Show Dates</a>
+  <a href="booking.html" class="booking-link">Booking</a>
+  <a href="feedback.html" class="feedback-link">Feedback</a>
+  <a href="press.html" class="press-link">Press</a>
+      </nav>
+    </div>
+    <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;" role="main">
+      <h1 style="font-family:'Dancing Script', cursive;font-size:4em;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 10px auto;font-weight:700;">Jay Sands</h1>
+      <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 40px auto;">Vocalist & Entertainer</h1>
+      <!-- Christmas Countdown Timer -->
+      <div id="christmas-countdown" style="margin: 18px auto 30px auto; color: #fff; background: rgba(178,34,34,0.7); border-radius: 12px; padding: 14px 24px; max-width: 400px; font-size: 1.3em; font-family: 'Dancing Script', cursive; box-shadow: 0 2px 8px #FFD700;">
+        <span style="color:#FFD700;font-size:1.2em;">🎄 Christmas Countdown:</span>
+          <span id="countdown-timer" style="margin-left: 10px; font-weight: bold; font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace; min-width: 140px; display: inline-block; text-align: left;"></span>
+        </div>
+      <div style="margin-bottom:0;">
+        <!-- Booking button removed -->
+      </div>
+      <p style="font-size:2.2em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
+      <h2>Looking for a Sinatra-Style Singer?</h2>
+  <p>Jay Sands delivers the elegance, swing, and charisma of the Rat Pack era. Whether you're searching for a Sinatra tribute artist or a timeless entertainer, Jay brings style, class, and excellence to every show.</p>
+      <!-- Headshot image centered above both columns -->
+      <div style="display:flex;justify-content:center;align-items:flex-start;margin:25px 0 20px 0;position:relative;width:220px;height:242px;margin-left:auto;margin-right:auto;flex-direction:column;">
+        <div style="position:absolute;top:32px;left:0;width:220px;height:200px;z-index:0;pointer-events:none;filter:blur(18px) brightness(1.7);background:radial-gradient(circle, #00BFFF 0%, #0074D9 60%, transparent 100%);border-radius:32px;"></div>
+        <img src="images/jay-sands-original.jpg" alt="Jay Sands headshot, smiling, wearing a suit" style="width:200px;height:auto;display:block;position:relative;z-index:1;margin:0 auto 0 auto;">
+      </div>
+      <div class="home-flex-row" style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:0;padding-top:0;">
+    <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
+          <h2 style="color:#FFD700;">Featured Work</h2>
+    <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my latest tracks:</p>
+          <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
+            <div style="margin-bottom:12px;">
+              <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
+              <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
+                <source src="tracks/The Summer Wind.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <div style="margin-bottom:12px;">
+              <span style="color:#FFD700;font-weight:bold;">That Old Devil Moon</span><br>
+              <audio controls style="width:100%;max-width:400px;">
+                <source src="tracks/That Old Devil Moon.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <div style="margin-bottom:12px;">
+              <span style="color:#FFD700;font-weight:bold;">The Tender Trap</span><br>
+              <audio controls style="width:100%;max-width:400px;">
+                <source src="tracks/The Tender Trap.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <div style="margin-bottom:12px;">
+              <span style="color:#FFD700;font-weight:bold;">Witchcraft</span><br>
+              <audio controls style="width:100%;max-width:400px;">
+                <source src="tracks/Witchcraft.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <div style="margin-bottom:12px;">
+              <span style="color:#FFD700;font-weight:bold;">More</span><br>
+              <audio controls style="width:100%;max-width:400px;">
+                <source src="tracks/More.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <div style="margin-bottom:12px;">
+              <span style="color:#FFD700;font-weight:bold;">The World We Knew</span><br>
+              <audio controls style="width:100%;max-width:400px;">
+                <source src="tracks/The World We Knew.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+          </div>
+          <!-- Small Contact Form (now in left column) -->
+          <div style="width:100%;margin-top:32px;display:flex;justify-content:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;width:100%;margin-top:32px;">
+              <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 2px 8px #B22222;">
+                <input type="hidden" name="form-name" value="contact">
+                <h3 style="color:#FFD700;margin-bottom:10px;font-size:1.1em;">Contact Jay Sands</h3>
+                <label style="color:#FFD700;font-size:0.95em;">Your Name:</label><br>
+                <input type="text" name="name" style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;"><br>
+                <label style="color:#FFD700;font-size:0.95em;">Your Email:</label><br>
+                <input type="email" name="email" required style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;"><br>
+                <label style="color:#FFD700;font-size:0.95em;">Message:</label><br>
+                <textarea name="message" rows="3" required style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;font-size:0.95em;"></textarea><br>
+                <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Message</button>
+              </form>
+              <div style="text-align:center;margin-top:10px;">
+                <span style="color:#FFD700;font-size:1em;">Or Contact Jay directly: <a href="mailto:Jay@jsands.net" style="color:#FFD700;text-decoration:underline;">Jay@jsands.net</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
+          <h2 style="color:#FFD700;">About Jay Sands</h2>
+          <p style="color:#fff;font-size:1.05em;line-height:1.6;">
+            For over four decades, I’ve had the privilege of sharing timeless music with audiences across the East Coast and beyond. My passion lies in bringing the golden age of song to life, whether I’m channeling Sinatra’s swing or delivering the romantic warmth of Engelbert, Paul Anka, Dean Martin, or The Duprees, to mention a few.<br><br>
+            I’ve performed in venues ranging from intimate cabarets to grand stages, from Don't Tell Mama's in New York City to The Ormond Beach Performing Arts Center in Ormond Beach Florida, and Universal’s Portofino Bay Hotel in Orlando, Florida. Every show is a chance to connect, to move people, and to celebrate music that never goes out of style.<br><br>
+            When asked to give a quote about me, Don K. Reed of New York’s 101.1 FM said, “Jay Sands not only swings on stage but on his CD as well.” That kind of praise means a lot, because I put my heart into every note I sing.<br><br>
+            Whether it’s a private celebration, a corporate event, a public concert, or an online performance, I tailor each show to fit the moment. I’m here to make your event unforgettable, with music that speaks to the soul and leaves a lasting impression.<br><br>
+            Entertainingly Yours,<br><br>
+            <span style="font-family: 'Brush Script MT', cursive; font-size:2em; color:#FFD700; letter-spacing:2px;">Jay Sands</span><br><br>
+          </p>
+          <div style="width:100%;display:flex;justify-content:center;margin-bottom:24px;">
+            <picture>
+              <source srcset="images/NEW LOGOS/jsands-logo-8.webp" type="image/webp">
+              <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands small logo, gold and black, circular design" width="80" height="80" loading="lazy" style="width:80px;height:80px;display:block;margin:0 auto;filter:drop-shadow(0 2px 8px #B22222);">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Snowfall Canvas Overlay -->
+<canvas id="snowfall-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:100;"></canvas>
+  <script>
+  window.addEventListener('DOMContentLoaded', function() {
+    var curtainLeft = document.getElementById('curtainLeft');
+    var curtainRight = document.getElementById('curtainRight');
+    var logo = document.getElementById('logo');
+    var landingSection = document.getElementById('landingSection');
+    var homeSection = document.getElementById('homeSection');
+    var welcomeText = document.getElementById('welcomeText');
+    var landingMusic = document.getElementById('landingMusic');
+    var startPrompt = document.getElementById('startPrompt');
+
+    // Ensure only one audio track plays at a time
+    var audioEls = document.querySelectorAll('audio');
+    audioEls.forEach(function(audio) {
+      audio.addEventListener('play', function() {
+        audioEls.forEach(function(other) {
+          if (other !== audio) {
+            other.pause();
+          }
+        });
+      });
+    });
+
+    // Hide everything else initially
+    curtainLeft.classList.remove('open');
+    curtainRight.classList.remove('open');
+    logo.classList.remove('visible', 'fade-out');
+    logo.removeAttribute('style');
+    welcomeText.style.opacity = '0';
+    welcomeText.style.transform = 'translate(-50%, -50%)';
+    landingSection.style.display = 'block';
+    if (homeSection) {
+      homeSection.style.display = 'none';
+      homeSection.style.opacity = '0';
+    }
+
+    // Check if coming from another page on this site
+    var fromOtherPage = document.referrer && (
+      document.referrer.includes('shows.html') ||
+      document.referrer.includes('booking.html') ||
+      document.referrer.includes('feedback.html') ||
+      document.referrer.includes('other-artists.html') ||
+      document.referrer.includes('quotes.html') ||
+      document.referrer.includes('127.0.0.1:5500') ||
+      document.referrer.includes(window.location.hostname)
+    );
+
+    if (fromOtherPage) {
+      // Skip landing page, go directly to home content
+      landingSection.style.display = 'none';
+      homeSection.style.display = 'block';
+      homeSection.style.opacity = '1';
+      startPrompt.style.display = 'none';
+      landingMusic.pause();
+      landingMusic.currentTime = 0;
+      landingMusic.muted = true;
+    } else {
+      // Show start prompt and block all interaction until clicked for new visitors
+      startPrompt.style.display = 'block';
+      landingMusic.pause();
+      landingMusic.currentTime = 0;
+      landingMusic.muted = true;
+    }
+    // Prevent animation/music until prompt is clicked (only for new visitors)
+    function startSequence() {
+      startPrompt.style.display = 'none';
+      landingMusic.muted = false;
+      landingMusic.volume = 1;
+      landingMusic.currentTime = 0;
+      landingMusic.play().catch(function(error) {
+        console.log('Audio autoplay prevented:', error);
+      });
+      setTimeout(function() {
+        curtainLeft.classList.add('open');
+        curtainRight.classList.add('open');
+        setTimeout(function() {
+          welcomeText.style.opacity = '1';
+          welcomeText.style.transition = 'opacity 2s ease';
+          setTimeout(function() {
+            setTimeout(function() {
+              welcomeText.style.transition = 'opacity 2.5s ease';
+              welcomeText.style.opacity = '0';
+              setTimeout(function() {
+                logo.classList.add('visible');
+                setTimeout(function() {
+                  logo.classList.add('fade-out');
+                  // Thanksgiving transition after logo fade-out
+                  setTimeout(function() {
+                    showThanksgivingTransition(function() {
+                      landingSection.style.display = 'none';
+                      homeSection.style.display = 'block';
+                      setTimeout(function() {
+                        homeSection.style.opacity = '1';
+                        // Add temporary class to force flexbox redraw
+                        var flexRow = homeSection.querySelector('.home-flex-row');
+                        if (flexRow) {
+                          flexRow.classList.add('force-flex-redraw');
+                          // Remove after short delay to avoid side effects
+                          setTimeout(function() {
+                            flexRow.classList.remove('force-flex-redraw');
+                          }, 100);
+                        }
+                        // Force reflow to fix flexbox layout after showing homeSection
+                        void homeSection.offsetHeight;
+                        window.dispatchEvent(new Event('resize'));
+                        setTimeout(function() {
+                          var fadeOut = setInterval(function() {
+                            if (!landingMusic.muted && landingMusic.volume > 0.01) {
+                              landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0);
+                            } else {
+                              landingMusic.volume = 0;
+                              clearInterval(fadeOut);
+                              landingMusic.pause();
+                            }
+                          }, 30);
+                        }, 2000);
+                      }, 50);
+                    });
+                  }, 2000);
+                }, 3500);
+              }, 2500);
+            }, 2200);
+          }, 2000);
+        }, 1200);
+      }, 500);
+    }
+  
+    // Only add click listener if not coming from another page
+    if (!fromOtherPage) {
+      startPrompt.addEventListener('click', startSequence);
+    }
+    // Sparkle animation disabled
+  });
+  </script>
+  <script>
+    // Test Countdown Timer for 11:41:00 on 11/09/2025
+    function updateChristmasCountdown() {
+      const now = new Date();
+      // Target date: November 9, 2025, 11:41:00
+      const target = new Date(2025, 10, 9, 11, 41, 0, 0); // Month is 0-based: 10 = November
+      if (now >= target) {
+        document.getElementById('countdown-timer').textContent = 'Merry Christmas';
+      } else {
+        const diff = target - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        document.getElementById('countdown-timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }
+    setInterval(updateChristmasCountdown, 1000);
+    updateChristmasCountdown();
+    // Pre-fill timer with widest possible string to prevent width flicker
+    const timer = document.getElementById('countdown-timer');
+    if (timer) {
+      timer.textContent = '88d 23h 59m 59s';
+    }
+  </script>
+  <script>
+// Snowfall effect for landing page with snowflake shapes
+(function() {
+  const canvas = document.getElementById('snowfall-canvas');
+  if (!canvas) return;
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  const ctx = canvas.getContext('2d');
+  const snowflakes = [];
+  const SNOWFLAKE_COUNT = 80;
+  for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
+    snowflakes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 4 + Math.random() * 4,
+      d: 1 + Math.random() * 1.5,
+      drift: Math.random() * 2 * Math.PI,
+      angle: Math.random() * 2 * Math.PI
+    });
+  }
+  function drawSnowflake(x, y, r, angle) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+    ctx.lineWidth = 1.2;
+    for (let i = 0; i < 6; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, r);
+      ctx.stroke();
+      // Add small branches
+      ctx.beginPath();
+      ctx.moveTo(0, r * 0.6);
+      ctx.lineTo(r * 0.18, r * 0.78);
+      ctx.moveTo(0, r * 0.6);
+      ctx.lineTo(-r * 0.18, r * 0.78);
+      ctx.stroke();
+      ctx.rotate(Math.PI / 3);
+    }
+    ctx.restore();
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
+      const f = snowflakes[i];
+      drawSnowflake(f.x, f.y, f.r, f.angle);
+    }
+    update();
+    requestAnimationFrame(draw);
+  }
+  function update() {
+    for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
+      const f = snowflakes[i];
+      f.y += f.d;
+      f.x += Math.sin(f.drift + f.y / 40) * 0.7;
+      f.angle += 0.01 * (Math.random() - 0.5);
+      if (f.y > canvas.height) {
+        f.y = -5;
+        f.x = Math.random() * canvas.width;
+      }
+      if (f.x > canvas.width) f.x = 0;
+      if (f.x < 0) f.x = canvas.width;
+    }
+  }
+  draw();
+})();
+  </script>
+  <script>
+  // Fade out snow and snow cap 3 seconds after home page is shown
+  (function() {
+    var landingSection = document.getElementById('landingSection');
+    var homeSection = document.getElementById('homeSection');
+    var snowfallCanvas = document.getElementById('snowfall-canvas');
+    var welcomeText = document.getElementById('welcomeText');
+    var startPrompt = document.getElementById('startPrompt');
+    function fadeSnow() {
+      if (snowfallCanvas) snowfallCanvas.classList.add('hide-snow');
+      if (welcomeText) {
+        var snowCap = welcomeText.querySelector('.snow-cap');
+        if (snowCap) snowCap.style.transition = 'opacity 1.2s';
+        if (snowCap) snowCap.style.opacity = '0';
+      }
+    }
+    // Wait for homeSection to be visible, then fade snow after 3 seconds
+    if (startPrompt) {
+      startPrompt.addEventListener('click', function() {
+        var checkHome = setInterval(function() {
+          if (homeSection && homeSection.style.display === 'block' && homeSection.style.opacity === '1') {
+            clearInterval(checkHome);
+            setTimeout(fadeSnow, 5000); // fade 5 seconds after curtain opens
+          }
+        }, 100);
+      });
+    }
+  })();
+  </script>
+  </body>
+  </html>
