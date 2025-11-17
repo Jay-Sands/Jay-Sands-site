@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
-<<<<<<< HEAD
     .audio-playing {
       outline: 3px solid #1e90ff !important;
       outline-offset: 2px;
@@ -60,70 +59,10 @@
     }
     .christmas-container {
       max-width: 420px;
-=======
-    body { 
-      background: #000; 
-      margin: 0;
-      padding: 0;
-      font-family: 'Georgia', serif;
-      color: #fff;
-    }
-    .main-nav {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      background: rgba(34,34,34,0.85);
-      padding: 8px 0 4px 0;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 2px 8px #B22222;
-      margin-bottom: 18px;
-    }
-    .main-nav a {
-      color: #222;
-      font-family: 'Dancing Script', cursive;
-      font-weight: 900;
-      padding: 4px 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 1.15em;
-      background: #FFD700;
-      box-shadow: 0 2px 8px rgba(178,34,34,0.08);
-      border: none;
-      transition: color 0.2s, border-bottom 0.2s, background 0.2s;
-      position: relative;
-    }
-    .main-nav a:hover, .main-nav a:focus {
-      color: #fff;
-      background: #B22222;
-      border-bottom: 2px solid #FFD700;
-    }
-    .main-nav a.active {
-      color: #fff !important;
-      border-bottom: 3px solid #FFD700;
-      background: #B22222 !important;
-    }
-    .main-nav a:focus {
-      outline: 3px solid #FFD700;
-      outline-offset: 2px;
-      background: #222;
-    }
-    /* Mobile-specific adjustments */
-    @media (max-width: 600px) {
-      .main-nav a {
-        font-size: 1.5em !important;
-        padding: 10px 10px !important;
-      }
-    }
-    .christmas-container {
-      max-width: 480px;
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
       margin: 0 auto;
       padding: 18px 10px;
       background: rgba(34,34,34,0.85);
       border-radius: 18px;
-<<<<<<< HEAD
       box-shadow: 0 0 40px 0 #4fc3ffcc, 0 4px 16px rgba(178,34,34,0.18);
       text-align: center;
     }
@@ -152,106 +91,6 @@
       <span>Tip: Use the loop button below to keep the music playing in the background while you browse, work, or relax!</span>
     </div>
     <button id="loop-all-btn" style="display:block;width:100%;max-width:320px;margin:0 auto 18px auto;padding:10px 0;font-size:1.1em;font-family:'Dancing Script',cursive;font-weight:700;background:#FFD700;color:#B22222;border-radius:10px;border:none;box-shadow:0 2px 8px #FFD700;transition:background 0.2s, color 0.2s;cursor:pointer;">🔁 Play All in Loop</button>
-=======
-      box-shadow: 0 4px 16px rgba(178,34,34,0.18);
-      text-align: center;
-    }
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.2em;
-      color: #FFD700;
-      text-shadow: 1px 1px 4px #B22222;
-      margin: 0 auto 10px auto;
-      font-weight: 600;
-    }
-    h2 {
-      font-size: 1.3em;
-      letter-spacing: 1px;
-      color: #FFD700;
-      text-shadow: 1px 1px 4px #B22222;
-      margin: 0 auto 24px auto;
-      font-weight: 500;
-    }
-    .intro-text {
-      font-size: 1em;
-      color: #eee;
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-    .tracks-section {
-      background: rgba(34,34,34,0.7);
-      padding: 14px 4px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(178,34,34,0.15);
-      max-width: 320px;
-      margin: 0 auto;
-    }
-    .track-item {
-      margin-bottom: 14px;
-      padding: 8px 8px 10px 8px;
-      background: rgba(50,50,50,0.4);
-      border-radius: 8px;
-      border: 1px solid rgba(255,215,0,0.15);
-      transition: all 0.2s ease;
-    }
-    .track-item:hover {
-      border-color: #FFD700;
-      box-shadow: 0 0 8px rgba(255,215,0,0.15);
-    }
-    .track-name {
-      color: #FFD700;
-      font-weight: 500;
-      font-size: 1em;
-      margin-bottom: 6px;
-      font-family: 'Dancing Script', cursive;
-    }
-    audio {
-      width: 100%;
-      max-width: 350px;
-    }
-    .christmas-emoji {
-      font-size: 2em;
-      margin: 20px 0;
-    }
-    #backToTop {
-      display: none;
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 24px;
-      z-index: 1000;
-      font-size: 1em;
-      color: #FFD700;
-      background: transparent;
-      padding: 4px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      text-align: center;
-      box-shadow: none;
-    }
-  </style>
-</head>
-<body>
-  <div id="backToTop" style="display:none;">Back to Top</div>
-  
-  <nav class="main-nav" aria-label="Main Navigation">
-    <a href="index.html" class="home-link">Home</a>
-    <a href="shows.html" class="shows-link">Show Dates</a>
-    <a href="booking.html" class="booking-link">Booking</a>
-    <a href="feedback.html" class="feedback-link">Feedback</a>
-    <a href="press.html" class="press-link">Press</a>
-    <a href="christmas.html" class="christmas-link active">Christmas</a>
-  </nav>
-
-  <div class="christmas-container">
-    <h1>Jay Sands</h1>
-    <h2>🎄 Christmas Collection 🎄</h2>
-    
-    <div class="intro-text">
-      <p>Experience the magic of the holidays with timeless Christmas classics, performed with the elegance and warmth that only Jay Sands can deliver. From swing to sentimentality, these beloved songs capture the true spirit of the season.</p>
-    </div>
-
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
     <div class="tracks-section">
       <div class="track-item">
         <div class="track-name">🎅 Blue Christmas</div>
@@ -319,7 +158,6 @@
   </div>
 </div>
 <p style="color:#FFD700;font-size:1.15em;font-family:'Dancing Script',cursive; margin: 2px 0 8px 0; text-align:center;">Wishing you a magical holiday season!</p>
-<<<<<<< HEAD
 
 <!-- Snowfall canvas and snowball thrower button -->
 <canvas id="snowfall-canvas" style="position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:10;"></canvas>
@@ -645,41 +483,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 </html>
 
-=======
-    <div style="margin: 28px auto 12px auto; display: flex; justify-content: center; align-items: center;">
-      <picture>
-        <source srcset="../images/NEW LOGOS/jsands-logo-8.webp" type="image/webp">
-        <img src="../images/NEW LOGOS/jsands-logo-8.png" alt="Jay Sands small logo, gold and black, circular design" width="80" height="80" loading="lazy" style="width:80px;height:80px;display:block;margin:0 auto;filter:drop-shadow(0 2px 8px #B22222);">
-      </picture>
-    </div>
-  </div>
-
-  <script>
-    // Show/hide Back to Top text link
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 1200) {
-        backToTop.style.display = 'block';
-      } else {
-        backToTop.style.display = 'none';
-      }
-    });
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Ensure only one audio track plays at a time
-    const audioEls = document.querySelectorAll('audio');
-    audioEls.forEach(function(audio) {
-      audio.addEventListener('play', function() {
-        audioEls.forEach(function(other) {
-          if (other !== audio) {
-            other.pause();
-          }
-        });
-      });
-    });
-  </script>
-</body>
-</html>
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723

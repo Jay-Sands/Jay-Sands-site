@@ -98,21 +98,13 @@
         position: absolute;
         top: 50%;
         left: 50%;
-<<<<<<< HEAD
         transform: translate(-50%, -50%) scale(0.1);
-=======
-        transform: translate(-50%, -50%);
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
         font-size: 5em;
         color: #FFD700;
         font-family: 'Dancing Script', cursive;
         z-index: 20;
         opacity: 0;
-<<<<<<< HEAD
   transition: opacity 2.5s cubic-bezier(0.23, 1, 0.32, 1), transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
-=======
-        transition: opacity 1.2s ease;
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
         width: 100%;
         text-align: center;
         display: flex;
@@ -120,7 +112,6 @@
         align-items: center;
         justify-content: center;
       }
-<<<<<<< HEAD
       #welcomeText.visible {
   opacity: 1 !important;
   transform: translate(-50%, -50%) scale(1) !important;
@@ -133,8 +124,6 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.1);
       }
-=======
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
       #welcomeText.snow-capped {
         position: absolute;
         left: 50%;
@@ -179,17 +168,10 @@
         animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
       }
       #logo.fade-out {
-<<<<<<< HEAD
   opacity: 0 !important;
   transform: scale(0.1) !important;
   transition: opacity 3s cubic-bezier(0.23, 1, 0.32, 1), transform 3s cubic-bezier(0.23, 1, 0.32, 1) !important;
   animation: none !important;
-=======
-        opacity: 0 !important;
-        transform: scale(1) !important;
-        transition: opacity 2s ease !important;
-        animation: none !important;
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
       }
       @keyframes logoZoomIn {
         0% {
@@ -288,7 +270,6 @@
 
   
   <div id="landingSection">
-<<<<<<< HEAD
     <!-- Thanksgiving Transition (hidden by default) -->
     <div id="thanksgiving-transition" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:100; justify-content:center; align-items:center; flex-direction:column;">
       <style>
@@ -312,8 +293,6 @@
       <!-- Falling leaves container -->
       <div id="falling-leaves"></div>
     </div>
-=======
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
     <div id="curtainLeft" class="curtainImg"></div>
     <div id="curtainRight" class="curtainImg"></div>
     <div id="welcomeText" class="snow-capped">
@@ -347,19 +326,10 @@
     <div style="width:100%;">
     <nav class="main-nav" aria-label="Main Navigation">
   <a href="index.html" class="home-link active" style="background:#B22222;">Home</a>
-<<<<<<< HEAD
   <a href="booking.html" class="booking-link" style="background:#4169E1;">Booking</a>
   <a href="feedback.html" class="feedback-link" style="background:#228B22;">Feedback</a>
   <a href="press.html" class="press-link" style="background:#FF8C00;">Press</a>
     </nav>
-=======
-  <a href="shows.html" class="shows-link" style="background:#FFD700;color:#000;">Show Dates</a>
-  <a href="booking.html" class="booking-link" style="background:#4169E1;">Booking</a>
-  <a href="feedback.html" class="feedback-link" style="background:#228B22;">Feedback</a>
-  <a href="press.html" class="press-link" style="background:#FF8C00;">Press</a>
-  <a href="christmas.html" class="christmas-link" style="background:#FFD700;color:#B22222;font-weight:900;font-family:'Dancing Script',cursive;box-shadow:0 0 8px 2px #FFD700;position:relative;animation:glow-xmas 1.5s infinite alternate;">❄️ Christmas</a>
-      </nav>
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
     </div>
     <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;" role="main">
       <h1 style="font-family:'Dancing Script', cursive;font-size:4em;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 10px auto;font-weight:700;">Jay Sands</h1>
@@ -472,7 +442,6 @@
 <canvas id="snowfall-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:100;"></canvas>
   <script>
   window.addEventListener('DOMContentLoaded', function() {
-<<<<<<< HEAD
     // --- Thanksgiving Transition Logic ---
     function createLeaf() {
       const leaf = document.createElement('span');
@@ -510,8 +479,6 @@
         });
       }, 8000); // Show for 8 seconds (original duration)
     }
-=======
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
     var curtainLeft = document.getElementById('curtainLeft');
     var curtainRight = document.getElementById('curtainRight');
     var logo = document.getElementById('logo');
@@ -538,14 +505,9 @@
     curtainRight.classList.remove('open');
     logo.classList.remove('visible', 'fade-out');
     logo.removeAttribute('style');
-<<<<<<< HEAD
     welcomeText.classList.remove('crossfade', 'visible');
     welcomeText.style.opacity = '';
     welcomeText.style.transform = '';
-=======
-    welcomeText.style.opacity = '0';
-    welcomeText.style.transform = 'translate(-50%, -50%)';
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
     landingSection.style.display = 'block';
     if (homeSection) {
       homeSection.style.display = 'none';
@@ -588,7 +550,6 @@
       landingMusic.play().catch(function(error) {
         console.log('Audio autoplay prevented:', error);
       });
-<<<<<<< HEAD
       // Animation timings (ms)
       const curtainOpenDelay = 500;
       const welcomeFadeInDelay = 1200;
@@ -668,58 +629,6 @@
           }, 0);
         });
       }, thanksgivingDelay);
-=======
-      setTimeout(function() {
-        curtainLeft.classList.add('open');
-        curtainRight.classList.add('open');
-        setTimeout(function() {
-          welcomeText.style.opacity = '1';
-          welcomeText.style.transition = 'opacity 2s ease';
-          setTimeout(function() {
-            setTimeout(function() {
-              welcomeText.style.transition = 'opacity 2.5s ease';
-              welcomeText.style.opacity = '0';
-              setTimeout(function() {
-                logo.classList.add('visible');
-                setTimeout(function() {
-                  logo.classList.add('fade-out');
-                  setTimeout(function() {
-                    landingSection.style.display = 'none';
-                    homeSection.style.display = 'block';
-                    setTimeout(function() {
-                      homeSection.style.opacity = '1';
-                        // Add temporary class to force flexbox redraw
-                        var flexRow = homeSection.querySelector('.home-flex-row');
-                        if (flexRow) {
-                          flexRow.classList.add('force-flex-redraw');
-                          // Remove after short delay to avoid side effects
-                          setTimeout(function() {
-                            flexRow.classList.remove('force-flex-redraw');
-                          }, 100);
-                        }
-                        // Force reflow to fix flexbox layout after showing homeSection
-                        void homeSection.offsetHeight;
-                        window.dispatchEvent(new Event('resize'));
-                      setTimeout(function() {
-                        var fadeOut = setInterval(function() {
-                          if (!landingMusic.muted && landingMusic.volume > 0.01) {
-                            landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0);
-                          } else {
-                            landingMusic.volume = 0;
-                            clearInterval(fadeOut);
-                            landingMusic.pause();
-                          }
-                        }, 30);
-                      }, 2000);
-                    }, 50);
-                  }, 2000);
-                }, 3500);
-              }, 2500);
-            }, 2200);
-          }, 2000);
-        }, 1200);
-      }, 500);
->>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
     }
   
     // Only add click listener if not coming from another page
