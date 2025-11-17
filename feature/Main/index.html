@@ -105,6 +105,7 @@
         z-index: 20;
         opacity: 0;
         transition: opacity 1.2s ease;
+<<<<<<< HEAD
         width: 100%;
         text-align: center;
         display: flex;
@@ -144,6 +145,12 @@
       }
       #snowfall-canvas.hide-snow {
         opacity: 0 !important;
+=======
+      }
+      #welcomeText.hide {
+        opacity: 0;
+        transition: opacity 1s ease;
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
       }
       #logo { 
         width: 300px; 
@@ -260,6 +267,7 @@
   <div id="landingSection">
     <div id="curtainLeft" class="curtainImg"></div>
     <div id="curtainRight" class="curtainImg"></div>
+<<<<<<< HEAD
     <div id="welcomeText" class="snow-capped">
       <span style="position:relative;display:inline-block;">
         Welcome
@@ -278,6 +286,9 @@
         </span>
       </span>
     </div>
+=======
+    <div id="welcomeText">Welcome</div>
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
     <div class="centerWrapper">
       <picture>
         <source srcset="images/NEW LOGOS/jsands-logo-8.webp" type="image/webp">
@@ -290,6 +301,7 @@
   <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
     <div style="width:100%;">
     <nav class="main-nav" aria-label="Main Navigation">
+<<<<<<< HEAD
   <a href="index.html" class="home-link active" style="background:#B22222;">Home</a>
   <a href="shows.html" class="shows-link" style="background:#FFD700;color:#000;">Show Dates</a>
   <a href="booking.html" class="booking-link" style="background:#4169E1;">Booking</a>
@@ -302,6 +314,13 @@
       100% { box-shadow: 0 0 24px 6px #FFD700,0 0 16px 4px #1e90ff; }
     }
   </style>
+=======
+  <a href="index.html" class="active">Home</a>
+  <a href="shows.html">Show Dates</a>
+  <a href="booking.html">Booking</a>
+  <a href="feedback.html">Feedback</a>
+  <a href="press.html">Press</a>
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
       </nav>
     </div>
     <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;" role="main">
@@ -319,15 +338,24 @@
       <h2>Looking for a Sinatra-Style Singer?</h2>
   <p>Jay Sands delivers the elegance, swing, and charisma of the Rat Pack era. Whether you're searching for a Sinatra tribute artist or a timeless entertainer, Jay brings style, class, and excellence to every show.</p>
       <!-- Headshot image centered above both columns -->
+<<<<<<< HEAD
       <div style="display:flex;justify-content:center;align-items:flex-start;margin:25px 0 20px 0;position:relative;width:220px;height:242px;margin-left:auto;margin-right:auto;flex-direction:column;">
         <div style="position:absolute;top:32px;left:0;width:220px;height:200px;z-index:0;pointer-events:none;filter:blur(18px) brightness(1.7);background:radial-gradient(circle, #00BFFF 0%, #0074D9 60%, transparent 100%);border-radius:32px;"></div>
         <img src="images/jay-sands-original.jpg" alt="Jay Sands headshot, smiling, wearing a suit" style="width:200px;height:auto;display:block;position:relative;z-index:1;margin:0 auto 0 auto;">
+=======
+      <div style="display:flex;justify-content:center;align-items:center;margin:25px 0 20px 0;">
+    <img src="images/jay-sands-original.jpg" alt="Jay Sands headshot, smiling, wearing a suit" style="width:200px;height:auto;display:block;">
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
       </div>
       <div class="home-flex-row" style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:0;padding-top:0;">
     <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
           <h2 style="color:#FFD700;">Featured Work</h2>
     <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my latest tracks:</p>
+<<<<<<< HEAD
           <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #00FF00, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
+=======
+          <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
             <div style="margin-bottom:12px;">
               <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
               <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
@@ -374,7 +402,11 @@
           <!-- Small Contact Form (now in left column) -->
           <div style="width:100%;margin-top:32px;display:flex;justify-content:center;">
             <div style="display:flex;flex-direction:column;align-items:center;width:100%;margin-top:32px;">
+<<<<<<< HEAD
               <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 0 20px 6px rgba(220,20,60,0.8);">
+=======
+              <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 2px 8px #B22222;">
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
                 <input type="hidden" name="form-name" value="contact">
                 <h3 style="color:#FFD700;margin-bottom:10px;font-size:1.1em;">Contact Jay Sands</h3>
                 <label style="color:#FFD700;font-size:0.95em;">Your Name:</label><br>
@@ -411,8 +443,11 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
   <!-- Snowfall Canvas Overlay -->
 <canvas id="snowfall-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:100;"></canvas>
+=======
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
   <script>
   window.addEventListener('DOMContentLoaded', function() {
     var curtainLeft = document.getElementById('curtainLeft');
@@ -550,6 +585,7 @@
       const now = new Date();
       const currentYear = now.getFullYear();
       let christmas = new Date(currentYear, 11, 25, 0, 0, 0, 0); // December is month 11
+<<<<<<< HEAD
       if (now >= christmas) {
         // If it's Christmas or after, show message
         document.getElementById('countdown-timer').textContent = 'Merry Christmas';
@@ -560,10 +596,25 @@
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
         document.getElementById('countdown-timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+=======
+      if (now > christmas) {
+        // If Christmas has passed this year, set for next year
+        christmas = new Date(currentYear + 1, 11, 25, 0, 0, 0, 0);
+      }
+      const diff = christmas - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      const timer = document.getElementById('countdown-timer');
+      if (timer) {
+        timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
       }
     }
     setInterval(updateChristmasCountdown, 1000);
     updateChristmasCountdown();
+<<<<<<< HEAD
     // Pre-fill timer with widest possible string to prevent width flicker
     const timer = document.getElementById('countdown-timer');
     if (timer) {
@@ -676,6 +727,13 @@
       }
     });
   })();
+=======
+      // Pre-fill timer with widest possible string to prevent width flicker
+      const timer = document.getElementById('countdown-timer');
+      if (timer) {
+        timer.textContent = '88d 23h 59m 59s';
+      }
+>>>>>>> 457eaeed8c5d9cfcf6c5ab622d9cdef8b046c723
   </script>
   </body>
   </html>

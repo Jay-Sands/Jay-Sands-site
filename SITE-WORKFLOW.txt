@@ -1,0 +1,7 @@
+Site Workflow Guidance
+
+- Use jay-sands-site-test (JSStest) for testing, drafts, and experiments.
+- Once changes are confirmed, copy or merge them into Jay-Sands-site/feature for production.
+- Deploy from Jay-Sands-site/feature for the live site.
+
+This keeps your production site stable and allows safe testing.
