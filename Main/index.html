@@ -1,244 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    .main-nav a:focus {
-      outline: 3px solid #FFD700;
-      outline-offset: 2px;
-      background: #222;
-    }
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <style>
-      .main-nav a:focus {
-        outline: 3px solid #FFD700;
-        outline-offset: 2px;
-        background: #222;
-      }
-    </style>
-    <style>
-      .main-nav a.active {
-        color: #fff !important;
-        border-bottom: 3px solid #FFD700;
-        background: rgba(34,34,34,0.5);
-      }
-    </style>
-    <style>
-      .main-nav {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 16px;
-        background: transparent;
-        padding: 8px 0 4px 0;
-        border-radius: 0 0 8px 8px;
-        box-shadow: none;
-        margin-bottom: 18px;
-      }
-      .main-nav a {
-        color: #FFD700;
-        font-family: 'Dancing Script', cursive;
-        font-weight: 900;
-        padding: 8px 24px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 2em;
-        background: transparent;
-        box-shadow: none;
-        border: none;
-        transition: color 0.2s, border-bottom 0.2s;
-        position: relative;
-      }
-      .main-nav a:hover, .main-nav a:focus {
-        color: #FFD700;
-        background: transparent;
-        border-bottom: 2px solid #FFD700;
-      }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jay Sands – Vocalist & Entertainer</title>
-    <meta name="description" content="Jay Sands – A Sinatra-style vocalist bringing timeless swing and romance to every performance. Available for shows, bookings, and private events.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jay Sands – Vocalist & Entertainer</title>
+  <meta name="description" content="Jay Sands – A Sinatra-style vocalist bringing timeless swing and romance to every performance. Available for shows, bookings, and private events.">
   <meta name="keywords" content="Jay Sands, vocalist, entertainer, classic music, booking, shows, Sinatra tribute artist, Sinatra-style singer, Dean Martin, Engelbert">
-    <meta name="author" content="Jay Sands">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://jsands.net">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <style>
-      body { background: #000; margin: 0; }
-      #landingSection { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
-      .curtainImg { 
-        position: absolute; 
-        top: 0; 
-        width: 50vw; 
-        height: 100vh; 
-        background: url('images/bright-curtain.png') no-repeat center center; 
-        background-size: cover; 
-        z-index: 10; 
-        transition: transform 2.5s cubic-bezier(.77,0,.18,1); 
-      }
-      #curtainLeft { 
-        left: 0; 
-        transform: translateX(0); 
-      }
-      #curtainLeft.open { 
-        transform: translateX(-100vw); 
-      }
-      #curtainRight { 
-        right: 0; 
-        transform: translateX(0); 
-      }
-      #curtainRight.open { 
-        transform: translateX(100vw); 
-      }
-      #welcomeText {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 5em;
-        color: #FFD700;
-        font-family: 'Dancing Script', cursive;
-        z-index: 20;
-        opacity: 0;
-        transition: opacity 1.2s ease;
-        width: 100%;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      #welcomeText.snow-capped {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      .snow-cap {
-        display: block;
-        position: relative;
-        width: 400px;
-        height: 50px;
-        margin: 0 auto;
-        pointer-events: none;
-        z-index: 21;
-        background: none;
-      }
-      .snow-cap svg {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-      #snowfall-canvas {
-        transition: opacity 3s ease;
-      }
-      #snowfall-canvas.hide-snow {
-        opacity: 0 !important;
-      }
-      #logo { 
-        width: 300px; 
-        max-width: 80vw; 
-        opacity: 0; 
-        transform: scale(0.1);
-        z-index: 20; 
-      }
-      #logo.visible { 
-        animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      }
-      #logo.fade-out {
-        opacity: 0 !important;
-        transform: scale(1) !important;
-        transition: opacity 2s ease !important;
-        animation: none !important;
-      }
-      @keyframes logoZoomIn {
-        0% {
-          opacity: 0;
-          transform: scale(0.1);
-        }
-        70% {
-          opacity: 1;
-          transform: scale(1.2);
-        }
-        85% {
-          transform: scale(0.95);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-      #homeSection { 
-        display: none; 
-        opacity: 0; 
-        transition: opacity 2s linear; 
-      }
-        /* Temporary class to force flexbox redraw for home page */
-        .force-flex-redraw {
-          display: flex !important;
-          align-items: stretch !important;
-        }
-        .main-nav a {
-          color: #FFD700;
-          font-family: 'Dancing Script', cursive;
-          font-weight: 700;
-          padding: 4px 14px;
-          border-radius: 6px;
-          text-decoration: none;
-          font-size: 1.25em;
-          background: transparent;
-          box-shadow: none;
-          border: none;
-          transition: color 0.2s, border-bottom 0.2s;
-          position: relative;
-        }
-        .main-nav a:hover, .main-nav a:focus {
-          color: #FFD700;
-          background: transparent;
-          border-bottom: 2px solid #FFD700;
-        }
-        #sparkle-separator {
-      overflow: hidden;
-    }
-    /* Sparkle animation disabled */
-    /* Mobile-specific adjustments */
-    @media (max-width: 600px) {
-      .main-nav a {
-        font-size: 1.5em !important;
-        padding: 10px 10px !important;
-      }
-      .home-flex-row {
-        flex-direction: column !important;
-        gap: 0 !important;
-        align-items: center !important;
-      }
-      .home-flex-col.featured-col {
-        min-width: 0 !important;
-        width: 100% !important;
-        align-items: center !important;
-        margin: 0 auto !important;
-      }
-      .home-flex-col.featured-col > div[style*="margin-top:32px"] {
-        margin-top: 12px !important;
-      }
-      .home-flex-col.featured-col form {
-        margin: 0 auto !important;
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-    }
-    </style>
-  </head>
+  <meta name="author" content="Jay Sands">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jsands.net">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #000; margin: 0; }
+    .main-nav { width: 100%; display: flex; justify-content: center; align-items: center; gap: 16px; background: transparent; padding: 8px 0 4px 0; border-radius: 0 0 8px 8px; box-shadow: none; margin-bottom: 18px; }
+    .main-nav a { color: #FFD700; font-family: 'Dancing Script', cursive; font-weight: 900; padding: 8px 24px; border-radius: 8px; text-decoration: none; font-size: 2em; background: transparent; box-shadow: none; border: none; transition: color 0.2s, border-bottom 0.2s; position: relative; }
+    .main-nav a:hover, .main-nav a:focus { color: #FFD700; background: transparent; border-bottom: 2px solid #FFD700; }
+    .main-nav a:focus { outline: 3px solid #FFD700; outline-offset: 2px; background: #222; }
+    .main-nav a.active { color: #fff !important; border-bottom: 3px solid #FFD700; background: rgba(34,34,34,0.5); }
+    #landingSection { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+    .curtainImg { position: absolute; top: 0; width: 50vw; height: 100vh; background: url('images/bright-curtain.png') no-repeat center center; background-size: cover; z-index: 10; transition: transform 2.5s cubic-bezier(.77,0,.18,1); }
+    #curtainLeft { left: 0; transform: translateX(0); }
+    #curtainLeft.open { transform: translateX(-100vw); }
+    #curtainRight { right: 0; transform: translateX(0); }
+    #curtainRight.open { transform: translateX(100vw); }
+    #welcomeText { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 5em; color: #FFD700; font-family: 'Dancing Script', cursive; z-index: 20; opacity: 0; transition: opacity 1.2s ease; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #welcomeText.snow-capped { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .snow-cap { display: block; position: relative; width: 400px; height: 50px; margin: 0 auto; pointer-events: none; z-index: 21; background: none; }
+    .snow-cap svg { width: 100%; height: 100%; display: block; }
+    #snowfall-canvas { transition: opacity 3s ease; }
+    #snowfall-canvas.hide-snow { opacity: 0 !important; }
+    #logo { width: 300px; max-width: 80vw; opacity: 0; transform: scale(0.1); z-index: 20; }
+    #logo.visible { animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+    #logo.fade-out { opacity: 0 !important; transform: scale(1) !important; transition: opacity 2s ease !important; animation: none !important; }
+    @keyframes logoZoomIn { 0% { opacity: 0; transform: scale(0.1); } 70% { opacity: 1; transform: scale(1.2); } 85% { transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+    #homeSection { display: none; opacity: 0; transition: opacity 2s linear; }
+    .force-flex-redraw { display: flex !important; align-items: stretch !important; }
+    .main-nav a { color: #FFD700; font-family: 'Dancing Script', cursive; font-weight: 700; padding: 4px 14px; border-radius: 6px; text-decoration: none; font-size: 1.25em; background: transparent; box-shadow: none; border: none; transition: color 0.2s, border-bottom 0.2s; position: relative; }
+    .main-nav a:hover, .main-nav a:focus { color: #FFD700; background: transparent; border-bottom: 2px solid #FFD700; }
+    #sparkle-separator { overflow: hidden; }
+    @media (max-width: 600px) { .main-nav a { font-size: 1.5em !important; padding: 10px 10px !important; } .home-flex-row { flex-direction: column !important; gap: 0 !important; align-items: center !important; } .home-flex-col.featured-col { min-width: 0 !important; width: 100% !important; align-items: center !important; margin: 0 auto !important; } .home-flex-col.featured-col > div[style*="margin-top:32px"] { margin-top: 12px !important; } .home-flex-col.featured-col form { margin: 0 auto !important; width: 100% !important; max-width: 100% !important; } }
+  </style>
+</head>
   <body>
     <div id="backToTop" style="display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:1000;font-size:1em;color:#FFD700;background:transparent;padding:4px 12px;border-radius:6px;cursor:pointer;text-align:center;box-shadow:none;">Back to Top</div>
     <script>
