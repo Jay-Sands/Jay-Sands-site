@@ -792,14 +792,11 @@
     }
 
     // Check if coming from another page on this site
-    var fromOtherPage = document.referrer && (
-      document.referrer.includes('shows.html') ||
-      document.referrer.includes('booking.html') ||
-      document.referrer.includes('feedback.html') ||
-      document.referrer.includes('other-artists.html') ||
-      document.referrer.includes('quotes.html') ||
-      document.referrer.includes('127.0.0.1:5500') ||
-      document.referrer.includes(window.location.hostname)
+    // Only skip the landing if the referrer is one of our internal pages.
+    // Do NOT treat any same-host referrer as internal (to avoid hiding the prompt).
+    var ref = document.referrer || '';
+    var fromOtherPage = (
+      /\b(shows\.html|booking\.html|feedback\.html|other-artists\.html|quotes\.html|press\.html|home\.html)\b/i.test(ref)
     );
 
     if (fromOtherPage) {
