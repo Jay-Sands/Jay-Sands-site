@@ -1,0 +1,10 @@
+JSS Project State - Last Saved
+
+- Main site folder: C:\Users\jsang\OneDrive\Desktop\Jay-Sands-site\feature
+- All live site work should be done in this folder.
+- A backup of the full JSS folder exists.
+- Netlify publish directory is set to . (root), and the site is working.
+- Ready to clean up extra folders, but backup is available if needed.
+- Todo: Continue cleanup and keep all work in the feature folder.
+
+When you return, just mention this file (JSS-STATE.txt) and I will pick up from here!

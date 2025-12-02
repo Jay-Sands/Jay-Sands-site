@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    .main-nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: transparent;
+      padding: 8px 0 4px 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+    .main-nav a {
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      font-weight: 900;
+      padding: 8px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 2em;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      transition: color 0.2s, border-bottom 0.2s;
+      position: relative;
+    }
+    .main-nav a:hover, .main-nav a:focus {
+      color: #FFD700;
+      background: transparent;
+      border-bottom: 2px solid #FFD700;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Feedback - Jay Sands</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
+</head>
+<body style="background-color:#000; color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; height:100vh; overflow:hidden;">
+  <div style="width:100%; margin-top:8px;">
+    <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="shows.html">Show Dates</a>
+    <a href="booking.html">Booking</a>
+    <a href="feedback.html" class="active">Feedback</a>
+    <a href="press.html">Press</a>
+    </nav>
+  </div>
+  <div style="min-width:280px; max-width:420px; width:90vw; position:fixed; top:55%; left:50%; transform:translate(-50%,-50%); padding:12px 16px; background:rgba(34,34,34,0.85); border-radius:18px; box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222; text-align:center;">
+  <h1 style="font-size:2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin-top:0;margin-bottom:0.1em;">Show Feedback</h1>
+  <p style="font-size:1.2em;color:#FFD700;margin-bottom:0.5em;font-family:'Dancing Script', cursive;">Thank you for attending! Please share your experience below.</p>
+  <form action="https://formspree.io/f/mnqeygqv" method="POST" style="text-align:left;max-width:400px;margin:0 auto 0.5em auto;">
+      <label style="color:#FFD700;">Your Quote or Feedback:</label><br>
+  <textarea name="quote" rows="2" required style="width:100%;padding:6px;margin-bottom:8px;border-radius:8px;border:none;"></textarea>
+      <label style="color:#FFD700;">Your Name (optional):</label><br>
+  <input type="text" name="name" style="width:100%;padding:6px;margin-bottom:8px;border-radius:8px;border:none;">
+      <div style="margin-top:12px;margin-bottom:8px;text-align:left;">
+        <input type="checkbox" id="agreeQuote" name="agreeQuote" value="yes" style="margin-right:8px;">
+        <label for="agreeQuote" style="color:#FFD700;">I agree to allow my quote or feedback to be added to the public feedback page.</label>
+      </div>
+      <div style="display:flex;justify-content:center;gap:16px;margin-top:18px;">
+  <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Feedback</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

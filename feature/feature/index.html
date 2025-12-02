@@ -1,116 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jay Sands – Vocalist & Entertainer</title>
-  <meta name="description" content="Jay Sands – A Sinatra-style vocalist bringing timeless swing and romance to every performance. Available for shows, bookings, and private events.">
-  <meta name="keywords" content="Jay Sands, vocalist, entertainer, classic music, booking, shows, Sinatra tribute artist, Sinatra-style singer, Dean Martin, Engelbert">
-  <meta name="author" content="Jay Sands">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://jsands.net">
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
   <style>
-    /* Navigation and small adjustments (merged) */
     .main-nav a:focus {
       outline: 3px solid #FFD700;
       outline-offset: 2px;
       background: #222;
     }
-    .main-nav a.active {
-      color: #fff !important;
-      border-bottom: 3px solid #FFD700;
-      background: rgba(34,34,34,0.5);
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <style>
+      .main-nav a:focus {
+        outline: 3px solid #FFD700;
+        outline-offset: 2px;
+        background: #222;
+      }
+    </style>
+    <style>
+      .main-nav a.active {
+        color: #fff !important;
+        border-bottom: 3px solid #FFD700;
+        background: rgba(34,34,34,0.5);
+      }
+    </style>
+    <style>
+      .main-nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        background: transparent;
+        padding: 8px 0 4px 0;
+        border-radius: 0 0 8px 8px;
+        box-shadow: none;
+        margin-bottom: 18px;
+      }
+      .main-nav a {
+        color: #FFD700;
+        font-family: 'Dancing Script', cursive;
+        font-weight: 900;
+        padding: 8px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 2em;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        transition: color 0.2s, border-bottom 0.2s;
+        position: relative;
+      }
+      .main-nav a:hover, .main-nav a:focus {
+        color: #FFD700;
+        background: transparent;
+        border-bottom: 2px solid #FFD700;
+      }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Sands – Vocalist & Entertainer</title>
+    <meta name="description" content="Jay Sands – A Sinatra-style vocalist bringing timeless swing and romance to every performance. Available for shows, bookings, and private events.">
+  <meta name="keywords" content="Jay Sands, vocalist, entertainer, classic music, booking, shows, Sinatra tribute artist, Sinatra-style singer, Dean Martin, Engelbert">
+    <meta name="author" content="Jay Sands">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jsands.net">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+      body { background: #000; margin: 0; }
+      #landingSection { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+      .curtainImg { 
+        position: absolute; 
+        top: 0; 
+        width: 50vw; 
+        height: 100vh; 
+        background: url('images/bright-curtain.png') no-repeat center center; 
+        background-size: cover; 
+        z-index: 10; 
+        transition: transform 2.5s cubic-bezier(.77,0,.18,1); 
+      }
+      #curtainLeft { 
+        left: 0; 
+        transform: translateX(0); 
+      }
+      #curtainLeft.open { 
+        transform: translateX(-100vw); 
+      }
+      #curtainRight { 
+        right: 0; 
+        transform: translateX(0); 
+      }
+      #curtainRight.open { 
+        transform: translateX(100vw); 
+      }
+      #welcomeText {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.1);
+        font-size: 5em;
+        color: #FFD700;
+        font-family: 'Dancing Script', cursive;
+        z-index: 20;
+        opacity: 0;
+  transition: opacity 2.5s cubic-bezier(0.23, 1, 0.32, 1), transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      #welcomeText.visible {
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+      }
+      #welcomeText.crossfade {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1);
+      }
+      #welcomeText.crossfade {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1);
+      }
+      #welcomeText.snow-capped {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .snow-cap {
+        display: block;
+        position: relative;
+        width: 400px;
+        height: 50px;
+        margin: 0 auto;
+        pointer-events: none;
+        z-index: 21;
+        background: none;
+      }
+      .snow-cap svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #snowfall-canvas {
+        transition: opacity 3s ease;
+      }
+      #snowfall-canvas.hide-snow {
+        opacity: 0 !important;
+      }
+      #logo { 
+        width: 300px; 
+        max-width: 80vw; 
+        opacity: 0; 
+        transform: scale(0.1);
+        z-index: 20; 
+      }
+      #logo.visible { 
+        animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      }
+      #logo.fade-out {
+  opacity: 0 !important;
+  transform: scale(0.1) !important;
+  transition: opacity 3s cubic-bezier(0.23, 1, 0.32, 1), transform 3s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  animation: none !important;
+      }
+      @keyframes logoZoomIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.1);
+        }
+        70% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        85% {
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      #homeSection { 
+        display: none; 
+        opacity: 0; 
+        transition: opacity 2s linear; 
+      }
+        /* Temporary class to force flexbox redraw for home page */
+        .force-flex-redraw {
+          display: flex !important;
+          align-items: stretch !important;
+        }
+        .main-nav a {
+          color: #FFD700;
+          font-family: 'Dancing Script', cursive;
+          font-weight: 700;
+          padding: 4px 14px;
+          border-radius: 6px;
+          text-decoration: none;
+          font-size: 1.25em;
+          background: transparent;
+          box-shadow: none;
+          border: none;
+          transition: color 0.2s, border-bottom 0.2s;
+          position: relative;
+        }
+        .main-nav a:hover, .main-nav a:focus {
+          color: #FFD700;
+          background: transparent;
+          border-bottom: 2px solid #FFD700;
+        }
+        #sparkle-separator {
+      overflow: hidden;
     }
-    .main-nav {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      background: transparent;
-      padding: 8px 0 4px 0;
-      border-radius: 0 0 8px 8px;
-      box-shadow: none;
-      margin-bottom: 18px;
+    /* Sparkle animation disabled */
+    /* Mobile-specific adjustments */
+    @media (max-width: 600px) {
+      .main-nav a {
+        font-size: 1.5em !important;
+        padding: 10px 10px !important;
+      }
+      .home-flex-row {
+        flex-direction: column !important;
+        gap: 0 !important;
+        align-items: center !important;
+      }
+      .home-flex-col.featured-col {
+        min-width: 0 !important;
+        width: 100% !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+      }
+      .home-flex-col.featured-col > div[style*="margin-top:32px"] {
+        margin-top: 12px !important;
+      }
+      .home-flex-col.featured-col form {
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
     }
-    .main-nav a {
-      color: #FFD700;
-      font-family: 'Dancing Script', cursive;
-      font-weight: 900;
-      padding: 4px 14px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 1.25em;
-      background: transparent;
-      box-shadow: none;
-      border: none;
-      transition: color 0.2s, border-bottom 0.2s;
-      position: relative;
-    }
-    .main-nav a:hover, .main-nav a:focus {
-      color: #FFD700;
-      background: transparent;
-      border-bottom: 2px solid #FFD700;
-    }
+    </style>
+  </head>
+  <body>
+    <!-- Hamburger Menu -->
+  <div class="hamburger-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-    /* Page layout and landing section */
-    body { background: #000; margin: 0; }
-    #landingSection { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
-    .curtainImg {
-      position: absolute;
-      top: 0;
-      width: 50vw;
-      height: 100vh;
-      background: url('images/bright-curtain.png') no-repeat center center;
-      background-size: cover;
-      z-index: 10;
-      transition: transform 2.5s cubic-bezier(.77,0,.18,1);
-    }
-    #curtainLeft { left: 0; transform: translateX(0); }
-    #curtainLeft.open { transform: translateX(-100vw); }
-    #curtainRight { right: 0; transform: translateX(0); }
-    #curtainRight.open { transform: translateX(100vw); }
+  <!-- Existing content -->
 
-    #welcomeText {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.1);
-      font-size: 5em;
-      color: #FFD700;
-      font-family: 'Dancing Script', cursive;
-      z-index: 20;
-      opacity: 0;
-      transition: opacity 2.5s cubic-bezier(0.23, 1, 0.32, 1), transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
-      width: 100%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    #welcomeText.visible { opacity: 1 !important; transform: translate(-50%, -50%) scale(1) !important; }
-    #welcomeText.snow-capped { }
-
-    #logo { width: 300px; max-width: 80vw; opacity: 0; transform: scale(0.1); z-index: 20; }
-    #logo.visible { animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-    #logo.fade-out { opacity: 0 !important; transform: scale(0.1) !important; transition: opacity 3s, transform 3s !important; animation:none !important; }
-    @keyframes logoZoomIn { 0%{opacity:0;transform:scale(0.1);}70%{opacity:1;transform:scale(1.2);}85%{transform:scale(0.95);}100%{opacity:1;transform:scale(1);} }
-
-    #homeSection { display:none; opacity:0; transition:opacity 2s linear; }
-    .force-flex-redraw { display:flex !important; align-items:stretch !important; }
-
-    /* Snow canvas */
-    #snowfall-canvas { transition: opacity 3s ease; }
-    #snowfall-canvas.hide-snow { opacity:0 !important; }
-
-    @media (max-width:600px) { .main-nav a{font-size:1.5em !important;padding:10px 10px !important;} .home-flex-row{flex-direction:column !important;gap:0 !important;align-items:center !important;} .home-flex-col.featured-col{min-width:0 !important;width:100% !important;} }
-  </style>
-</head>
-<body>
     <div id="backToTop" style="display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:1000;font-size:1em;color:#FFD700;background:transparent;padding:4px 12px;border-radius:6px;cursor:pointer;text-align:center;box-shadow:none;">Back to Top</div>
     <script>
       // Show/hide Back to Top text link
@@ -129,29 +279,6 @@
 
   
   <div id="landingSection">
-    <!-- Thanksgiving Transition (hidden by default) -->
-    <div id="thanksgiving-transition" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:100; justify-content:center; align-items:center; flex-direction:column;">
-      <style>
-        #thanksgiving-transition {
-          transition: opacity 4s ease, transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
-          opacity: 0;
-          transform: scale(0.1);
-        }
-        #thanksgiving-transition.visible {
-          opacity: 1;
-          transform: scale(1);
-        }
-      </style>
-      <div style="font-family:'Dancing Script',cursive; font-size:3.2em; color:#FFD700; text-shadow:0 2px 12px #B86B1B, 0 0 2px #fff; margin-bottom:18px; letter-spacing:2px;">
-        🦃 Happy Thanksgiving! 🍁
-      </div>
-      <div style="font-size:1.5em; color:#fffbe6; font-family:'Georgia',serif; max-width:600px; text-align:center; margin-bottom:18px;">
-        May your holiday be filled with warmth, joy, and gratitude.<br>
-        Enjoy the music, the season, and the moments that matter most.
-      </div>
-      <!-- Falling leaves container -->
-      <div id="falling-leaves"></div>
-    </div>
     <div id="curtainLeft" class="curtainImg"></div>
     <div id="curtainRight" class="curtainImg"></div>
     <div id="welcomeText" class="snow-capped">
@@ -184,11 +311,12 @@
   <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
     <div style="width:100%;">
     <nav class="main-nav" aria-label="Main Navigation">
-  <a href="index.html" class="home-link active" style="background:#B22222;">Home</a>
-  <a href="booking.html" class="booking-link" style="background:#4169E1;">Booking</a>
-  <a href="feedback.html" class="feedback-link" style="background:#228B22;">Feedback</a>
-  <a href="press.html" class="press-link" style="background:#FF8C00;">Press</a>
-      </nav>
+  <a href="/index.html" class="home-link">Home</a>
+  <a href="/booking.html" class="booking-link">Booking</a>
+  <a href="/feedback.html" class="feedback-link">Feedback</a>
+  <a href="/press.html" class="press-link">Press</a>
+  <a href="/shows.html" class="shows-link">Show Dates</a>
+</nav>
     </div>
     <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;" role="main">
       <h1 style="font-family:'Dancing Script', cursive;font-size:4em;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 10px auto;font-weight:700;">Jay Sands</h1>
@@ -301,43 +429,6 @@
 <canvas id="snowfall-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:100;"></canvas>
   <script>
   window.addEventListener('DOMContentLoaded', function() {
-    // --- Thanksgiving Transition Logic ---
-    function createLeaf() {
-      const leaf = document.createElement('span');
-      leaf.textContent = '🍂';
-      leaf.style.position = 'absolute';
-      leaf.style.left = Math.random() * 100 + 'vw';
-      leaf.style.top = '-40px';
-      leaf.style.fontSize = (1.5 + Math.random() * 1.5) + 'em';
-      leaf.style.opacity = 0.7 + Math.random() * 0.3;
-      leaf.style.transition = 'transform 4.5s linear, opacity 4.5s linear';
-      document.getElementById('falling-leaves').appendChild(leaf);
-      setTimeout(() => {
-        leaf.style.transform = `translateY(${window.innerHeight + 60}px) rotate(${Math.random() * 360}deg)`;
-        leaf.style.opacity = 0;
-      }, 50);
-      setTimeout(() => leaf.remove(), 4700);
-    }
-    let leafInterval;
-    function showThanksgivingTransition(nextStepCallback) {
-      const tg = document.getElementById('thanksgiving-transition');
-      tg.style.display = 'flex';
-      setTimeout(function() {
-        tg.classList.add('visible');
-      }, 10);
-      leafInterval = setInterval(createLeaf, 350);
-      setTimeout(() => {
-        clearInterval(leafInterval);
-        tg.classList.remove('visible');
-        tg.addEventListener('transitionend', function handler(e) {
-          if (e.target === tg && e.propertyName === 'opacity') {
-            tg.removeEventListener('transitionend', handler);
-            tg.style.display = 'none';
-            if (typeof nextStepCallback === 'function') nextStepCallback();
-          }
-        });
-      }, 8000); // Show for 8 seconds (original duration)
-    }
     var curtainLeft = document.getElementById('curtainLeft');
     var curtainRight = document.getElementById('curtainRight');
     var logo = document.getElementById('logo');
@@ -393,6 +484,15 @@
       landingMusic.pause();
       landingMusic.currentTime = 0;
       landingMusic.muted = true;
+
+      // Ensure Christmas button is visible
+      const christmasLink = document.querySelector('.christmas-link');
+      if (christmasLink) {
+        console.log('Ensuring Christmas link is visible');
+        christmasLink.style.display = 'inline-block';
+      } else {
+        console.error('Christmas link not found in DOM');
+      }
     } else {
       // Show start prompt and block all interaction until clicked for new visitors
       startPrompt.style.display = 'block';
@@ -460,33 +560,31 @@
 
       // Thanksgiving transition and Home page
       setTimeout(() => {
-        showThanksgivingTransition(() => {
-          landingSection.style.display = 'none';
-          homeSection.style.display = 'block';
-          setTimeout(() => {
-            homeSection.style.opacity = '1';
-            var flexRow = homeSection.querySelector('.home-flex-row');
-            if (flexRow) {
-              flexRow.classList.add('force-flex-redraw');
-              setTimeout(() => {
-                flexRow.classList.remove('force-flex-redraw');
-              }, 100);
-            }
-            void homeSection.offsetHeight;
-            window.dispatchEvent(new Event('resize'));
+        landingSection.style.display = 'none';
+        homeSection.style.display = 'block';
+        setTimeout(() => {
+          homeSection.style.opacity = '1';
+          var flexRow = homeSection.querySelector('.home-flex-row');
+          if (flexRow) {
+            flexRow.classList.add('force-flex-redraw');
             setTimeout(() => {
-              var fadeOut = setInterval(() => {
-                if (!landingMusic.muted && landingMusic.volume > 0.01) {
-                  landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0);
-                } else {
-                  landingMusic.volume = 0;
-                  clearInterval(fadeOut);
-                  landingMusic.pause();
-                }
-              }, 30);
+              flexRow.classList.remove('force-flex-redraw');
             }, 100);
-          }, 0);
-        });
+          }
+          void homeSection.offsetHeight;
+          window.dispatchEvent(new Event('resize'));
+          setTimeout(() => {
+            var fadeOut = setInterval(() => {
+              if (!landingMusic.muted && landingMusic.volume > 0.01) {
+                landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0);
+              } else {
+                landingMusic.volume = 0;
+                clearInterval(fadeOut);
+                landingMusic.pause();
+              }
+            }, 30);
+          }, 100);
+        }, 0);
       }, thanksgivingDelay);
     }
   
@@ -630,5 +728,98 @@
     });
   })();
   </script>
+  <!-- Thanksgiving Transition Div -->
+<div id="thanksgiving-transition" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:100; justify-content:center; align-items:center; flex-direction:column;">
+  <style>
+    #thanksgiving-transition {
+      transition: opacity 4s ease, transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
+      opacity: 0;
+      transform: scale(0.1);
+    }
+    #thanksgiving-transition.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
+  <div style="font-family:'Dancing Script',cursive; font-size:3.2em; color:#FFD700; text-shadow:0 2px 12px #B86B1B, 0 0 2px #fff; margin-bottom:18px; letter-spacing:2px;">
+    🦃 Happy Thanksgiving! 🍁
+  </div>
+  <div style="font-size:1.5em; color:#fffbe6; font-family:'Georgia',serif; max-width:600px; text-align:center; margin-bottom:18px;">
+    May your holiday be filled with warmth, joy, and gratitude.<br>
+    Enjoy the music, the season, and the moments that matter most.
+  </div>
+  <!-- Falling leaves container -->
+  <div id="falling-leaves"></div>
+</div>
+<!-- Hamburger Menu -->
+<div class="hamburger-menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Mobile Navigation -->
+<nav class="mobile-nav">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<script>
+  const hamburger = document.querySelector('.hamburger-menu');
+  const mobileNav = document.querySelector('.mobile-nav');
+
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
+</script>
+<script src="hamburger.js"></script>
+<script>
+  // Ensure the Christmas button remains visible across navigation
+  window.addEventListener('DOMContentLoaded', function() {
+    const christmasLink = document.querySelector('.christmas-link');
+    if (christmasLink) {
+      christmasLink.classList.add('visible'); // Use a class to ensure visibility
+
+      // Ensure visibility on every page load
+      christmasLink.style.display = 'inline-block';
+    }
+  });
+  </script>
+  <style>
+  /* Standardized navigation bar styles */
+  .main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background: rgba(34, 34, 34, 0.85);
+    padding: 8px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .main-nav a {
+    color: #FFD700;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+  }
+  .main-nav a:hover {
+    background: #FFD700;
+    color: #000;
+  }
+  .main-nav a.shows-link {
+    background: #FFD700;
+    color: #000;
+  }
+  .main-nav a.shows-link:hover {
+    background: #FFC107;
+    color: #111;
+  }
+  </style>
   </body>
   </html>
