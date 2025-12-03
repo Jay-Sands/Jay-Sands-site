@@ -1,4 +1,22 @@
+[build]
+  publish = "site"
+
+# Optional: redirect root to site/index.html if needed
+[[redirects]]
+  from = "/"
+  to = "/site/index.html"
+  status = 200<<<<<<< HEAD
 ﻿
 [build]
 publish = "site"
 command = ""
+=======
+[build]
+publish = "site"
+
+[[redirects]]
+from = "/"
+to = "/site/index.html"
+status = 302
+force = true
+>>>>>>> c166ebe (Deploy: sync site with Main and add assets)

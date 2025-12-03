@@ -1,0 +1,30 @@
+**Progress Summary as of November 21, 2025**
+
+### Current Issues:
+1. **Slow Page Load Times on Mobile**:
+   - Root cause not yet identified.
+   - Suggested debugging using Chrome Developer Tools to simulate mobile network conditions.
+
+2. **Hamburger Menu Not Visible/Functional**:
+   - Structure added to multiple pages (`index.html`, `shows.html`, `booking.html`, `feedback.html`, `home.html`).
+   - JavaScript (`hamburger.js`) linked to handle toggle functionality.
+   - CSS updated for `.hamburger-menu` and `.mobile-nav`.
+   - Still not functioning as expected.
+
+### Completed Tasks:
+- Added hamburger menu structure to relevant pages.
+- Linked `hamburger.js` and `style.css` to all necessary files.
+- Updated CSS for mobile navigation.
+
+### Pending Tasks:
+1. Debug and fix slow page load times.
+2. Ensure hamburger menu is visible and functional across all pages.
+3. Conduct a deep dive into mobile performance issues.
+
+### Next Steps:
+- Analyze network performance to identify slow-loading resources.
+- Debug JavaScript and CSS for hamburger menu functionality.
+- Optionally, test directly on a mobile device for further insights.
+
+---
+**Note**: User paused due to frustration. Will continue debugging later.
