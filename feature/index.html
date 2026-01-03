@@ -240,6 +240,15 @@
     </style>
   </head>
   <body>
+    <!-- Hamburger Menu -->
+  <div class="hamburger-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Existing content -->
+
     <div id="backToTop" style="display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:1000;font-size:1em;color:#FFD700;background:transparent;padding:4px 12px;border-radius:6px;cursor:pointer;text-align:center;box-shadow:none;">Back to Top</div>
     <script>
       // Show/hide Back to Top text link
@@ -290,19 +299,7 @@
   <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
     <div style="width:100%;">
     <nav class="main-nav" aria-label="Main Navigation">
-  <a href="index.html" class="home-link active" style="background:#B22222;">Home</a>
-  <a href="shows.html" class="shows-link" style="background:#FFD700;color:#000;">Show Dates</a>
-  <a href="booking.html" class="booking-link" style="background:#4169E1;">Booking</a>
-  <a href="feedback.html" class="feedback-link" style="background:#228B22;">Feedback</a>
-  <a href="press.html" class="press-link" style="background:#FF8C00;">Press</a>
-
-  <style>
-    @keyframes glow-xmas {
-      0% { box-shadow: 0 0 12px 2px #1e90ff,0 0 8px 2px #FFD700; }
-      100% { box-shadow: 0 0 24px 6px #FFD700,0 0 16px 4px #1e90ff; }
-    }
-  </style>
-      </nav>
+</nav>
     </div>
     <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;" role="main">
       <h1 style="font-family:'Dancing Script', cursive;font-size:4em;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 10px auto;font-weight:700;">Jay Sands</h1>
@@ -467,6 +464,15 @@
       landingMusic.pause();
       landingMusic.currentTime = 0;
       landingMusic.muted = true;
+
+      // Ensure Christmas button is visible
+      const christmasLink = document.querySelector('.christmas-link');
+      if (christmasLink) {
+        console.log('Ensuring Christmas link is visible');
+        christmasLink.style.display = 'inline-block';
+      } else {
+        console.error('Christmas link not found in DOM');
+      }
     } else {
       // Show start prompt and block all interaction until clicked for new visitors
       startPrompt.style.display = 'block';
@@ -486,52 +492,6 @@
       setTimeout(function() {
         curtainLeft.classList.add('open');
         curtainRight.classList.add('open');
-        setTimeout(function() {
-          welcomeText.style.opacity = '1';
-          welcomeText.style.transition = 'opacity 2s ease';
-          setTimeout(function() {
-            setTimeout(function() {
-              welcomeText.style.transition = 'opacity 2.5s ease';
-              welcomeText.style.opacity = '0';
-              setTimeout(function() {
-                logo.classList.add('visible');
-                setTimeout(function() {
-                  logo.classList.add('fade-out');
-                  setTimeout(function() {
-                    landingSection.style.display = 'none';
-                    homeSection.style.display = 'block';
-                    setTimeout(function() {
-                      homeSection.style.opacity = '1';
-                        // Add temporary class to force flexbox redraw
-                        var flexRow = homeSection.querySelector('.home-flex-row');
-                        if (flexRow) {
-                          flexRow.classList.add('force-flex-redraw');
-                          // Remove after short delay to avoid side effects
-                          setTimeout(function() {
-                            flexRow.classList.remove('force-flex-redraw');
-                          }, 100);
-                        }
-                        // Force reflow to fix flexbox layout after showing homeSection
-                        void homeSection.offsetHeight;
-                        window.dispatchEvent(new Event('resize'));
-                      setTimeout(function() {
-                        var fadeOut = setInterval(function() {
-                          if (!landingMusic.muted && landingMusic.volume > 0.01) {
-                            landingMusic.volume = Math.max(landingMusic.volume - 0.01, 0);
-                          } else {
-                            landingMusic.volume = 0;
-                            clearInterval(fadeOut);
-                            landingMusic.pause();
-                          }
-                        }, 30);
-                      }, 2000);
-                    }, 50);
-                  }, 2000);
-                }, 3500);
-              }, 2500);
-            }, 2200);
-          }, 2000);
-        }, 1200);
       }, 500);
     }
   
@@ -675,5 +635,98 @@
     });
   })();
   </script>
+  <!-- Thanksgiving Transition Div -->
+<div id="thanksgiving-transition" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:100; justify-content:center; align-items:center; flex-direction:column;">
+  <style>
+    #thanksgiving-transition {
+      transition: opacity 4s ease, transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
+      opacity: 0;
+      transform: scale(0.1);
+    }
+    #thanksgiving-transition.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
+  <div style="font-family:'Dancing Script',cursive; font-size:3.2em; color:#FFD700; text-shadow:0 2px 12px #B86B1B, 0 0 2px #fff; margin-bottom:18px; letter-spacing:2px;">
+    🦃 Happy Thanksgiving! 🍁
+  </div>
+  <div style="font-size:1.5em; color:#fffbe6; font-family:'Georgia',serif; max-width:600px; text-align:center; margin-bottom:18px;">
+    May your holiday be filled with warmth, joy, and gratitude.<br>
+    Enjoy the music, the season, and the moments that matter most.
+  </div>
+  <!-- Falling leaves container -->
+  <div id="falling-leaves"></div>
+</div>
+<!-- Hamburger Menu -->
+<div class="hamburger-menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Mobile Navigation -->
+<nav class="mobile-nav">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<script>
+  const hamburger = document.querySelector('.hamburger-menu');
+  const mobileNav = document.querySelector('.mobile-nav');
+
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
+</script>
+<script src="hamburger.js"></script>
+<script>
+  // Ensure the Christmas button remains visible across navigation
+  window.addEventListener('DOMContentLoaded', function() {
+    const christmasLink = document.querySelector('.christmas-link');
+    if (christmasLink) {
+      christmasLink.classList.add('visible'); // Use a class to ensure visibility
+
+      // Ensure visibility on every page load
+      christmasLink.style.display = 'inline-block';
+    }
+  });
+  </script>
+  <style>
+  /* Standardized navigation bar styles */
+  .main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background: rgba(34, 34, 34, 0.85);
+    padding: 8px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .main-nav a {
+    color: #FFD700;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+  }
+  .main-nav a:hover {
+    background: #FFD700;
+    color: #000;
+  }
+  .main-nav a.shows-link {
+    background: #FFD700;
+    color: #000;
+  }
+  .main-nav a.shows-link:hover {
+    background: #FFC107;
+    color: #111;
+  }
+  </style>
   </body>
   </html>
