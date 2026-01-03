@@ -7,44 +7,57 @@
       outline-offset: 2px;
       background: #222;
     }
-    .main-nav a.active {
-      color: #fff !important;
-      border-bottom: 3px solid #FFD700;
-      background: rgba(34,34,34,0.5);
-    }
-    .main-nav {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      background: transparent;
-      padding: 8px 0 4px 0;
-      border-radius: 0 0 8px 8px;
-      box-shadow: none;
-      margin-bottom: 18px;
-    }
-    .main-nav a {
-      color: #FFD700;
-      font-family: 'Dancing Script', cursive;
-      font-weight: 900;
-      padding: 8px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 2em;
-      background: transparent;
-      box-shadow: none;
-      border: none;
-      transition: color 0.2s, border-bottom 0.2s;
-      position: relative;
-    }
-    .main-nav a:hover, .main-nav a:focus {
-      color: #FFD700;
-      background: transparent;
-      border-bottom: 2px solid #FFD700;
-    }
-  </style>
-  <meta charset="UTF-8">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <style>
+      .main-nav a:focus {
+        outline: 3px solid #FFD700;
+        outline-offset: 2px;
+        background: #222;
+      }
+    </style>
+    <style>
+      .main-nav a.active {
+        color: #fff !important;
+        border-bottom: 3px solid #FFD700;
+        background: rgba(34,34,34,0.5);
+      }
+    </style>
+    <style>
+      .main-nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        background: transparent;
+        padding: 8px 0 4px 0;
+        border-radius: 0 0 8px 8px;
+        box-shadow: none;
+        margin-bottom: 18px;
+      }
+      .main-nav a {
+        color: #FFD700;
+        font-family: 'Dancing Script', cursive;
+        font-weight: 900;
+        padding: 8px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 2em;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        transition: color 0.2s, border-bottom 0.2s;
+        position: relative;
+      }
+      .main-nav a:hover, .main-nav a:focus {
+        color: #FFD700;
+        background: transparent;
+        border-bottom: 2px solid #FFD700;
+      }
+    </style>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jay Sands – Vocalist & Entertainer</title>
     <meta name="description" content="Jay Sands – A Sinatra-style vocalist bringing timeless swing and romance to every performance. Available for shows, bookings, and private events.">
@@ -277,18 +290,12 @@
   <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
     <div style="width:100%;">
     <nav class="main-nav" aria-label="Main Navigation">
-  <a href="index.html" class="home-link active" style="background:#B22222;">Home</a>
-  <a href="shows.html" class="shows-link" style="background:#FFD700;color:#000;">Show Dates</a>
-  <a href="booking.html" class="booking-link" style="background:#4169E1;">Booking</a>
-  <a href="feedback.html" class="feedback-link" style="background:#228B22;">Feedback</a>
-  <a href="press.html" class="press-link" style="background:#FF8C00;">Press</a>
-
-  <style>
-    @keyframes glow-xmas {
-      0% { box-shadow: 0 0 12px 2px #1e90ff,0 0 8px 2px #FFD700; }
-      100% { box-shadow: 0 0 24px 6px #FFD700,0 0 16px 4px #1e90ff; }
-    }
-  </style>
+  <a href="index.html" class="home-link active">Home</a>
+  <a href="shows.html" class="shows-link">Show Dates</a>
+  <a href="booking.html" class="booking-link">Booking</a>
+  <a href="feedback.html" class="feedback-link">Feedback</a>
+  <a href="press.html" class="press-link">Press</a>
+  <a href="christmas.html" class="christmas-link" style="background:#FFD700;color:#B22222;font-weight:900;font-family:'Dancing Script',cursive;box-shadow:0 0 8px 2px #FFD700;position:relative;animation:glow-xmas 1.5s infinite alternate;">❄️ Christmas</a>
       </nav>
     </div>
     <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;" role="main">
@@ -314,7 +321,7 @@
     <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
           <h2 style="color:#FFD700;">Featured Work</h2>
     <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my latest tracks:</p>
-          <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #00FF00, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
+          <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
             <div style="margin-bottom:12px;">
               <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
               <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
@@ -361,7 +368,7 @@
           <!-- Small Contact Form (now in left column) -->
           <div style="width:100%;margin-top:32px;display:flex;justify-content:center;">
             <div style="display:flex;flex-direction:column;align-items:center;width:100%;margin-top:32px;">
-              <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 0 20px 6px rgba(220,20,60,0.8);">
+              <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 2px 8px #B22222;">
                 <input type="hidden" name="form-name" value="contact">
                 <h3 style="color:#FFD700;margin-bottom:10px;font-size:1.1em;">Contact Jay Sands</h3>
                 <label style="color:#FFD700;font-size:0.95em;">Your Name:</label><br>
@@ -437,11 +444,14 @@
     }
 
     // Check if coming from another page on this site
-    // Only skip the landing if the referrer is one of our internal pages.
-    // Do NOT treat any same-host referrer as internal (to avoid hiding the prompt).
-    var ref = document.referrer || '';
-    var fromOtherPage = (
-      /\b(shows\.html|booking\.html|feedback\.html|other-artists\.html|quotes\.html|press\.html|home\.html)\b/i.test(ref)
+    var fromOtherPage = document.referrer && (
+      document.referrer.includes('shows.html') ||
+      document.referrer.includes('booking.html') ||
+      document.referrer.includes('feedback.html') ||
+      document.referrer.includes('other-artists.html') ||
+      document.referrer.includes('quotes.html') ||
+      document.referrer.includes('127.0.0.1:5500') ||
+      document.referrer.includes(window.location.hostname)
     );
 
     if (fromOtherPage) {
@@ -642,7 +652,7 @@
         if (snowCap) snowCap.style.opacity = '0';
       }
     }
-    // Wait for homeSection to be visible, then fade snow after 5 seconds
+    // Wait for homeSection to be visible, then fade snow after 3 seconds
     if (startPrompt) {
       startPrompt.addEventListener('click', function() {
         var checkHome = setInterval(function() {
@@ -653,12 +663,6 @@
         }, 100);
       });
     }
-    // Also fade snow if coming directly to home section (from other pages)
-    window.addEventListener('load', function() {
-      if (homeSection && homeSection.style.display === 'block') {
-        setTimeout(fadeSnow, 5000);
-      }
-    });
   })();
   </script>
   </body>

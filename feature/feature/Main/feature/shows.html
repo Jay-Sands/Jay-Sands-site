@@ -64,6 +64,7 @@
   border-radius: 0 0 8px 8px;
   box-shadow: none;
   margin-bottom: 18px;
+  }
     color: #FFD700;
     font-weight: 500;
     padding: 4px 10px;
@@ -105,14 +106,8 @@
   <a href="booking.html">Booking</a>
   <a href="feedback.html">Feedback</a>
   <a href="press.html">Press</a>
-  <a href="christmas.html" class="christmas-link" style="background:#B22222;color:#FFD700;font-weight:900;box-shadow:0 0 12px 2px #1e90ff,0 0 8px 2px #FFD700;position:relative;animation:glow-xmas 1.5s infinite alternate;font-family:'Dancing Script',cursive;">❄️ Christmas</a>
+  <a href="christmas.html" class="christmas-link" style="background:#FFD700;color:#B22222;font-weight:900;font-family:'Dancing Script',cursive;box-shadow:0 0 8px 2px #FFD700;position:relative;animation:glow-xmas 1.5s infinite alternate;">❄️ Christmas</a>
     </nav>
-    <style>
-      @keyframes glow-xmas {
-        0% { box-shadow: 0 0 12px 2px #1e90ff, 0 0 8px 2px #FFD700; }
-        100% { box-shadow: 0 0 24px 6px #FFD700, 0 0 16px 4px #1e90ff; }
-      }
-    </style>
   </div>
 
   <div class="container">
@@ -168,13 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
   showItems.forEach(item => item.classList.remove('featured'));
   if (nextShow) nextShow.classList.add('featured');
 });
-</script>
 
-</body>
 </html>
-
-
-
 
 
 
