@@ -1,0 +1,17 @@
+Site Workflow as of 2026-01-19
+
+1.  **Development Branch:** All new work, edits, and feature development will be done on the `site-updates` branch.
+
+2.  **Experimental Changes (Optional):** For experimental features that might be discarded (like UI tweaks), a temporary `feature/...` branch will be created from `site-updates`. This keeps the main development branch clean.
+
+3.  **Approval and Merging:** 
+    - If an experimental branch was used and the changes are approved, it is merged back into `site-updates`.
+    - The temporary feature branch is then deleted.
+
+4.  **Prepare for Deployment:** To deploy the approved changes to the live site, we switch to the `main` branch.
+
+5.  **Final Merge:** The `site-updates` branch is merged into the `main` branch. We will resolve any merge conflicts by accepting the changes from `site-updates`, as it contains the most recent work.
+
+6.  **Deploy to Live Site:** The `main` branch is pushed to the remote repository (`origin`). This action automatically triggers the build and deployment process on Netlify, making the changes live.
+
+7.  **Return to Development:** After confirming a successful deployment, we switch back to the `site-updates` branch to be ready for the next set of tasks.
