@@ -33,6 +33,19 @@
       background: transparent;
       border-bottom: 2px solid #FFD700;
     }
+
+    /* Mobile-only styles for the feedback page navigation */
+    @media (max-width: 600px) {
+      .main-nav {
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        gap: 4px; /* Reduce the gap for a tighter fit */
+        padding: 4px 1vw;
+      }
+      .main-nav a {
+        font-size: 1em !important; /* Drastically reduce font size for mobile */
+        padding: 4px 8px !important; /* Reduce padding */
+      }
+    }
   </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
