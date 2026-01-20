@@ -1,7 +1,2 @@
 [build]
-<<<<<<< HEAD
   publish = "site"
-=======
-publish = "site"
-
->>>>>>> 31cc6238d046fbea8b48d498964c47d33b529181
