@@ -99,13 +99,20 @@
 </head>
 <body>
   <div style="width:100%;">
-    <nav class="main-nav" aria-label="Main Navigation">
-  <a href="index.html" class="home-link">Home</a>
-  <a href="shows.html" class="shows-link active">Show Dates</a>
-  <a href="booking.html" class="booking-link">Booking</a>
-  <a href="feedback.html" class="feedback-link">Feedback</a>
-  <a href="press.html" class="press-link">Press</a>
-</nav>
+    <nav class="main-nav" style="display:flex;justify-content:center;align-items:center;gap:16px;background:transparent;padding:8px 0 4px 0;border-radius:0 0 8px 8px;box-shadow:none;margin-bottom:18px;">
+  <a href="index.html">Home</a>
+  <a href="shows.html" class="active">Show Dates</a>
+  <a href="booking.html">Booking</a>
+  <a href="feedback.html">Feedback</a>
+  <a href="press.html">Press</a>
+
+    </nav>
+    <style>
+      @keyframes glow-xmas {
+        0% { box-shadow: 0 0 12px 2px #1e90ff, 0 0 8px 2px #FFD700; }
+        100% { box-shadow: 0 0 24px 6px #FFD700, 0 0 16px 4px #1e90ff; }
+      }
+    </style>
   </div>
 
   <div class="container">
@@ -113,11 +120,11 @@
     <ul class="show-list">
       <section class="show-listing" style="background-color: #000; color: #fff; border-left: 5px solid gold; padding: 2rem; margin: 2rem auto; max-width: 700px; font-family: 'Georgia', serif;">
   <h2 style="color: gold; font-size: 1.8rem; margin-bottom: 0.3rem;">Jay Sands <span style="color: gold; font-size: 1.8rem;">&bull;</span> In the Style of Sinatra</h2>
-  <h3 style="color: #ccc; font-size: 1.2rem; margin-bottom: 1.5rem;">Saturday <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> November <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 8th <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 7:00-9:30 PM</h3>
+  <h3 style="color: #ccc; font-size: 1.2rem; margin-bottom: 1.5rem;">Saturday <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> February <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 14th <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 7:00-9:00 PM</h3>
 
-  <h3 style="color: #ccc; font-size: 1.2rem; margin-bottom: 1.5rem;">Saturday <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> December <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 13th <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 7:00-9:30 PM</h3>
+  <h3 style="color: #ccc; font-size: 1.2rem; margin-bottom: 1.5rem;">Saturday <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> March <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 14th <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 7:00-9:00 PM</h3>
 
-  <div style="color: gold; font-size: 1.1rem; margin-top: -0.5rem; margin-bottom: 1.2rem; text-align: center;">(Possible end of year show coming stay tuned)</div>
+
 
         <div style="margin-bottom: 1.5rem;">
           <p><strong>Venue:</strong> Mangia Italian Restaurant</p>
@@ -165,6 +172,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
+
+
 
 
 
