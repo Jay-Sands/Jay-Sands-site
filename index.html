@@ -447,6 +447,20 @@
       landingMusic.currentTime = 0;
       landingMusic.muted = true;
     }
+    // Fallback: ensure home section is visible even if referrer/prompt flow fails
+    setTimeout(function() {
+      if (homeSection && (homeSection.style.display !== 'block' || homeSection.style.opacity !== '1')) {
+        landingSection.style.display = 'none';
+        homeSection.style.display = 'block';
+        homeSection.style.opacity = '1';
+        if (startPrompt) startPrompt.style.display = 'none';
+        if (landingMusic) {
+          landingMusic.pause();
+          landingMusic.currentTime = 0;
+          landingMusic.muted = true;
+        }
+      }
+    }, 800);
     // Prevent animation/music until prompt is clicked (only for new visitors)
     function startSequence() {
       startPrompt.style.display = 'none';
