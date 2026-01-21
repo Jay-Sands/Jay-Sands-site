@@ -73,9 +73,14 @@
       transition: color 0.2s, border-bottom 0.2s;
       position: relative;
     }
-    .main-nav a:hover, .main-nav a:focus {
-      color: #fff;
+    .main-nav a.active {
+      color: #fff !important;
       border-bottom: 4px solid #FFD700;
+      background: transparent;
+    }
+    .main-nav a:hover, .main-nav a:focus {
+      color: #FFD700;
+      border-bottom: 2px solid #FFD700;
       background: transparent;
     }
     .main-nav {
@@ -153,7 +158,7 @@
 <body>
   <div>
     <nav class="main-nav" aria-label="Main Navigation">
-  <a href="index.html" class="home-link">Home</a>
+  <a href="home.html" class="home-link">Home</a>
   <a href="shows.html" class="shows-link">Show Dates</a>
   <a href="booking.html" class="booking-link">Booking</a>
   <a href="feedback.html" class="feedback-link">Feedback</a>
