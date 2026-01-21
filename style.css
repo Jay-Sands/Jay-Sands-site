@@ -234,3 +234,16 @@ body {
   background: rgba(34,34,34,0.5);
 }
 
+/* Mobile-only styles specifically for the feedback page navigation */
+@media (max-width: 600px) {
+  body.feedback-page .main-nav {
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 4px; /* Reduce the gap for a tighter fit */
+    padding: 4px 1vw;
+  }
+  body.feedback-page .main-nav a {
+    font-size: 1em !important; /* Drastically reduce font size for mobile */
+    padding: 4px 8px !important; /* Reduce padding */
+  }
+}
+
