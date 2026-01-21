@@ -160,17 +160,17 @@
     <h1>Show Feedback</h1>
     <p>Thank you for attending! Please share your experience below.</p>
     <form action="https://formspree.io/f/mnqeygqv" method="POST">
-      <label for="quote">Your Quote or Feedback:</label>
-      <textarea id="quote" name="quote" rows="3" required placeholder="Type your feedback or quote here..."></textarea>
-      <label for="name">Your Name (optional):</label>
-      <input type="text" id="name" name="name" placeholder="Type your name (optional)">
-      <div style="margin-top:12px;margin-bottom:8px;text-align:left;">
-        <input type="checkbox" id="agreeQuote" name="agreeQuote" value="yes">
-        <label for="agreeQuote" class="checkbox-label">I agree to allow my quote or feedback to be added to the public feedback page.</label>
-      </div>
-      <div class="form-actions">
-        <button type="submit">Send Feedback</button>
-      </div>
+        <label for="quote" style="color:#FFD700;display:block;margin:0 auto 6px auto;text-align:center;">Your Quote or Feedback:</label>
+        <textarea id="quote" name="quote" rows="2" required style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;display:block;margin:0 auto;font-family:'Dancing Script',cursive;font-weight:700;"></textarea>
+        <label for="name" style="color:#FFD700;display:block;margin:0 auto 6px auto;text-align:center;">Your Name (optional):</label>
+        <input id="name" type="text" name="name" style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;display:block;margin:0 auto;font-family:'Dancing Script',cursive;font-weight:700;">
+        <div style="margin-top:12px;margin-bottom:8px;text-align:center;">
+          <input type="checkbox" id="agreeQuote" name="agreeQuote" value="yes" style="margin-right:8px;">
+          <label for="agreeQuote" style="color:#FFD700;">I agree to allow my quote or feedback to be added to the public feedback page.</label>
+        </div>
+        <div style="display:flex;justify-content:center;gap:16px;margin-top:18px;">
+          <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Feedback</button>
+        </div>
     </form>
   </div>
 </body>
