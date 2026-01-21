@@ -1,6 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Feedback - Jay Sands</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
+  <style>
+  body { background: #000; color: #FFD700; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; }
+  .main-nav { width: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; background: transparent; padding: 8px 0 4px 0; border-radius: 0 0 8px 8px; margin-bottom: 18px; }
+  .main-nav a { color: #FFD700; font-family: 'Dancing Script', cursive; font-weight: 900; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 1.3em; background: transparent; border: none; transition: color 0.2s, border-bottom 0.2s; position: relative; }
+  .main-nav a.active { color: #fff !important; border-bottom: 3px solid #FFD700; background: rgba(34,34,34,0.5); }
+  .main-nav a:hover, .main-nav a:focus { color: #FFD700; background: transparent; border-bottom: 2px solid #FFD700; }
+  .feedback-container { max-width: 420px; width: 95vw; margin: 32px auto; padding: 18px 16px; background: rgba(34,34,34,0.92); border-radius: 18px; box-shadow: 0 0 32px 8px #FFD700, 0 2px 8px #B22222; text-align: center; }
+  h1 { font-size: 2em; letter-spacing: 2px; color: #FFD700; text-shadow: 2px 2px 8px #B22222; margin-top: 0; margin-bottom: 0.2em; font-family: 'Dancing Script', cursive; }
+  p { font-size: 1.1em; color: #FFD700; margin-bottom: 0.7em; font-family: 'Dancing Script', cursive; }
+  form { text-align: left; max-width: 400px; margin: 0 auto 0.5em auto; }
+  label { color: #FFD700; font-size: 1em; margin-bottom: 4px; display: block; }
+  textarea, input[type="text"] { width: 100%; padding: 10px; margin-bottom: 14px; border-radius: 8px; border: 2px solid #00f0ff; font-size: 1.1em; background: #0a0a2a; color: #FFD700; box-shadow: 0 0 8px 2px #00f0ff; transition: box-shadow 0.2s, border-color 0.2s; font-family: 'Dancing Script', cursive; font-weight: 700; }
+  textarea:focus, input[type="text"]:focus { outline: none; border-color: #00f0ff; box-shadow: 0 0 16px 4px #00f0ff; background: #111155; }
+  textarea::placeholder, input[type="text"]::placeholder { color: #FFD700; opacity: 0.8; font-style: italic; }
+  input[type="checkbox"] { margin-right: 8px; }
+  .checkbox-label { color: #FFD700; font-size: 0.95em; }
+  .form-actions { display: flex; justify-content: center; gap: 16px; margin-top: 18px; }
+  button[type="submit"] { background: #FFD700; color: #111; font-weight: bold; padding: 8px 18px; border-radius: 12px; border: none; cursor: pointer; font-size: 1em; transition: background 0.2s, color 0.2s; }
+  button[type="submit"]:hover { background: #fff700; color: #222; }
+    @media (max-width: 600px) { .main-nav a { font-size: 1em; padding: 6px 8px; } .feedback-container { padding: 12px 4px; } }
+  </style>
+</head>
+<body>
+  <nav class="main-nav" aria-label="Main Navigation">
+    <a href="index.html">Home</a>
+  <a href="shows.html">Show Dates</a>
+  <a href="booking.html">Booking</a>
+  <a href="feedback.html" class="active">Feedback</a>
+    <a href="press.html">Press</a>
+  </nav>
+  <div class="feedback-container">
+  <h1>Show Feedback</h1>
+  <p>Thank you for attending! Please share your experience below.</p>
+  <form action="https://formspree.io/f/mnqeygqv" method="POST">
+  <label for="quote">Your Quote or Feedback:</label>
+  <textarea id="quote" name="quote" rows="3" required placeholder="Type your feedback or quote here..."></textarea>
+  <label for="name">Your Name (optional):</label>
+      <input type="text" id="name" name="name" placeholder="Type your name (optional)">
+      <div style="margin-top:12px;margin-bottom:8px;text-align:left;">
+        <input type="checkbox" id="agreeQuote" name="agreeQuote" value="yes">
+        <label for="agreeQuote" class="checkbox-label">I agree to allow my quote or feedback to be added to the public feedback page.</label>
+      </div>
+      <div class="form-actions">
+        <button type="submit">Send Feedback</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <style>
     .main-nav {
       width: 100%;
