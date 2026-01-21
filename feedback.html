@@ -1,59 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    .main-nav {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      background: transparent;
-      padding: 8px 0 4px 0;
-      border-radius: 0 0 8px 8px;
-      box-shadow: none;
-      margin-bottom: 18px;
-    }
-    .main-nav a {
-      color: #FFD700;
-      font-family: 'Dancing Script', cursive;
-      font-weight: 900;
-      padding: 8px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 1.5em;
-      background: transparent;
-      box-shadow: none;
-      border: none;
-      transition: color 0.2s, border-bottom 0.2s;
-      position: relative;
-    }
-    .main-nav a:hover, .main-nav a:focus {
-      color: #FFD700;
-      background: transparent;
-      border-bottom: 2px solid #FFD700;
-    }
-
-    /* Mobile-only styles for the feedback page navigation */
-    @media (max-width: 600px) {
-      .main-nav {
-        flex-wrap: wrap; /* Allow items to wrap to the next line */
-        gap: 4px; /* Reduce the gap for a tighter fit */
-        padding: 4px 1vw;
-      }
-      .main-nav a {
-        font-size: 1em !important; /* Drastically reduce font size for mobile */
-        padding: 4px 8px !important; /* Reduce padding */
-      }
-    }
-  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Show Feedback - Jay Sands</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
 </head>
-<body style="background-color:#000; color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0;">
+<body class="feedback-page" style="background-color:#000; color:#FFD700; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0;">
   <div style="width:100%; margin-top:8px;">
     <nav class="main-nav" aria-label="Main Navigation">
   <a href="index.html" class="home-link">Home</a>
