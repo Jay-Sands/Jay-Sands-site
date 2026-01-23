@@ -234,5 +234,12 @@ body {
   background: rgba(34,34,34,0.5);
 }
 
+@media (max-width: 600px) {
+  .main-nav a {
+    font-size: 1em;
+    padding: 6px 8px;
+  }
+}
+
 
 
