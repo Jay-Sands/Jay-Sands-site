@@ -16,13 +16,13 @@
     .main-nav {
       width: 100%;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 16px;
       background: transparent;
       padding: 8px 0 4px 0;
       border-radius: 0 0 8px 8px;
+      box-shadow: none;
       margin-bottom: 18px;
     }
     .main-nav a {
@@ -34,9 +34,15 @@
       text-decoration: none;
       font-size: 2em;
       background: transparent;
+      box-shadow: none;
       border: none;
       transition: color 0.2s, border-bottom 0.2s;
       position: relative;
+    }
+    .main-nav a:focus {
+      outline: 3px solid #FFD700;
+      outline-offset: 2px;
+      background: #222;
     }
     .main-nav a.active {
       color: #fff !important;
