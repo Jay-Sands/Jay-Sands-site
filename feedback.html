@@ -162,14 +162,14 @@
     <a href="feedback.html" class="active">Feedback</a>
     <a href="press.html">Press</a>
   </nav>
-  <div class="feedback-container">
-    <h1>Show Feedback</h1>
-    <p>Thank you for attending! Please share your experience below.</p>
+  <div style="max-width: 600px; margin: 32px auto; padding: 0 16px;">
+    <h1 style="text-align: center; color: #FFD700;">Show Feedback</h1>
+    <p style="text-align: center; color: #ccc;">Thank you for attending! Please share your experience below.</p>
     <form action="https://formspree.io/f/maqeqlae" method="POST">
         <label for="quote" style="color:#FFD700;display:block;margin:0 auto 6px auto;text-align:center;">Your Quote or Feedback:</label>
-        <textarea id="quote" name="quote" rows="2" required style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;display:block;margin:0 auto;font-family:'Dancing Script',cursive;font-weight:700;"></textarea>
+        <textarea id="quote" name="quote" rows="2" required style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:2px solid #00f0ff;display:block;margin:0 auto;font-family:'Dancing Script',cursive;font-weight:700;background:#0a0a2a;color:#FFD700;box-shadow:0 0 8px 2px #00f0ff;transition:box-shadow 0.2s;" onFocus="this.style.boxShadow='0 0 16px 4px #00f0ff';this.style.background='#111155'" onBlur="this.style.boxShadow='0 0 8px 2px #00f0ff';this.style.background='#0a0a2a'"></textarea>
         <label for="name" style="color:#FFD700;display:block;margin:0 auto 6px auto;text-align:center;">Your Name (optional):</label>
-        <input id="name" type="text" name="name" style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;display:block;margin:0 auto;font-family:'Dancing Script',cursive;font-weight:700;">
+        <input id="name" type="text" name="name" style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:2px solid #00f0ff;display:block;margin:0 auto;font-family:'Dancing Script',cursive;font-weight:700;background:#0a0a2a;color:#FFD700;box-shadow:0 0 8px 2px #00f0ff;transition:box-shadow 0.2s;" onFocus="this.style.boxShadow='0 0 16px 4px #00f0ff';this.style.background='#111155'" onBlur="this.style.boxShadow='0 0 8px 2px #00f0ff';this.style.background='#0a0a2a'">
         <div style="margin-top:12px;margin-bottom:8px;text-align:center;">
           <input type="checkbox" id="agreeQuote" name="agreeQuote" value="yes" style="margin-right:8px;">
           <label for="agreeQuote" style="color:#FFD700;">I agree to allow my quote or feedback to be added to the public feedback page.</label>
@@ -178,6 +178,30 @@
           <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Feedback</button>
         </div>
     </form>
+  </div>
+
+  <!-- Testimonials Showcase Section -->
+  <div style="max-width: 1200px; margin: 2px auto; padding: 32px 16px;">
+    <h2 style="text-align: center; font-size: 2em; color: #FFD700; margin-bottom: 32px; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 8px #B22222; text-decoration: underline;">What Audiences Say</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+    
+    <!-- Testimonial 1 -->
+    <div>
+      <p style="color: #FFD700; font-size: 1.2em; font-style: italic; margin: 0 0 12px 0; font-family: Palatino, serif; font-weight: 700;">
+        "An absolutely captivating performance. Jay's voice transported us back to the golden era of music. Simply unforgettable!"
+      </p>
+      <p style="color: #fff; font-size: 1.3em; margin: 0; text-align: right;">— Sarah M.</p>
+    </div>
+
+    <!-- Testimonial 2 -->
+    <div>
+      <p style="color: #FFD700; font-size: 1.2em; font-style: italic; margin: 0 0 12px 0; font-family: Palatino, serif; font-weight: 700;">
+        "Jay brings elegance and soul to every note. A true professional who makes you feel the music. Highly recommended!"
+      </p>
+      <p style="color: #fff; font-size: 1.3em; margin: 0; text-align: right;">— Michael T.</p>
+    </div>
+
+    </div>
   </div>
 </body>
 </html>
