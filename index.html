@@ -275,7 +275,7 @@
   <div id="homeSection" style="display:none; opacity:0; transition:opacity 2s linear;">
     <div style="width:100%;">
     <nav class="main-nav" aria-label="Main Navigation">
-  <a href="index.html" class="home-link active">Home</a>
+  <a href="index.html?skip-landing" class="home-link active">Home</a>
   <a href="shows.html" class="shows-link">Show Dates</a>
   <a href="booking.html" class="booking-link">Booking</a>
   <a href="feedback.html" class="feedback-link">Feedback</a>
@@ -423,15 +423,15 @@
       homeSection.style.opacity = '0';
     }
 
-    // Check if coming from another page on this site
-    // Only skip the landing if the referrer is one of our internal pages.
-    // Do NOT treat any same-host referrer as internal (to avoid hiding the prompt).
+    // Check if coming from another page on this site or if skip-landing is in URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var skipLanding = urlParams.has('skip-landing');
     var ref = document.referrer || '';
     var fromOtherPage = (
       /\b(shows\.html|booking\.html|feedback\.html|other-artists\.html|quotes\.html|press\.html|home\.html)\b/i.test(ref)
     );
 
-    if (fromOtherPage) {
+    if (skipLanding || fromOtherPage) {
       // Skip landing page, go directly to home content
       landingSection.style.display = 'none';
       homeSection.style.display = 'block';
