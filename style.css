@@ -239,6 +239,9 @@ body {
     font-size: 1em;
     padding: 6px 8px;
   }
+  .press-link {
+    display: none;
+  }
 }
 
 
