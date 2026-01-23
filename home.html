@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,49 +12,15 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
-    .main-nav a:focus {
-      outline: 3px solid #FFD700;
-      outline-offset: 2px;
-      background: #222;
-    }
-    .main-nav a.active {
-      color: #fff !important;
-      border-bottom: 3px solid #FFD700;
-      background: rgba(34,34,34,0.5);
-    }
-    .main-nav {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      background: transparent;
-      padding: 8px 0 4px 0;
-      border-radius: 0 0 8px 8px;
-      box-shadow: none;
-      margin-bottom: 18px;
-    }
-    .main-nav a {
-      color: #FFD700;
-      font-family: 'Dancing Script', cursive;
-      font-weight: 900;
-      padding: 8px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 2em;
-      background: transparent;
-      box-shadow: none;
-      border: none;
-      transition: color 0.2s, border-bottom 0.2s;
-      position: relative;
-    }
-    .main-nav a:hover, .main-nav a:focus {
-      color: #FFD700;
-      background: transparent;
-      border-bottom: 2px solid #FFD700;
-    }
     body { background: #000; margin: 0; }
-    #landingSection { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+    
+    #landingSection { 
+      position: relative; 
+      width: 100vw; 
+      height: 100vh; 
+      overflow: hidden; 
+    }
+    
     .curtainImg { 
       position: absolute; 
       top: 0; 
@@ -65,20 +31,25 @@
       z-index: 10; 
       transition: transform 2.5s cubic-bezier(.77,0,.18,1); 
     }
+    
     #curtainLeft { 
       left: 0; 
       transform: translateX(0); 
     }
+    
     #curtainLeft.open { 
       transform: translateX(-100vw); 
     }
+    
     #curtainRight { 
       right: 0; 
       transform: translateX(0); 
     }
+    
     #curtainRight.open { 
       transform: translateX(100vw); 
     }
+    
     #welcomeText {
       position: absolute;
       top: 50%;
@@ -97,6 +68,7 @@
       align-items: center;
       justify-content: center;
     }
+    
     #welcomeText.snow-capped {
       position: absolute;
       left: 50%;
@@ -109,6 +81,7 @@
       align-items: center;
       justify-content: center;
     }
+    
     .snow-cap {
       display: block;
       position: relative;
@@ -119,17 +92,25 @@
       z-index: 21;
       background: none;
     }
+    
     .snow-cap svg {
       width: 100%;
       height: 100%;
       display: block;
     }
+    
     #snowfall-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 15;
       transition: opacity 3s ease;
     }
+    
     #snowfall-canvas.hide-snow {
       opacity: 0 !important;
     }
+    
     #logo { 
       width: 300px; 
       max-width: 80vw; 
@@ -137,15 +118,18 @@
       transform: scale(0.1);
       z-index: 20; 
     }
+    
     #logo.visible { 
       animation: logoZoomIn 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     }
+    
     #logo.fade-out {
       opacity: 0 !important;
       transform: scale(1) !important;
       transition: opacity 2s ease !important;
       animation: none !important;
     }
+    
     @keyframes logoZoomIn {
       0% {
         opacity: 0;
@@ -163,267 +147,349 @@
         transform: scale(1);
       }
     }
+    
     #homeSection { 
       display: none; 
       opacity: 0; 
       transition: opacity 2s linear; 
     }
-      /* Temporary class to force flexbox redraw for home page */
-      .force-flex-redraw {
-        display: flex !important;
-        align-items: stretch !important;
-      }
-      .main-nav a {
-        color: #FFD700;
-        font-family: 'Dancing Script', cursive;
-        font-weight: 700;
-        padding: 4px 14px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-size: 1.25em;
-        background: transparent;
-        box-shadow: none;
-        border: none;
-        transition: color 0.2s, border-bottom 0.2s;
-        position: relative;
-      }
-      .main-nav a:hover, .main-nav a:focus {
-        color: #FFD700;
-        background: transparent;
-        border-bottom: 2px solid #FFD700;
-      }
-      #sparkle-separator {
-    overflow: hidden;
-  }
-  /* Sparkle animation disabled */
-  /* Mobile-specific adjustments */
-  @media (max-width: 600px) {
+    
+    .main-nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: transparent;
+      padding: 8px 0 4px 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+    
     .main-nav a {
-      font-size: 1.5em !important;
-      padding: 10px 10px !important;
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      font-weight: 900;
+      padding: 8px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 2em;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      transition: color 0.2s, border-bottom 0.2s;
+      position: relative;
     }
+    
+    .main-nav a:hover, .main-nav a:focus {
+      color: #FFD700;
+      background: transparent;
+      border-bottom: 2px solid #FFD700;
+    }
+    
+    .main-nav a:focus {
+      outline: 3px solid #FFD700;
+      outline-offset: 2px;
+      background: #222;
+    }
+    
+    .main-nav a.active {
+      color: #fff !important;
+      border-bottom: 3px solid #FFD700;
+      background: rgba(34,34,34,0.5);
+    }
+    
     .home-flex-row {
-      flex-direction: column !important;
-      gap: 0 !important;
-      align-items: center !important;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 0;
+      padding-top: 0;
     }
-    .home-flex-col.featured-col {
-      min-width: 0 !important;
-      width: 100% !important;
-      align-items: center !important;
-      margin: 0 auto !important;
+    
+    .home-flex-col {
+      flex: 1;
+      min-width: 250px;
+      background: rgba(34,34,34,0.85);
+      padding: 12px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(178,34,34,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 900px;
     }
-    .home-flex-col.featured-col > div[style*="margin-top:32px"] {
-      margin-top: 12px !important;
+    
+    .home-flex-col h2 {
+      color: #FFD700;
     }
-    .home-flex-col.featured-col form {
-      margin: 0 auto !important;
-      width: 100% !important;
-      max-width: 100% !important;
+    
+    .home-flex-col p {
+      color: #fff;
     }
-  }
+    
+    @media (max-width: 600px) {
+      .home-flex-row {
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+      }
+      
+      .home-flex-col {
+        min-width: 0;
+        width: 100%;
+        align-items: center;
+        margin: 0 auto;
+      }
+      
+      .main-nav a {
+        font-size: 1.5em;
+        padding: 10px 10px;
+      }
+    }
   </style>
-  </head>
-  <body>
-        @media (max-width: 600px) {
-          .main-nav {
-            flex-wrap: wrap;
-            gap: 4px;
-            padding: 4px 1vw 2px 1vw;
-          }
-          .main-nav a {
-            font-size: 1em;
-            padding: 2px 4px;
-          }
-        }
-      </style>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <style>
-        .main-nav {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 16px;
-          background: transparent;
-          padding: 8px 0 4px 0;
-          border-radius: 0 0 8px 8px;
-          box-shadow: none;
-          margin-bottom: 18px;
-        }
-        .main-nav a {
-          color: #FFD700;
-          font-family: 'Dancing Script', cursive;
-          font-weight: 700;
-          padding: 4px 14px;
-          border-radius: 6px;
-          text-decoration: none;
-          font-size: 1.25em;
-          background: transparent;
-          box-shadow: none;
-          border: none;
-          transition: color 0.2s, border-bottom 0.2s;
-          position: relative;
-        }
-        .main-nav a:hover, .main-nav a:focus {
-          color: #FFD700;
-          background: transparent;
-          border-bottom: 2px solid #FFD700;
-        }
-      </style>
-      <style>
-        .main-nav {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 16px;
-          background: transparent;
-          padding: 8px 0 4px 0;
-          border-radius: 0 0 8px 8px;
-          box-shadow: none;
-          margin-bottom: 18px;
-        }
-        .main-nav a {
-          color: #FFD700;
-          font-family: 'Dancing Script', cursive;
-          font-weight: 900;
-          padding: 8px 24px;
-          border-radius: 8px;
-          text-decoration: none;
-          font-size: 2em;
-          background: transparent;
-          box-shadow: none;
-          border: none;
-          transition: color 0.2s, border-bottom 0.2s;
-          position: relative;
-        }
-        .main-nav a:hover, .main-nav a:focus {
-          color: #FFD700;
-          background: transparent;
-          border-bottom: 2px solid #FFD700;
-        }
-      </style>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Home - Jay Sands</title>
-      <link rel="stylesheet" href="style.css">
-      <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-      <div id="homeSection" style="display:block; opacity:1; transition:none;">
-      <div style="width:100%; margin-top:8px;">
-          <nav class="main-nav">
+</head>
+<body>
+
+<div id="landingSection">
+  <div id="curtainLeft" class="curtainImg"></div>
+  <div id="curtainRight" class="curtainImg"></div>
+  <canvas id="snowfall-canvas"></canvas>
+  <div id="welcomeText">
+    <span class="snow-cap">
+      <svg viewBox="0 0 400 50" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="snow-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="4" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+          </filter>
+        </defs>
+        <path d="M 200 10 Q 190 25 200 40 Q 210 25 200 10" fill="white" filter="url(#snow-filter)" />
+        <path d="M 180 15 Q 170 30 180 45 Q 190 30 180 15" fill="white" filter="url(#snow-filter)" />
+        <path d="M 220 15 Q 210 30 220 45 Q 230 30 220 15" fill="white" filter="url(#snow-filter)" />
+      </svg>
+    </span>
+    Welcome
+  </div>
+  <picture id="logo" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20;">
+    <source srcset="images/NEW LOGOS/jsands-logo-8.webp" type="image/webp">
+    <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo" style="width: 100%; height: auto; display: block;">
+  </picture>
+</div>
+
+<div id="homeSection">
+  <div style="width:100%; margin-top:8px;">
+    <nav class="main-nav">
       <a href="home.html" class="active">Home</a>
       <a href="shows.html">Show Dates</a>
       <a href="booking.html">Booking</a>
       <a href="feedback.html">Feedback</a>
       <a href="press.html">Press</a>
-          </nav>
-        </div>
-        <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
-          <h1 style="font-family:'Dancing Script', cursive;font-size:4em;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 10px auto;font-weight:700;">Jay Sands</h1>
-          <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 40px auto;">Vocalist & Entertainer</h1>
-          <div style="margin-bottom:0;">
-            <!-- Booking button removed -->
-          </div>
-          <p style="font-size:2.2em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
-          <div style="color:#FFD700;font-size:1.5em;text-align:center;margin:25px 0 20px 0;">────── ❖ ──────</div>
-          <div class="home-flex-row" style="display:flex;gap:40px;justify-content:center;align-items:flex-start;margin-top:0;padding-top:0;">
-            <div class="home-flex-col featured-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
-              <h2 style="color:#FFD700;">Featured Work</h2>
-              <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my new and recent releases:</p>
-              <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #FFD700, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
-                <div style="margin-bottom:12px;">
-                  <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
-                  <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
-                    <source src="tracks/The Summer Wind.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-                <div style="margin-bottom:12px;">
-                  <span style="color:#FFD700;font-weight:bold;">That Old Devil Moon</span><br>
-                  <audio controls style="width:100%;max-width:400px;">
-                    <source src="tracks/That Old Devil Moon.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-                <div style="margin-bottom:12px;">
-                  <span style="color:#FFD700;font-weight:bold;">The Tender Trap</span><br>
-                  <audio controls style="width:100%;max-width:400px;">
-                    <source src="tracks/The Tender Trap.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-                <div style="margin-bottom:12px;">
-                  <span style="color:#FFD700;font-weight:bold;">Witchcraft</span><br>
-                  <audio controls style="width:100%;max-width:400px;">
-                    <source src="tracks/Witchcraft.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-                <div style="margin-bottom:12px;">
-                  <span style="color:#FFD700;font-weight:bold;">More</span><br>
-                  <audio controls style="width:100%;max-width:400px;">
-                    <source src="tracks/More.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-                <div style="margin-bottom:12px;">
-                  <span style="color:#FFD700;font-weight:bold;">The World We Knew</span><br>
-                  <audio controls style="width:100%;max-width:400px;">
-                    <source src="tracks/The World We Knew.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-              </div>
-              <!-- Small Contact Form (now in left column) -->
-              <div style="width:100%;margin-top:32px;display:flex;flex-direction:column;align-items:center;">
-                <form name="contact" method="POST" data-netlify="true" style="max-width:320px;width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 2px 8px #B22222;">
-                  <input type="hidden" name="form-name" value="contact">
-                  <h3 style="color:#FFD700;margin-bottom:10px;font-size:1.1em;">Contact Jay Sands</h3>
-                  <label style="color:#FFD700;font-size:0.95em;">Your Name:</label><br>
-                  <input type="text" name="name" style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;"><br>
-                  <label style="color:#FFD700;font-size:0.95em;">Your Email:</label><br>
-                  <input type="email" name="email" required style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;"><br>
-                  <label style="color:#FFD700;font-size:0.95em;">Message:</label><br>
-                  <textarea name="message" rows="3" required style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;font-size:0.95em;"></textarea><br>
-                  <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Message</button>
-                </form>
-              <div style="text-align:center;margin-top:10px;">
-                <span style="color:#FFD700;font-size:1em;">Or Contact Jay directly: <a href="mailto:Jay@jsands.net" style="color:#FFD700;text-decoration:underline;">Jay@jsands.net</a></span>
-              </div>
-              </div>
-            </div>
-            <div class="home-flex-col about-col" style="flex:1;min-width:250px;background:rgba(34,34,34,0.85);padding:0 12px 12px 12px;border-radius:16px;box-shadow:0 4px 16px rgba(178,34,34,0.2);display:flex;flex-direction:column;justify-content:flex-start;min-height:900px;">
-              <h2 style="color:#FFD700;">About Jay Sands</h2>
-              <p style="color:#fff;font-size:1.05em;line-height:1.6;">
-                For over four decades, I’ve had the privilege of sharing timeless music with audiences across the East Coast and beyond. My passion lies in bringing the golden age of song to life, whether I’m channeling Sinatra’s swing or delivering the romantic warmth of Engelbert, Paul Anka, Dean Martin, or The Duprees, to mention a few.<br><br>
-                I’ve performed in venues ranging from intimate cabarets to grand stages, from Don't Tell Mama's in New York City to The Ormond Beach Performing Arts Center in Ormond Beach Florida, and Universal’s Portofino Bay Hotel in Orlando, Florida. Every show is a chance to connect, to move people, and to celebrate music that never goes out of style.<br><br>
-                When asked to give a quote about me, Don K. Reed of New York’s 101.1 FM said, “Jay Sands not only swings on stage but on his CD as well.” That kind of praise means a lot, because I put my heart into every note I sing.<br><br>
-                Whether it’s a private celebration, a corporate event, a public concert, or an online performance, I tailor each show to fit the moment. I’m here to make your event unforgettable, with music that speaks to the soul and leaves a lasting impression.<br><br>
-                Entertainingly Yours,<br><br>
-                <span style="font-family: 'Brush Script MT', cursive; font-size:2em; color:#FFD700; letter-spacing:2px;">Jay Sands</span><br><br>
-              </p>
-              <div style="width:100%;display:flex;justify-content:center;margin-bottom:24px;">
-                <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo" style="width:80px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 2px 8px #B22222);">
-              </div>
-            </div>
-          </div>
+    </nav>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto 0 auto;padding:30px 20px 0 20px;background:rgba(34,34,34,0.85);border-radius:24px;box-shadow:0 8px 32px rgba(178,34,34,0.3);text-align:center;">
+    <h1 style="font-family:'Dancing Script', cursive;font-size:4em;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 10px auto;font-weight:700;">Jay Sands</h1>
+    <h1 style="font-size:2.2em;letter-spacing:2px;color:#FFD700;text-shadow:2px 2px 8px #B22222;margin:0 auto 40px auto;">Vocalist & Entertainer</h1>
+    
+    <h2 style="font-size:2.2em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;margin-top:0;">Looking for a Sinatra-Style Singer?</h2>
+    <p style="color:#fff;font-size:1.15em;line-height:1.6;margin-bottom:2em;">
+      Step into the elegance of the Rat Pack era. I bring the timeless sophistication of Frank Sinatra, Dean Martin, and the golden age of song to every performance. Whether you're hosting an intimate gathering or a grand celebration, experience the charm and vocal excellence that defined an unforgettable era.
+    </p>
+    
+    <p style="font-size:2.2em;color:#FFD700;margin-bottom:0.7em;font-family:'Dancing Script', cursive;">Style. Class. Excellence.</p>
+    <div style="color:#FFD700;font-size:1.5em;text-align:center;margin:25px 0 20px 0;">────── ❖ ──────</div>
+    
+    <div class="home-flex-row">
+      <div class="home-flex-col" style="position: relative;">
+        <img src="images/jay-sands-original.jpg" alt="Jay Sands Headshot" style="width:100%;max-width:280px;border-radius:16px;margin:0 auto 20px auto;display:block;box-shadow:0 0 40px 15px #00BFFF, inset 0 0 40px 10px rgba(0,191,255,0.3);filter:drop-shadow(0 0 20px rgba(0,191,255,0.5));">
+        <div style="text-align:center;">
+          <p style="font-size:1.2em;color:#FFD700;margin:0;">Available for Bookings</p>
         </div>
       </div>
 
-    <script>
-      document.addEventListener('play', function(e){
-        var audios = document.getElementsByTagName('audio');
-        for(var i = 0; i < audios.length; i++){
-          if(audios[i] !== e.target){
-            audios[i].pause();
-          }
-        }
-      }, true);
-    </script>
-    </body>
-    </html>
+      <div class="home-flex-col">
+        <h2 style="color:#FFD700;">Featured Work</h2>
+        <p style="color:#fff;font-size:1.1em;margin-bottom:0.7em;">Listen to my new and recent releases:</p>
+        <div style="margin-bottom:18px;box-shadow:0 0 32px 8px #00FF00, 0 2px 8px #B22222;border-radius:16px;padding:12px;background:rgba(34,34,34,0.95);">
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">The Summer Wind</span><br>
+            <audio controls controlsList="nodownload" style="width:100%;max-width:400px;">
+              <source src="tracks/The Summer Wind.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">That Old Devil Moon</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/That Old Devil Moon.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">The Tender Trap</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/The Tender Trap.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">Witchcraft</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/Witchcraft.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span style="color:#FFD700;font-weight:bold;">More</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/More.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div>
+            <span style="color:#FFD700;font-weight:bold;">The World We Knew</span><br>
+            <audio controls style="width:100%;max-width:400px;">
+              <source src="tracks/The World We Knew.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+
+        <form name="contact" method="POST" data-netlify="true" style="max-width:100%;padding:14px;background:rgba(34,34,34,0.92);border-radius:16px;box-shadow:0 0 20px 6px rgba(220,20,60,0.8);margin-top:auto;">
+          <input type="hidden" name="form-name" value="contact">
+          <h3 style="color:#FFD700;margin-bottom:10px;font-size:1.1em;">Contact Jay Sands</h3>
+          <label style="color:#FFD700;font-size:0.95em;">Your Name:</label><br>
+          <input type="text" name="name" style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;box-sizing:border-box;"><br>
+          <label style="color:#FFD700;font-size:0.95em;">Your Email:</label><br>
+          <input type="email" name="email" required style="width:100%;padding:6px;margin-bottom:10px;border-radius:8px;border:none;font-size:0.95em;box-sizing:border-box;"><br>
+          <label style="color:#FFD700;font-size:0.95em;">Message:</label><br>
+          <textarea name="message" rows="3" required style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px;border:none;font-size:0.95em;box-sizing:border-box;"></textarea><br>
+          <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Message</button>
+        </form>
+        
+        <div style="text-align:center;margin-top:10px;">
+          <span style="color:#FFD700;font-size:1em;">Or contact Jay directly: <a href="mailto:Jay@jsands.net" style="color:#FFD700;text-decoration:underline;">Jay@jsands.net</a></span>
+        </div>
+      </div>
+
+      <div class="home-flex-col">
+        <h2 style="color:#FFD700;">About Jay Sands</h2>
+        <p style="color:#fff;font-size:1.05em;line-height:1.6;">
+          For over four decades, I've had the privilege of sharing timeless music with audiences across the East Coast and beyond. My passion lies in bringing the golden age of song to life, whether I'm channeling Sinatra's swing or delivering the romantic warmth of Engelbert, Paul Anka, Dean Martin, or The Duprees, to mention a few.<br><br>
+          I've performed in venues ranging from intimate cabarets to grand stages, from Don't Tell Mama's in New York City to The Ormond Beach Performing Arts Center in Ormond Beach Florida, and Universal's Portofino Bay Hotel in Orlando, Florida. Every show is a chance to connect, to move people, and to celebrate music that never goes out of style.<br><br>
+          When asked to give a quote about me, Don K. Reed of New York's 101.1 FM said, "Jay Sands not only swings on stage but on his CD as well." That kind of praise means a lot, because I put my heart into every note I sing.<br><br>
+          Whether it's a private celebration, a corporate event, a public concert, or an online performance, I tailor each show to fit the moment. I'm here to make your event unforgettable, with music that speaks to the soul and leaves a lasting impression.<br><br>
+          Entertainingly Yours,<br><br>
+          <span style="font-family: 'Brush Script MT', cursive; font-size:2em; color:#FFD700; letter-spacing:2px;">Jay Sands</span><br><br>
+        </p>
+        <div style="width:100%;display:flex;justify-content:center;margin-top:auto;">
+          <img src="images/NEW LOGOS/jsands-logo 8.png" alt="Jay Sands Logo" style="width:80px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 2px 8px #B22222);">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Snowfall animation
+  function drawSnowflakes() {
+    const canvas = document.getElementById('snowfall-canvas');
+    if (!canvas) return;
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    
+    const snowflakes = [];
+    for (let i = 0; i < 80; i++) {
+      snowflakes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        vx: Math.random() * 0.5 - 0.25,
+        vy: Math.random() * 0.5 + 0.5,
+      });
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+      
+      for (let flake of snowflakes) {
+        ctx.beginPath();
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+        ctx.fill();
+        
+        flake.x += flake.vx;
+        flake.y += flake.vy;
+        
+        if (flake.y > canvas.height) flake.y = 0;
+        if (flake.x > canvas.width) flake.x = 0;
+        if (flake.x < 0) flake.x = canvas.width;
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+  
+  // Animation sequence
+  function startAnimation() {
+    const landingSection = document.getElementById('landingSection');
+    const homeSection = document.getElementById('homeSection');
+    const curtainLeft = document.getElementById('curtainLeft');
+    const curtainRight = document.getElementById('curtainRight');
+    const welcomeText = document.getElementById('welcomeText');
+    const logo = document.getElementById('logo');
+    const snowCanvas = document.getElementById('snowfall-canvas');
+    
+    drawSnowflakes();
+    
+    setTimeout(() => {
+      curtainLeft.classList.add('open');
+      curtainRight.classList.add('open');
+    }, 500);
+    
+    setTimeout(() => {
+      welcomeText.style.opacity = '1';
+    }, 1500);
+    
+    setTimeout(() => {
+      logo.classList.add('visible');
+    }, 2000);
+    
+    setTimeout(() => {
+      logo.classList.add('fade-out');
+      welcomeText.style.opacity = '0';
+      snowCanvas.classList.add('hide-snow');
+    }, 5500);
+    
+    setTimeout(() => {
+      landingSection.style.display = 'none';
+      homeSection.style.display = 'block';
+      homeSection.style.opacity = '1';
+    }, 7500);
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startAnimation);
+  } else {
+    startAnimation();
+  }
+  
+  // Audio player - pause others when one plays
+  document.addEventListener('play', function(e) {
+    const audios = document.getElementsByTagName('audio');
+    for (let i = 0; i < audios.length; i++) {
+      if (audios[i] !== e.target) {
+        audios[i].pause();
+      }
+    }
+  }, true);
+</script>
+
+</body>
+</html>
