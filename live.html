@@ -795,9 +795,9 @@
       console.log('Loading messages for show:', currentShow);
 
       try {
+        // Query all messages ordered by timestamp, filter by show in the UI
         const q = query(
           collection(db, 'messages'),
-          where('show', '==', currentShow),
           orderBy('timestamp', 'asc')
         );
 
@@ -807,14 +807,17 @@
           chatMessages.innerHTML = '';
           querySnapshot.forEach((doc) => {
             const data = doc.data();
-            console.log('Adding message:', data.username, data.text);
-            addMessageToUI(
-              doc.id,
-              data.username,
-              data.text,
-              data.timestamp.toDate(),
-              data.isBanned
-            );
+            // Filter by show on the client side
+            if (data.show === currentShow) {
+              console.log('Adding message:', data.username, data.text);
+              addMessageToUI(
+                doc.id,
+                data.username,
+                data.text,
+                data.timestamp.toDate(),
+                data.isBanned
+              );
+            }
           });
         }, (error) => {
           console.error('Listener error:', error);
