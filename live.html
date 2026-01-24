@@ -318,51 +318,145 @@
       background: #fff;
     }
 
+    /* Admin Controls */
+    .admin-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background: #FFD700;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 999;
+      font-size: 0.9em;
+    }
+
+    .admin-button:hover {
+      background: #fff;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+    }
+
+    .admin-panel {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      background: rgba(34,34,34,0.95);
+      border: 2px solid #FFD700;
+      border-radius: 8px;
+      padding: 15px;
+      z-index: 998;
+      max-width: 280px;
+      display: none;
+    }
+
+    .admin-panel.active {
+      display: block;
+    }
+
+    .admin-panel h4 {
+      color: #FFD700;
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .admin-panel input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      background: #222;
+      border: 1px solid #FFD700;
+      border-radius: 4px;
+      color: #fff;
+    }
+
+    .admin-panel button {
+      width: 100%;
+      padding: 8px;
+      background: #FFD700;
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 5px;
+    }
+
+    .admin-panel button:hover {
+      background: #fff;
+    }
+
+    .admin-status {
+      color: #00ff00;
+      text-align: center;
+      font-size: 0.85em;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .ban-button {
+      font-size: 0.7em;
+      padding: 4px 8px;
+      background: #ff4444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .ban-button:hover {
+      background: #ff0000;
+    }
+
+    .chat-message.banned {
+      opacity: 0.5;
+      background: #3a2a2a;
+    }
+
     /* Mobile Responsive */
-    @media (max-width: 900px) {
-      .live-container {
-        grid-template-columns: 1fr;
-      }
-
-      .chat-sidebar {
-        max-height: 400px;
-      }
-
-      .chat-messages {
-        height: 250px;
-      }
-    }
-
     @media (max-width: 600px) {
-      .stream-player h2 {
-        font-size: 1.8em;
+      .admin-panel {
+        bottom: 60px;
+        right: 10px;
+        max-width: 220px;
       }
 
-      .chat-sidebar h3 {
-        font-size: 1.3em;
-      }
-
-      .live-container {
-        margin: 20px auto;
-        gap: 15px;
-      }
-
-      .stream-player,
-      .chat-sidebar {
-        padding: 15px;
-      }
-
-      .chat-input-group {
-        flex-direction: column;
-      }
-
-      .chat-input-group button {
-        width: 100%;
+      .admin-button {
+        bottom: 10px;
+        right: 10px;
+        font-size: 0.8em;
+        padding: 8px 12px;
       }
     }
+
+    
   </style>
 </head>
 <body>
+  <!-- Admin Controls -->
+  <button class="admin-button" id="adminToggle">🔐 Mod</button>
+
+  <div class="admin-panel" id="adminPanel">
+    <h4>Moderator Panel</h4>
+    <div class="admin-status" id="adminStatus" style="display: none;">✓ Admin Active</div>
+    
+    <div id="adminLoginForm">
+      <input type="password" id="adminPassword" placeholder="Enter mod password" style="display: block;">
+      <button id="adminLoginBtn">Login</button>
+    </div>
+
+    <div id="adminControls" style="display: none;">
+      <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Banned Users:</p>
+      <div id="bannedList" style="background: #222; padding: 8px; border-radius: 4px; max-height: 150px; overflow-y: auto; margin-bottom: 10px; min-height: 40px;">
+        <span style="color: #888; font-size: 0.75em;">None</span>
+      </div>
+      <button id="adminLogout" style="background: #888;">Logout</button>
+    </div>
+  </div>
+
   <!-- Main Content -->
   <div class="live-container">
     <!-- Stream Player Section -->
@@ -438,7 +532,7 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
-    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, where, deleteDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, where, deleteDoc, getDocs, updateDoc, doc } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
 
     const firebaseConfig = {
       apiKey: "AIzaSyC4D0JdXE2eoA2NmX0CJnvbYpP0LUCm_cE",
@@ -452,6 +546,11 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+
+    // MOD PASSWORD - Change this to your secure password
+    const MOD_PASSWORD = "jaysands2024";
+    let isAdmin = false;
+    let bannedUsers = new Set();
 
     // Show selector
     const showSelector = document.getElementById('showSelector');
@@ -467,6 +566,7 @@
       showTitle.textContent = `🎙️ ${selectedShow}`;
       localStorage.setItem('selectedShow', e.target.value);
       loadChatMessages();
+      loadBannedUsers();
     });
 
     // Load saved show preference
@@ -493,6 +593,45 @@
     const chatInput = document.getElementById('chatInput');
     const sendBtn = document.getElementById('sendBtn');
 
+    // Admin panel elements
+    const adminToggle = document.getElementById('adminToggle');
+    const adminPanel = document.getElementById('adminPanel');
+    const adminPassword = document.getElementById('adminPassword');
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    const adminControls = document.getElementById('adminControls');
+    const adminStatus = document.getElementById('adminStatus');
+    const bannedList = document.getElementById('bannedList');
+    const adminLogout = document.getElementById('adminLogout');
+
+    // Admin panel toggle
+    adminToggle.addEventListener('click', () => {
+      adminPanel.classList.toggle('active');
+    });
+
+    // Admin login
+    adminLoginBtn.addEventListener('click', () => {
+      if (adminPassword.value === MOD_PASSWORD) {
+        isAdmin = true;
+        adminLoginForm.style.display = 'none';
+        adminControls.style.display = 'block';
+        adminStatus.style.display = 'block';
+        adminPassword.value = '';
+        alert('Moderator panel activated!');
+      } else {
+        alert('Incorrect password');
+        adminPassword.value = '';
+      }
+    });
+
+    // Admin logout
+    adminLogout.addEventListener('click', () => {
+      isAdmin = false;
+      adminLoginForm.style.display = 'block';
+      adminControls.style.display = 'none';
+      adminStatus.style.display = 'none';
+    });
+
     function escapeHtml(text) {
       const div = document.createElement('div');
       div.textContent = text;
@@ -502,9 +641,15 @@
     function addMessageToUI(docId, username, text, timestamp, isBanned = false) {
       const messageDiv = document.createElement('div');
       messageDiv.className = 'chat-message';
+      if (isBanned) messageDiv.classList.add('banned');
       messageDiv.id = `msg-${docId}`;
 
       const timeStr = timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      let banButtonHtml = '';
+      if (isAdmin && !isBanned) {
+        banButtonHtml = `<button class="ban-button" data-user="${escapeHtml(username)}" data-msgid="${docId}">Ban</button>`;
+      }
 
       if (isBanned) {
         messageDiv.innerHTML = `
@@ -516,16 +661,107 @@
         messageDiv.innerHTML = `
           <span class="username">${escapeHtml(username)}:</span>
           <span class="message-text">${escapeHtml(text)}</span>
+          ${banButtonHtml}
           <div class="timestamp">${timeStr}</div>
         `;
+
+        // Attach ban button listener if admin
+        if (isAdmin) {
+          const banBtn = messageDiv.querySelector('.ban-button');
+          if (banBtn) {
+            banBtn.addEventListener('click', async (e) => {
+              const userToBan = e.target.dataset.user;
+              const msgId = e.target.dataset.msgid;
+              if (confirm(`Ban user '${userToBan}' from chat?`)) {
+                await banUser(userToBan, msgId);
+              }
+            });
+          }
+        }
       }
 
       chatMessages.appendChild(messageDiv);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
+    async function banUser(userToBan, messageId) {
+      try {
+        // Add to banned list
+        const bannedRef = collection(db, 'banned_users');
+        const bannedQuery = query(bannedRef, where('username', '==', userToBan));
+        const existingBans = await getDocs(bannedQuery);
+        
+        if (existingBans.empty) {
+          await addDoc(bannedRef, {
+            username: userToBan,
+            bannedAt: new Date(),
+            show: showSelector.value
+          });
+        }
+
+        // Mark all their messages as banned
+        const messagesRef = collection(db, 'messages');
+        const userMessagesQuery = query(
+          messagesRef,
+          where('username', '==', userToBan),
+          where('show', '==', showSelector.value)
+        );
+        const userMessages = await getDocs(userMessagesQuery);
+        
+        userMessages.forEach(async (msg) => {
+          await updateDoc(doc(db, 'messages', msg.id), {
+            isBanned: true
+          });
+        });
+
+        bannedUsers.add(userToBan);
+        updateBannedList();
+        alert(`User '${userToBan}' has been banned`);
+        loadChatMessages();
+      } catch (error) {
+        console.error('Error banning user:', error);
+        alert('Failed to ban user');
+      }
+    }
+
+    async function loadBannedUsers() {
+      try {
+        const bannedRef = collection(db, 'banned_users');
+        const bannedQuery = query(bannedRef, where('show', '==', showSelector.value));
+        const snapshot = await getDocs(bannedQuery);
+        
+        bannedUsers.clear();
+        snapshot.forEach((doc) => {
+          bannedUsers.add(doc.data().username);
+        });
+        updateBannedList();
+      } catch (error) {
+        console.error('Error loading banned users:', error);
+      }
+    }
+
+    function updateBannedList() {
+      if (bannedUsers.size === 0) {
+        bannedList.innerHTML = '<span style="color: #888; font-size: 0.75em;">None</span>';
+      } else {
+        bannedList.innerHTML = Array.from(bannedUsers).map((user) => `
+          <div style="color: #ff4444; font-size: 0.8em; padding: 4px; background: #2a2a2a; margin: 4px 0; border-radius: 3px;">
+            ⛔ ${escapeHtml(user)}
+          </div>
+        `).join('');
+      }
+    }
+
     async function sendMessage() {
       const message = chatInput.value.trim();
+      
+      // Check if user is banned
+      if (bannedUsers.has(username)) {
+        alert('You have been banned from this chat.');
+        chatInput.value = '';
+        return;
+      }
+
       if (message && username) {
         try {
           const currentShow = showSelector.value;
@@ -587,8 +823,9 @@
       }
     }
 
-    // Load chat messages on page load
+    // Load chat messages and banned users on page load
     loadChatMessages();
+    loadBannedUsers();
 
     // Stream status
     function updateStreamStatus() {
