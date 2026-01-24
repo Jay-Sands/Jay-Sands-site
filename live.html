@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Stream – Jay Sands</title>
+  <meta name="description" content="Watch Jay Sands perform live. Listen to streaming radio shows and chat with other listeners in real-time.">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .live-container {
+      max-width: 750px;
+      margin: 2px auto;
+      padding: 0 8px;
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 8px;
+    }
+
+    .stream-player {
+      background: rgba(34,34,34,0.92);
+      border-radius: 18px;
+      padding: 12px;
+      border: 2px solid #00f0ff;
+      box-shadow: none;
+    }
+
+    .stream-player h2 {
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6em;
+      margin-top: 0;
+      margin-bottom: 8px;
+      text-align: center;
+      text-shadow: 2px 2px 8px #B22222;
+    }
+
+    .stream-status {
+      text-ali10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      background: #222;
+    }
+
+    .status-live {
+      color: #00ff00;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    .status-offline {
+      color: #ff4444;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    .audio-player {
+      width: 100%;
+      margin: 12px 0;
+      background: #222;
+      border-radius: 8px;
+      padding: 4px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .audio-player audio {
+      width: 60%;
+      height: 35px;
+      accent-color: #FFD700;
+      margin-left: 0;
+    }
+
+    /* Now Playing Section */
+    .now-playing {
+      background: rgba(34,34,34,0.92);
+      border-radius: 18px;
+      padding: 10px;
+      margin: 8px 0;
+      border: 2px solid #00f0ff;
+      box-shadow: none;
+    }
+
+    .now-playing-header {
+      color: #FFD700;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 1em;
+      margin-bottom: 10px;
+      text-align: center;
+      text-shadow: 2px 2px 8px #B22222;
+    }
+
+    .now-playing-content {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .album-art {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      background: #333;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #FFD700;
+      overflow: hidden;
+    }
+
+    .album-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .placeholder-art {
+      font-size: 2em;
+      color: #FFD700;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .track-info {
+      flex: 1;
+    }
+
+    .track-title {
+      color: #FFD700;
+      font-weight: bold;
+      font-size: 0.75em;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-artist {
+      color: #ccc;
+      font-size: 0.7em;
+      margin-bottom: 2px;
+    }
+
+    .track-details {
+      color: #888;
+      font-size: 0.65em;
+    }
+
+    .track-time {
+      display: inline-block;
+    }
+
+    @media (max-width: 600px) {
+      .now-playing-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .album-art {
+        width: 80px;
+        height: 80px;
+      }
+
+      .track-title {
+        white-space: normal;
+      }
+    }
+
+    .stream-info {
+      background: rgba(34,34,34,0.92);
+      padding: 10px;
+      border-radius: 18px;
+      margin: 8px 0;
+      border: 2px solid #00f0ff;
+      box-shadow: none;
+    }
+
+    .stream-info p {
+      margin: 4px 0;
+      color: #FFD700;
+      line-height: 1.3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 0.8em;
+      font-weight: 700;
+    }
+
+    .stream-info strong {
+      color: #FFD700;
+      text-shadow: 2px 2px 8px #B22222;
+    }
+
+    /* Chat Sidebar */
+    .chat-sidebar {
+      background: rgba(34,34,34,0.92);
+      border-radius: 18px;
+      padding: 10px;
+      border: 2px solid #00f0ff;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      max-height: none;
+    }
+
+    .chat-sidebar h3 {
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      font-size: 0.95em;
+      margin-top: 0;
+      margin-bottom: 6px;
+      text-align: center;
+      text-shadow: 2px 2px 8px #B22222;
+    }
+
+    .chat-messages {
+      background: #222;
+      border-radius: 8px;
+      padding: 6px;
+      margin-bottom: 6px;
+      height: 220px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .chat-message {
+      margin-bottom: 8px;
+      padding: 8px;
+      background: #333;
+      border-radius: 6px;
+      font-size: 0.8em;
+      line-height: 1.3;
+    }
+
+    .chat-message .username {
+      color: #FFD700;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    .chat-message .message-text {
+      color: #fff;
+      word-wrap: break-word;
+    }
+
+    .chat-message .timestamp {
+      color: #888;
+      font-size: 0.7em;
+      margin-top: 375em;
+      margin-top: 4px;
+    }
+
+    .chat-input-group {
+      displ6px;
+      margin-top: 10px;
+    }
+
+    .chat-input-group input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #FFD700;
+      border-radius: 6px;
+      background: #222;
+      color: #fff;
+      font-size: 0.8em;
+    }
+
+    .chat-input-group input::placeholder {
+      color: #888;
+    }
+
+    .chat-input-group input:focus {
+      outline: none;
+      border-color: #FFD700;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+    }
+
+    .chat-input-group button {
+      padding: 8px 12px;
+      background: #FFD700;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.75r;
+      font-size: 0.9em;
+      transition: all 0.3s;
+    }
+
+    .chat-input-group button:hover {
+      background: #fff;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+    }
+
+    /* Scrollbar styling */
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: #333;
+      border-radius: 3px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #FFD700;
+      border-radius: 3px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb:hover {
+      background: #fff;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .live-container {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-sidebar {
+        max-height: 400px;
+      }
+
+      .chat-messages {
+        height: 250px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .stream-player h2 {
+        font-size: 1.8em;
+      }
+
+      .chat-sidebar h3 {
+        font-size: 1.3em;
+      }
+
+      .live-container {
+        margin: 20px auto;
+        gap: 15px;
+      }
+
+      .stream-player,
+      .chat-sidebar {
+        padding: 15px;
+      }
+
+      .chat-input-group {
+        flex-direction: column;
+      }
+
+      .chat-input-group button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="shows.html">Shows</a>
+    <a href="live.html" class="active">Live</a>
+    <a href="other-artists.html">Artists</a>
+    <a href="booking.html">Booking</a>
+    <a href="press.html">Press</a>
+    <a href="feedback.html">Feedback</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="live-container">
+    <!-- Stream Player Section -->
+    <div class="stream-player">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h2 id="showTitle" style="margin: 0;">🎙️ Jay Sands Live - Now!</h2>
+        <select id="showSelector" style="padding: 6px; border-radius: 6px; border: 1px solid #00f0ff; background: #222; color: #FFD700; font-weight: bold; font-size: 0.85em; cursor: pointer;">
+          <option value="singing">Jay Sands Live - Now!</option>
+          <option value="sessions">Night Sessions</option>
+        </select>
+      </div>
+
+      <div class="stream-status">
+        <div class="status-live" id="streamStatus">LIVE</div>
+      </div>
+
+      <!-- Audio Player -->
+      <div class="audio-player">
+        <audio id="streamAudio" controls>
+          <source src="http://sandstream.bivman.com" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <!-- Now Playing -->
+      <div class="now-playing">
+        <div class="now-playing-header">🎵 Now Playing</div>
+        <div class="now-playing-content">
+          <div class="album-art" id="albumArt">
+            <div class="placeholder-art">♪</div>
+          </div>
+          <div class="track-info">
+            <div class="track-title" id="trackTitle">Stream Audio</div>
+            <div class="track-artist" id="trackArtist">Jay Sands</div>
+            <div class="track-details">
+              <span class="track-time" id="trackTime">0:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stream Information -->
+      <div class="stream-info">
+        <p>
+          <strong>Current Show:</strong>
+          <span id="currentShow">No show scheduled</span>
+        </p>
+        <p>
+          <strong>Start Time:</strong>
+          <span id="startTime">—</span>
+        </p>
+        <p>
+          <strong>Listeners:</strong>
+          <span id="listenerCount">0</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Chat Sidebar -->
+    <aside class="chat-sidebar">
+      <h3>💬 Live Chat</h3>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-message">
+          <span class="username">Jay Sands:</span>
+          <span class="message-text">Welcome to the live stream!</span>
+          <div class="timestamp">12:00 PM</div>
+        </div>
+      </div>
+
+      <div class="chat-input-group">
+        <input type="text" id="chatInput" placeholder="Type your message...">
+        <button id="sendBtn">Send</button>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // Show selector
+    const showSelector = document.getElementById('showSelector');
+    const showTitle = document.getElementById('showTitle');
+
+    const shows = {
+      singing: 'Jay Sands Live - Now!',
+      sessions: 'Night Sessions'
+    };
+
+    showSelector.addEventListener('change', (e) => {
+      const selectedShow = shows[e.target.value];
+      showTitle.textContent = `🎙️ ${selectedShow}`;
+      // Optional: Save to localStorage so it persists
+      localStorage.setItem('selectedShow', e.target.value);
+    });
+
+    // Load saved show preference
+    const savedShow = localStorage.getItem('selectedShow') || 'singing';
+    showSelector.value = savedShow;
+    showTitle.textContent = `🎙️ ${shows[savedShow]}`;
+
+    // Chat functionality
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function addMessage(username, text) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'chat-message';
+
+      const now = new Date();
+      const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      messageDiv.innerHTML = `
+        <span class="username">${username}:</span>
+        <span class="message-text">${escapeHtml(text)}</span>
+        <div class="timestamp">${timestamp}</div>
+      `;
+
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    sendBtn.addEventListener('click', () => {
+      const message = chatInput.value.trim();
+      if (message) {
+        addMessage('You', message);
+        chatInput.value = '';
+        chatInput.focus();
+
+        // Optional: Send to backend server here
+        // fetch('/api/chat', { method: 'POST', body: JSON.stringify({ message }) });
+      }
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendBtn.click();
+      }
+    });
+
+    // Stream status (placeholder)
+    function updateStreamStatus() {
+      const audio = document.getElementById('streamAudio');
+      const statusDiv = document.getElementById('streamStatus');
+
+      // Replace the stream URL with your actual stream URL
+      // Example: audio.src = 'https://your-stream-url.com/stream';
+
+      // For demo, keep it offline
+      statusDiv.textContent = 'OFFLINE';
+      statusDiv.className = 'status-offline';
+    }
+
+    updateStreamStatus();
+  </script>
+</body>
+</html>
