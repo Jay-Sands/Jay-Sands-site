@@ -57,10 +57,27 @@
     }
   </style>
   <script>
+    let bookingCanSubmit = true;
+    
     function handleBookingSubmit(event) {
       event.preventDefault();
       const form = document.getElementById('bookingForm');
+      const honeypot = document.getElementById('bookingWebsite');
       const successMsg = document.getElementById('successMessage');
+      
+      // Check honeypot field
+      if (honeypot.value.trim() !== '') {
+        console.log('Honeypot triggered');
+        return;
+      }
+      
+      // Check rate limiting
+      if (!bookingCanSubmit) {
+        alert('Please wait a moment before submitting again');
+        return;
+      }
+      
+      bookingCanSubmit = false;
       
       fetch(form.action, {
         method: 'POST',
@@ -76,6 +93,10 @@
         }
       }).catch(error => {
         console.error('Error:', error);
+      }).finally(() => {
+        setTimeout(() => {
+          bookingCanSubmit = true;
+        }, 5000);
       });
     }
   </script>
@@ -106,6 +127,9 @@
       
       <label for="event-date" style="color:#FFD700;display:block;margin:0 auto 6px auto;text-align:center;font-family:'Dancing Script',cursive;font-weight:700;font-size:1.1em;">Preferred Date (optional):</label>
       <input id="event-date" type="date" name="date" style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:2px solid #00f0ff;display:block;margin:0 auto 12px auto;font-family:Arial,sans-serif;font-weight:700;background:#0a0a2a;color:#FFD700;box-shadow:0 0 8px 2px #00f0ff;transition:box-shadow 0.2s;" onFocus="this.style.boxShadow='0 0 16px 4px #00f0ff';this.style.background='#111155'" onBlur="this.style.boxShadow='0 0 8px 2px #00f0ff';this.style.background='#0a0a2a'">
+      
+      <!-- Honeypot field for spam protection -->
+      <input id="bookingWebsite" type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
         
       <div style="display:flex;justify-content:center;gap:16px;margin-top:18px;">
         <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Booking</button>

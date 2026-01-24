@@ -154,10 +154,27 @@
     }
   </style>
   <script>
+    let feedbackCanSubmit = true;
+    
     function handleFeedbackSubmit(event) {
       event.preventDefault();
       const form = document.getElementById('feedbackForm');
+      const honeypot = document.getElementById('feedbackWebsite');
       const successMsg = document.getElementById('successMessage');
+      
+      // Check honeypot field
+      if (honeypot.value.trim() !== '') {
+        console.log('Honeypot triggered');
+        return;
+      }
+      
+      // Check rate limiting
+      if (!feedbackCanSubmit) {
+        alert('Please wait a moment before submitting again');
+        return;
+      }
+      
+      feedbackCanSubmit = false;
       
       fetch(form.action, {
         method: 'POST',
@@ -173,6 +190,10 @@
         }
       }).catch(error => {
         console.error('Error:', error);
+      }).finally(() => {
+        setTimeout(() => {
+          feedbackCanSubmit = true;
+        }, 5000);
       });
     }
   </script>
@@ -196,6 +217,10 @@
         <textarea id="quote" name="quote" rows="2" required style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:2px solid #00f0ff;display:block;margin:0 auto;font-family:'Dancing Script',cursive;font-weight:700;background:#0a0a2a;color:#FFD700;box-shadow:0 0 8px 2px #00f0ff;transition:box-shadow 0.2s;" onFocus="this.style.boxShadow='0 0 16px 4px #00f0ff';this.style.background='#111155'" onBlur="this.style.boxShadow='0 0 8px 2px #00f0ff';this.style.background='#0a0a2a'"></textarea>
         <label for="name" style="color:#FFD700;display:block;margin:0 auto 6px auto;text-align:center;">Your Name (optional):</label>
         <input id="name" type="text" name="name" style="width:95%;padding:6px;margin-bottom:12px;border-radius:8px;border:2px solid #00f0ff;display:block;margin:0 auto;font-family:'Dancing Script',cursive;font-weight:700;background:#0a0a2a;color:#FFD700;box-shadow:0 0 8px 2px #00f0ff;transition:box-shadow 0.2s;" onFocus="this.style.boxShadow='0 0 16px 4px #00f0ff';this.style.background='#111155'" onBlur="this.style.boxShadow='0 0 8px 2px #00f0ff';this.style.background='#0a0a2a'">
+        
+        <!-- Honeypot field for spam protection -->
+        <input id="feedbackWebsite" type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
+        
         <div style="margin-top:12px;margin-bottom:8px;text-align:center;">
           <input type="checkbox" id="agreeQuote" name="agreeQuote" value="yes" style="margin-right:8px;">
           <label for="agreeQuote" style="color:#FFD700;">I agree to allow my quote or feedback to be added to the public feedback page.</label>
