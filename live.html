@@ -451,8 +451,13 @@
     </div>
 
     <div id="adminControls" style="display: none;">
+      <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Stream URL:</p>
+      <input type="text" id="streamUrlInput" placeholder="Paste stream URL..." style="width: 100%; padding: 8px; margin-bottom: 8px; background: #222; border: 1px solid #FFD700; border-radius: 4px; color: #fff; font-size: 0.75em;">
+      <button id="updateStreamBtn" style="width: 100%; background: #FFD700; color: #000; font-weight: bold; padding: 8px; margin-bottom: 10px; border-radius: 6px; cursor: pointer;">Update Stream</button>
+      
       <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Stream Status:</p>
       <button id="toggleStreamBtn" style="width: 100%; background: #00ff00; color: #000; font-weight: bold; padding: 10px; margin-bottom: 10px; border-radius: 6px; cursor: pointer;">🔴 GO LIVE</button>
+      
       <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Banned Users:</p>
       <div id="bannedList" style="background: #222; padding: 8px; border-radius: 4px; max-height: 150px; overflow-y: auto; margin-bottom: 10px; min-height: 40px;">
         <span style="color: #888; font-size: 0.75em;">None</span>
@@ -609,10 +614,31 @@
     const bannedList = document.getElementById('bannedList');
     const adminLogout = document.getElementById('adminLogout');
     const toggleStreamBtn = document.getElementById('toggleStreamBtn');
+    const streamUrlInput = document.getElementById('streamUrlInput');
+    const updateStreamBtn = document.getElementById('updateStreamBtn');
+    const streamAudio = document.getElementById('streamAudio');
+
+    // Load saved stream URL
+    let currentStreamUrl = localStorage.getItem('streamUrl') || 'http://sandstream.bivman.com';
+    streamAudio.src = currentStreamUrl;
+    streamUrlInput.value = currentStreamUrl;
 
     // Admin panel toggle
     adminToggle.addEventListener('click', () => {
       adminPanel.classList.toggle('active');
+    });
+
+    // Update stream URL
+    updateStreamBtn.addEventListener('click', () => {
+      const newUrl = streamUrlInput.value.trim();
+      if (newUrl) {
+        currentStreamUrl = newUrl;
+        streamAudio.src = newUrl;
+        localStorage.setItem('streamUrl', newUrl);
+        alert('Stream URL updated!');
+      } else {
+        alert('Enter a valid stream URL');
+      }
     });
 
     // Toggle stream status button
