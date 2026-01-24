@@ -792,6 +792,7 @@
 
     async function loadChatMessages() {
       const currentShow = showSelector.value;
+      console.log('Loading messages for show:', currentShow);
 
       try {
         const q = query(
@@ -802,9 +803,11 @@
 
         // Set up real-time listener
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          console.log('Snapshot received with', querySnapshot.size, 'messages');
           chatMessages.innerHTML = '';
           querySnapshot.forEach((doc) => {
             const data = doc.data();
+            console.log('Adding message:', data.username, data.text);
             addMessageToUI(
               doc.id,
               data.username,
@@ -814,8 +817,8 @@
             );
           });
         }, (error) => {
-          console.error('Error loading messages:', error);
-          alert('Firebase error: ' + error.message);
+          console.error('Listener error:', error);
+          alert('Firebase listener error: ' + error.message);
         });
 
         return unsubscribe;
