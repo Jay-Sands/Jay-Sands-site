@@ -449,6 +449,8 @@
     </div>
 
     <div id="adminControls" style="display: none;">
+      <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Stream Status:</p>
+      <button id="toggleStreamBtn" style="width: 100%; background: #00ff00; color: #000; font-weight: bold; padding: 10px; margin-bottom: 10px; border-radius: 6px; cursor: pointer;">🔴 GO LIVE</button>
       <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Banned Users:</p>
       <div id="bannedList" style="background: #222; padding: 8px; border-radius: 4px; max-height: 150px; overflow-y: auto; margin-bottom: 10px; min-height: 40px;">
         <span style="color: #888; font-size: 0.75em;">None</span>
@@ -551,6 +553,7 @@
     const MOD_PASSWORD = "jaysands2024";
     let isAdmin = false;
     let bannedUsers = new Set();
+    let isLive = false;
 
     // Show selector
     const showSelector = document.getElementById('showSelector');
@@ -603,11 +606,33 @@
     const adminStatus = document.getElementById('adminStatus');
     const bannedList = document.getElementById('bannedList');
     const adminLogout = document.getElementById('adminLogout');
+    const toggleStreamBtn = document.getElementById('toggleStreamBtn');
 
     // Admin panel toggle
     adminToggle.addEventListener('click', () => {
       adminPanel.classList.toggle('active');
     });
+
+    // Toggle stream status button
+    toggleStreamBtn.addEventListener('click', () => {
+      isLive = !isLive;
+      updateStreamStatusUI();
+    });
+
+    function updateStreamStatusUI() {
+      const statusDiv = document.getElementById('streamStatus');
+      if (isLive) {
+        statusDiv.textContent = 'LIVE';
+        statusDiv.className = 'status-live';
+        toggleStreamBtn.textContent = '🟢 GO OFFLINE';
+        toggleStreamBtn.style.background = '#ff0000';
+      } else {
+        statusDiv.textContent = 'OFFLINE';
+        statusDiv.className = 'status-offline';
+        toggleStreamBtn.textContent = '🔴 GO LIVE';
+        toggleStreamBtn.style.background = '#00ff00';
+      }
+    }
 
     // Admin login
     adminLoginBtn.addEventListener('click', () => {
@@ -907,16 +932,20 @@
     async function checkStreamStatus() {
       try {
         const response = await fetch('http://sandstream.bivman.com', { method: 'HEAD', mode: 'no-cors' });
+        if (!isLive) return; // Only update if mod hasn't set it manually
         const statusDiv = document.getElementById('streamStatus');
         statusDiv.textContent = 'LIVE';
         statusDiv.className = 'status-live';
       } catch (error) {
+        if (!isLive) return; // Only update if mod hasn't set it manually
         const statusDiv = document.getElementById('streamStatus');
         statusDiv.textContent = 'OFFLINE';
         statusDiv.className = 'status-offline';
       }
     }
 
+    // Initialize stream status UI
+    updateStreamStatusUI();
     checkStreamStatus();
     setInterval(checkStreamStatus, 30000); // Check every 30 seconds
   </script>
