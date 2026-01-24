@@ -618,9 +618,14 @@
     const updateStreamBtn = document.getElementById('updateStreamBtn');
     const streamAudio = document.getElementById('streamAudio');
 
+    // CORS proxy helper function
+    function wrapWithCorsProxy(url) {
+      return 'https://corsproxy.io/?' + encodeURIComponent(url);
+    }
+
     // Load saved stream URL
     let currentStreamUrl = localStorage.getItem('streamUrl') || 'http://sandstream.bivman.com';
-    streamAudio.src = currentStreamUrl;
+    streamAudio.src = wrapWithCorsProxy(currentStreamUrl);
     streamUrlInput.value = currentStreamUrl;
 
     // Admin panel toggle
@@ -633,7 +638,7 @@
       const newUrl = streamUrlInput.value.trim();
       if (newUrl) {
         currentStreamUrl = newUrl;
-        streamAudio.src = newUrl;
+        streamAudio.src = wrapWithCorsProxy(newUrl);
         localStorage.setItem('streamUrl', newUrl);
         alert('Stream URL updated!');
       } else {
