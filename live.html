@@ -792,7 +792,6 @@
 
     async function loadChatMessages() {
       const currentShow = showSelector.value;
-      chatMessages.innerHTML = '';
 
       try {
         const q = query(
@@ -801,6 +800,7 @@
           orderBy('timestamp', 'asc')
         );
 
+        // Set up real-time listener
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
           chatMessages.innerHTML = '';
           querySnapshot.forEach((doc) => {
@@ -815,11 +815,13 @@
           });
         }, (error) => {
           console.error('Error loading messages:', error);
+          alert('Firebase error: ' + error.message);
         });
 
         return unsubscribe;
       } catch (error) {
         console.error('Error setting up listener:', error);
+        alert('Setup error: ' + error.message);
       }
     }
 
@@ -834,7 +836,22 @@
       statusDiv.className = 'status-live';
     }
 
-    updateStreamStatus();
+    // Actually check stream status
+    async function checkStreamStatus() {
+      try {
+        const response = await fetch('http://sandstream.bivman.com', { method: 'HEAD', mode: 'no-cors' });
+        const statusDiv = document.getElementById('streamStatus');
+        statusDiv.textContent = 'LIVE';
+        statusDiv.className = 'status-live';
+      } catch (error) {
+        const statusDiv = document.getElementById('streamStatus');
+        statusDiv.textContent = 'OFFLINE';
+        statusDiv.className = 'status-offline';
+      }
+    }
+
+    checkStreamStatus();
+    setInterval(checkStreamStatus, 30000); // Check every 30 seconds
   </script>
 </body>
 </html>
