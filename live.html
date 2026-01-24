@@ -618,6 +618,7 @@
         adminStatus.style.display = 'block';
         adminPassword.value = '';
         alert('Moderator panel activated!');
+        loadChatMessages(); // Reload messages to show delete buttons
       } else {
         alert('Incorrect password');
         adminPassword.value = '';
@@ -630,6 +631,7 @@
       adminLoginForm.style.display = 'block';
       adminControls.style.display = 'none';
       adminStatus.style.display = 'none';
+      loadChatMessages(); // Reload messages to hide delete buttons
     });
 
     function escapeHtml(text) {
@@ -647,8 +649,10 @@
       const timeStr = timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
       let banButtonHtml = '';
+      let deleteButtonHtml = '';
       if (isAdmin && !isBanned) {
         banButtonHtml = `<button class="ban-button" data-user="${escapeHtml(username)}" data-msgid="${docId}">Ban</button>`;
+        deleteButtonHtml = `<button class="ban-button" style="background: #ff8c00;" data-msgid="${docId}" title="Delete message">🗑️</button>`;
       }
 
       if (isBanned) {
@@ -662,18 +666,29 @@
           <span class="username">${escapeHtml(username)}:</span>
           <span class="message-text">${escapeHtml(text)}</span>
           ${banButtonHtml}
+          ${deleteButtonHtml}
           <div class="timestamp">${timeStr}</div>
         `;
 
         // Attach ban button listener if admin
         if (isAdmin) {
-          const banBtn = messageDiv.querySelector('.ban-button');
+          const banBtn = messageDiv.querySelector('[data-user]');
           if (banBtn) {
             banBtn.addEventListener('click', async (e) => {
               const userToBan = e.target.dataset.user;
               const msgId = e.target.dataset.msgid;
               if (confirm(`Ban user '${userToBan}' from chat?`)) {
                 await banUser(userToBan, msgId);
+              }
+            });
+          }
+
+          const deleteBtn = messageDiv.querySelector('[title="Delete message"]');
+          if (deleteBtn) {
+            deleteBtn.addEventListener('click', async (e) => {
+              const msgId = e.target.dataset.msgid;
+              if (confirm('Delete this message?')) {
+                await deleteMessage(msgId);
               }
             });
           }
@@ -724,6 +739,40 @@
       }
     }
 
+    async function deleteMessage(messageId) {
+      try {
+        await deleteDoc(doc(db, 'messages', messageId));
+        alert('Message deleted');
+        loadChatMessages();
+      } catch (error) {
+        console.error('Error deleting message:', error);
+        alert('Failed to delete message: ' + error.message);
+      }
+    }
+
+    async function unbanUser(userToUnban) {
+      try {
+        // Remove from banned_users collection
+        const bannedRef = collection(db, 'banned_users');
+        const bannedQuery = query(
+          bannedRef,
+          where('username', '==', userToUnban),
+          where('show', '==', showSelector.value)
+        );
+        const bannedDocs = await getDocs(bannedQuery);
+        bannedDocs.forEach(async (doc) => {
+          await deleteDoc(doc.ref);
+        });
+
+        bannedUsers.delete(userToUnban);
+        updateBannedList();
+        alert(`User '${userToUnban}' has been unbanned`);
+      } catch (error) {
+        console.error('Error unbanning user:', error);
+        alert('Failed to unban user: ' + error.message);
+      }
+    }
+
     async function loadBannedUsers() {
       try {
         const bannedRef = collection(db, 'banned_users');
@@ -745,10 +794,22 @@
         bannedList.innerHTML = '<span style="color: #888; font-size: 0.75em;">None</span>';
       } else {
         bannedList.innerHTML = Array.from(bannedUsers).map((user) => `
-          <div style="color: #ff4444; font-size: 0.8em; padding: 4px; background: #2a2a2a; margin: 4px 0; border-radius: 3px;">
-            ⛔ ${escapeHtml(user)}
+          <div style="color: #ff4444; font-size: 0.8em; padding: 4px; background: #2a2a2a; margin: 4px 0; border-radius: 3px; display: flex; justify-content: space-between; align-items: center;">
+            <span>⛔ ${escapeHtml(user)}</span>
+            <button style="background: #00aa00; color: #fff; border: none; padding: 2px 6px; border-radius: 3px; cursor: pointer; font-size: 0.7em;" data-unban="${escapeHtml(user)}">Unban</button>
           </div>
         `).join('');
+
+        // Attach unban listeners
+        const unbanButtons = bannedList.querySelectorAll('[data-unban]');
+        unbanButtons.forEach((btn) => {
+          btn.addEventListener('click', async (e) => {
+            const userToUnban = e.target.dataset.unban;
+            if (confirm(`Unban user '${userToUnban}'?`)) {
+              await unbanUser(userToUnban);
+            }
+          });
+        });
       }
     }
 
