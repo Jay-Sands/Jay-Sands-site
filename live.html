@@ -363,17 +363,6 @@
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="main-nav">
-    <a href="index.html">Home</a>
-    <a href="shows.html">Shows</a>
-    <a href="live.html" class="active">Live</a>
-    <a href="other-artists.html">Artists</a>
-    <a href="booking.html">Booking</a>
-    <a href="press.html">Press</a>
-    <a href="feedback.html">Feedback</a>
-  </nav>
-
   <!-- Main Content -->
   <div class="live-container">
     <!-- Stream Player Section -->
@@ -437,11 +426,6 @@
       <h3>💬 Live Chat</h3>
 
       <div class="chat-messages" id="chatMessages">
-        <div class="chat-message">
-          <span class="username">Jay Sands:</span>
-          <span class="message-text">Welcome to the live stream!</span>
-          <div class="timestamp">12:00 PM</div>
-        </div>
       </div>
 
       <div class="chat-input-group">
@@ -451,7 +435,24 @@
     </aside>
   </div>
 
-  <script>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, where, deleteDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC4D0JdXE2eoA2NmX0CJnvbYpP0LUCm_cE",
+      authDomain: "live-chat-c52f4.firebaseapp.com",
+      projectId: "live-chat-c52f4",
+      storageBucket: "live-chat-c52f4.firebasestorage.app",
+      messagingSenderId: "835022515872",
+      appId: "1:835022515872:web:32096cf0fff135cf4163c5",
+      measurementId: "G-38XGT57Z4G"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
     // Show selector
     const showSelector = document.getElementById('showSelector');
     const showTitle = document.getElementById('showTitle');
@@ -464,8 +465,8 @@
     showSelector.addEventListener('change', (e) => {
       const selectedShow = shows[e.target.value];
       showTitle.textContent = `🎙️ ${selectedShow}`;
-      // Optional: Save to localStorage so it persists
       localStorage.setItem('selectedShow', e.target.value);
+      loadChatMessages();
     });
 
     // Load saved show preference
@@ -473,27 +474,24 @@
     showSelector.value = savedShow;
     showTitle.textContent = `🎙️ ${shows[savedShow]}`;
 
+    // Generate or retrieve user ID
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+      userId = 'user_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('userId', userId);
+    }
+
+    // Get or create username
+    let username = localStorage.getItem('username');
+    if (!username) {
+      username = prompt('Enter your username for chat:') || 'Guest' + Math.floor(Math.random() * 1000);
+      localStorage.setItem('username', username);
+    }
+
     // Chat functionality
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
     const sendBtn = document.getElementById('sendBtn');
-
-    function addMessage(username, text) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'chat-message';
-
-      const now = new Date();
-      const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-      messageDiv.innerHTML = `
-        <span class="username">${username}:</span>
-        <span class="message-text">${escapeHtml(text)}</span>
-        <div class="timestamp">${timestamp}</div>
-      `;
-
-      chatMessages.appendChild(messageDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
 
     function escapeHtml(text) {
       const div = document.createElement('div');
@@ -501,35 +499,102 @@
       return div.innerHTML;
     }
 
-    sendBtn.addEventListener('click', () => {
-      const message = chatInput.value.trim();
-      if (message) {
-        addMessage('You', message);
-        chatInput.value = '';
-        chatInput.focus();
+    function addMessageToUI(docId, username, text, timestamp, isBanned = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'chat-message';
+      messageDiv.id = `msg-${docId}`;
 
-        // Optional: Send to backend server here
-        // fetch('/api/chat', { method: 'POST', body: JSON.stringify({ message }) });
+      const timeStr = timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      if (isBanned) {
+        messageDiv.innerHTML = `
+          <div style="color: #ff4444; font-weight: bold; text-align: center;">
+            ⛔ User '${escapeHtml(username)}' has been removed from chat
+          </div>
+        `;
+      } else {
+        messageDiv.innerHTML = `
+          <span class="username">${escapeHtml(username)}:</span>
+          <span class="message-text">${escapeHtml(text)}</span>
+          <div class="timestamp">${timeStr}</div>
+        `;
       }
-    });
+
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const message = chatInput.value.trim();
+      if (message && username) {
+        try {
+          const currentShow = showSelector.value;
+          await addDoc(collection(db, 'messages'), {
+            username: username,
+            userId: userId,
+            text: message,
+            show: currentShow,
+            timestamp: new Date(),
+            isBanned: false
+          });
+          chatInput.value = '';
+          chatInput.focus();
+        } catch (error) {
+          console.error('Error sending message:', error);
+          alert('Failed to send message');
+        }
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
 
     chatInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
-        sendBtn.click();
+        sendMessage();
       }
     });
 
-    // Stream status (placeholder)
+    async function loadChatMessages() {
+      const currentShow = showSelector.value;
+      chatMessages.innerHTML = '';
+
+      try {
+        const q = query(
+          collection(db, 'messages'),
+          where('show', '==', currentShow),
+          orderBy('timestamp', 'asc')
+        );
+
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          chatMessages.innerHTML = '';
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            addMessageToUI(
+              doc.id,
+              data.username,
+              data.text,
+              data.timestamp.toDate(),
+              data.isBanned
+            );
+          });
+        }, (error) => {
+          console.error('Error loading messages:', error);
+        });
+
+        return unsubscribe;
+      } catch (error) {
+        console.error('Error setting up listener:', error);
+      }
+    }
+
+    // Load chat messages on page load
+    loadChatMessages();
+
+    // Stream status
     function updateStreamStatus() {
-      const audio = document.getElementById('streamAudio');
       const statusDiv = document.getElementById('streamStatus');
-
-      // Replace the stream URL with your actual stream URL
-      // Example: audio.src = 'https://your-stream-url.com/stream';
-
-      // For demo, keep it offline
-      statusDiv.textContent = 'OFFLINE';
-      statusDiv.className = 'status-offline';
+      statusDiv.textContent = 'LIVE';
+      statusDiv.className = 'status-live';
     }
 
     updateStreamStatus();
