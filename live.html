@@ -475,6 +475,17 @@
         <div class="status-live" id="streamStatus">LIVE</div>
       </div>
 
+      <div class="stream-status">
+        <div class="status-live" id="streamStatus">LIVE</div>
+      </div>
+
+      <!-- Audio Player -->
+      <div class="audio-player">
+        <audio id="streamAudio" controls style="width: 100%;">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
       <!-- Stream Information -->
       <div class="stream-info">
         <p>
@@ -528,6 +539,9 @@
     const MOD_PASSWORD = "jaysands2024";
     let isAdmin = false;
     let bannedUsers = new Set();
+
+    // Stream relay URL (Python relay server)
+    const STREAM_URL = 'http://localhost:8000';
 
     // Show selector
     const showSelector = document.getElementById('showSelector');
@@ -591,6 +605,10 @@
     adminToggle.addEventListener('click', () => {
       adminPanel.classList.toggle('active');
     });
+
+    // Load stream on page load
+    const streamAudio = document.getElementById('streamAudio');
+    streamAudio.src = STREAM_URL;
 
     // Admin login
     adminLoginBtn.addEventListener('click', () => {
