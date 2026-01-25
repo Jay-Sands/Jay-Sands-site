@@ -451,13 +451,6 @@
     </div>
 
     <div id="adminControls" style="display: none;">
-      <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Stream URL:</p>
-      <input type="text" id="streamUrlInput" placeholder="Paste stream URL..." style="width: 100%; padding: 8px; margin-bottom: 8px; background: #222; border: 1px solid #FFD700; border-radius: 4px; color: #fff; font-size: 0.75em;">
-      <button id="updateStreamBtn" style="width: 100%; background: #FFD700; color: #000; font-weight: bold; padding: 8px; margin-bottom: 10px; border-radius: 6px; cursor: pointer;">Update Stream</button>
-      
-      <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Stream Status:</p>
-      <button id="toggleStreamBtn" style="width: 100%; background: #00ff00; color: #000; font-weight: bold; padding: 10px; margin-bottom: 10px; border-radius: 6px; cursor: pointer;">🔴 GO LIVE</button>
-      
       <p style="color: #ccc; font-size: 0.8em; margin: 5px 0;">Banned Users:</p>
       <div id="bannedList" style="background: #222; padding: 8px; border-radius: 4px; max-height: 150px; overflow-y: auto; margin-bottom: 10px; min-height: 40px;">
         <span style="color: #888; font-size: 0.75em;">None</span>
@@ -480,30 +473,6 @@
 
       <div class="stream-status">
         <div class="status-live" id="streamStatus">LIVE</div>
-      </div>
-
-      <!-- Audio Player -->
-      <div class="audio-player">
-        <audio id="streamAudio" controls style="width: 100%;">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-
-      <!-- Now Playing -->
-      <div class="now-playing">
-        <div class="now-playing-header">🎵 Now Playing</div>
-        <div class="now-playing-content">
-          <div class="album-art" id="albumArt">
-            <div class="placeholder-art">♪</div>
-          </div>
-          <div class="track-info">
-            <div class="track-title" id="trackTitle">Stream Audio</div>
-            <div class="track-artist" id="trackArtist">Jay Sands</div>
-            <div class="track-details">
-              <span class="track-time" id="trackTime">0:00</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Stream Information -->
@@ -559,7 +528,6 @@
     const MOD_PASSWORD = "jaysands2024";
     let isAdmin = false;
     let bannedUsers = new Set();
-    let isLive = false;
 
     // Show selector
     const showSelector = document.getElementById('showSelector');
@@ -615,51 +583,14 @@
     const toggleStreamBtn = document.getElementById('toggleStreamBtn');
     const streamUrlInput = document.getElementById('streamUrlInput');
     const updateStreamBtn = document.getElementById('updateStreamBtn');
-    const streamAudio = document.getElementById('streamAudio');
 
-    // Load saved stream URL
+    // Load saved stream URL with fallback
     let currentStreamUrl = localStorage.getItem('streamUrl') || 'http://sandstream.bivman.com';
-    streamAudio.src = currentStreamUrl;
-    streamUrlInput.value = currentStreamUrl;
 
     // Admin panel toggle
     adminToggle.addEventListener('click', () => {
       adminPanel.classList.toggle('active');
     });
-
-    // Update stream URL
-    updateStreamBtn.addEventListener('click', () => {
-      const newUrl = streamUrlInput.value.trim();
-      if (newUrl) {
-        currentStreamUrl = newUrl;
-        streamAudio.src = newUrl;
-        localStorage.setItem('streamUrl', newUrl);
-        alert('Stream URL updated!');
-      } else {
-        alert('Enter a valid stream URL');
-      }
-    });
-
-    // Toggle stream status button
-    toggleStreamBtn.addEventListener('click', () => {
-      isLive = !isLive;
-      updateStreamStatusUI();
-    });
-
-    function updateStreamStatusUI() {
-      const statusDiv = document.getElementById('streamStatus');
-      if (isLive) {
-        statusDiv.textContent = 'LIVE';
-        statusDiv.className = 'status-live';
-        toggleStreamBtn.textContent = '🟢 GO OFFLINE';
-        toggleStreamBtn.style.background = '#ff0000';
-      } else {
-        statusDiv.textContent = 'OFFLINE';
-        statusDiv.className = 'status-offline';
-        toggleStreamBtn.textContent = '🔴 GO LIVE';
-        toggleStreamBtn.style.background = '#00ff00';
-      }
-    }
 
     // Admin login
     adminLoginBtn.addEventListener('click', () => {
@@ -955,25 +886,7 @@
       statusDiv.className = 'status-live';
     }
 
-    // Actually check stream status
-    async function checkStreamStatus() {
-      try {
-        const response = await fetch('http://sandstream.bivman.com', { method: 'HEAD', mode: 'no-cors' });
-        if (!isLive) return; // Only update if mod hasn't set it manually
-        const statusDiv = document.getElementById('streamStatus');
-        statusDiv.textContent = 'LIVE';
-        statusDiv.className = 'status-live';
-      } catch (error) {
-        if (!isLive) return; // Only update if mod hasn't set it manually
-        const statusDiv = document.getElementById('streamStatus');
-        statusDiv.textContent = 'OFFLINE';
-        statusDiv.className = 'status-offline';
-      }
-    }
-
-    // Initialize stream status UI
-    updateStreamStatusUI();
-    // Automatic stream detection disabled - use manual toggle only
+    // Cleanup complete
   </script>
 </body>
 </html>
