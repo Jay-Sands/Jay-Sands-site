@@ -23,7 +23,7 @@ body {
 .main-nav {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 16px;
   background: transparent;
@@ -277,6 +277,41 @@ body {
   background: url('images/bright-curtain.png') center center no-repeat;
   background-size: cover;
   width: 100%;
+}
+
+/* Micro-animation: soft gold glow pulse on logo */
+.logo {
+  animation: logoGlow 8s ease-in-out infinite;
+  height: 40px;
+  margin: 10px 20px;
+  vertical-align: middle;
+}
+
+@keyframes logoGlow {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.15); }
+  100% { filter: brightness(1); }
+}
+
+nav, .main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: gold;
+  text-decoration: none;
+  font-weight: bold;
+}
   height: 100%;
   display: block;
 }
