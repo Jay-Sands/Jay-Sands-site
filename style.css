@@ -282,15 +282,15 @@ body {
 /* Micro-animation: soft gold glow pulse on logo */
 .logo {
   animation: logoGlow 8s ease-in-out infinite;
-  height: 25px;
+  height: 35px;
   margin: 10px 20px;
   vertical-align: middle;
 }
 
 @keyframes logoGlow {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.15); }
-  100% { filter: brightness(1); }
+  0% { filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5)); }
+  50% { filter: drop-shadow(0 0 12px rgba(255, 215, 0, 1)); }
+  100% { filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5)); }
 }
 
 nav, .main-nav {
