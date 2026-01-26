@@ -1,3 +1,59 @@
+/* --------------------------------------------------
+   GLOBAL BASE
+-------------------------------------------------- */
+
+body {
+  background-color: #000 !important;
+  color: #FFD700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+/* --------------------------------------------------
+   NAVIGATION
+-------------------------------------------------- */
+
+.main-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background: transparent;
+  padding: 8px 0 4px 0;
+  border-radius: 0 0 8px 8px;
+  box-shadow: none;
+  margin-bottom: 18px;
+}
+
+.main-nav a {
+  color: #FFD700;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1.25em;
+  background: transparent;
+  border: none;
+  transition: color 0.2s, border-bottom 0.2s;
+  position: relative;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+  color: #FFD700;
+  background: transparent;
+  border-bottom: 2px solid #FFD700;
+}
+
+.main-nav a.active {
+  color: #fff !important;
+  border-bottom: 3px solid #FFD700;
+  background: rgba(34, 34, 34, 0.5);
+}
+
+/* Mobile nav adjustments */
 @media (max-width: 600px) {
   .main-nav {
     flex-wrap: wrap;
@@ -6,26 +62,31 @@
   }
   .main-nav a {
     font-size: 1em;
-    padding: 2px 4px;
+    padding: 6px 8px;
+  }
+  .press-link {
+    display: none;
   }
 }
-body {
-  background-color: #000 !important;
-  color: #FFD700;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-}
-/* Bright red glow for artist cards on Other Artists page */
+
+/* --------------------------------------------------
+   OTHER ARTISTS PAGE — CARD GLOW
+-------------------------------------------------- */
+
 .other-artist-card {
-  box-shadow:
-    0 0 34px 11px rgba(0,64,255,0.28), /* blue glow further reduced */
-    0 0 22px 5px rgba(0,64,255,0.16), /* secondary blue glow further reduced */
-    0 0 13px 3px rgba(255,215,0,0.07),  /* gold outer glow further reduced */
-    0 0 7px 1px rgba(255,215,0,0.10) inset, /* gold inner glow further reduced */
-    0 2px 3px rgba(255,215,0,0.12);     /* gold accent for depth further reduced */
   border-radius: 18px;
+  box-shadow:
+    0 0 34px 11px rgba(0, 64, 255, 0.28),
+    0 0 22px 5px rgba(0, 64, 255, 0.16),
+    0 0 13px 3px rgba(255, 215, 0, 0.07),
+    0 0 7px 1px rgba(255, 215, 0, 0.10) inset,
+    0 2px 3px rgba(255, 215, 0, 0.12);
 }
-/* Force desktop two-column layout for home page */
+
+/* --------------------------------------------------
+   HOME PAGE — DESKTOP LAYOUT
+-------------------------------------------------- */
+
 @media only screen and (min-width: 701px) {
   .home-flex-row {
     display: flex !important;
@@ -37,6 +98,7 @@ body {
     max-width: 900px;
     margin: 0 auto;
   }
+
   .home-flex-col {
     min-width: 250px !important;
     width: 50% !important;
@@ -48,7 +110,11 @@ body {
     min-height: 900px !important;
   }
 }
-/* Mobile fix for home page columns, desktop untouched */
+
+/* --------------------------------------------------
+   HOME PAGE — MOBILE LAYOUT
+-------------------------------------------------- */
+
 @media only screen and (max-width: 700px) {
   .home-flex-row {
     display: flex !important;
@@ -60,6 +126,7 @@ body {
     box-sizing: border-box !important;
     overflow-x: hidden !important;
   }
+
   .home-flex-col {
     min-width: 0 !important;
     width: 100% !important;
@@ -67,18 +134,25 @@ body {
     margin-bottom: 24px !important;
     display: block !important;
   }
-  /* Removed mobile-only column order reversal for consistent layout. */
-  /* Removed unused accordion and panel styles after restoring dropdown list layout. */
 }
+
+/* --------------------------------------------------
+   WELCOME TEXT FADE
+-------------------------------------------------- */
+
 #welcomeText.show {
   opacity: 1;
 }
+
 #welcomeText.hide {
   opacity: 0;
   transition: opacity 0.7s ease;
 }
 
-/* Curtain Animation Reset */
+/* --------------------------------------------------
+   CURTAIN ANIMATION
+-------------------------------------------------- */
+
 #curtainLeft,
 #curtainRight {
   position: fixed;
@@ -86,34 +160,28 @@ body {
   height: 100vh;
   top: 0;
   z-index: 30;
-  transform: scaleX(1); /* Visually closed by default */
-  /* No animation by default. Animation only on .open class. */
+  transform: scaleX(1);
 }
 
-/* Left curtain slides left, right curtain slides right */
 #curtainLeft {
   left: 0;
   transform-origin: left;
-  border-right: none;
-  box-shadow: none;
 }
+
 #curtainRight {
   right: 0;
   transform-origin: right;
-  border-left: none;
-  box-shadow: none;
 }
 
 @keyframes openCurtain {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0);
-  }
+  0% { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
 }
 
-/* Center wrapper for logo and button */
+/* --------------------------------------------------
+   CENTER WRAPPER (LOGO + BUTTON)
+-------------------------------------------------- */
+
 .centerWrapper {
   position: absolute;
   top: 50%;
@@ -124,6 +192,10 @@ body {
   align-items: center;
   z-index: 15;
 }
+
+/* --------------------------------------------------
+   LOGO ANIMATION
+-------------------------------------------------- */
 
 #logo {
   width: 300px;
@@ -160,12 +232,18 @@ body {
   }
 }
 
+/* --------------------------------------------------
+   ENTER HOME BUTTON
+-------------------------------------------------- */
+
 #enterHome {
   background: linear-gradient(135deg, #FFD700 0%, #FFF700 40%, #FFD700 100%);
   color: #111;
   border: 2px solid #111;
   border-radius: 30px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 12px #FFD700 inset;
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.4),
+    0 0 12px #FFD700 inset;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1em;
   font-weight: bold;
@@ -181,10 +259,12 @@ body {
 }
 
 @keyframes fadeInEnterHome {
-  to {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
+
+/* --------------------------------------------------
+   CURTAIN IMAGE
+-------------------------------------------------- */
 
 .curtainImg {
   background: url('images/bright-curtain.png') center center no-repeat;
@@ -192,56 +272,6 @@ body {
   width: 100%;
   height: 100%;
   display: block;
-}
-
-.main-nav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  background: transparent;
-  padding: 8px 0 4px 0;
-  border-radius: 0 0 8px 8px;
-  box-shadow: none;
-  margin-bottom: 18px;
-}
-
-.main-nav a {
-  color: #FFD700;
-  font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 1.25em;
-  background: transparent;
-  box-shadow: none;
-  border: none;
-  transition: color 0.2s, border-bottom 0.2s;
-  position: relative;
-}
-
-.main-nav a:hover, .main-nav a:focus {
-  color: #FFD700;
-  background: transparent;
-  border-bottom: 2px solid #FFD700;
-}
-
-.main-nav a.active {
-  color: #fff !important;
-  border-bottom: 3px solid #FFD700;
-  background: rgba(34,34,34,0.5);
-}
-
-@media (max-width: 600px) {
-  .main-nav a {
-    font-size: 1em;
-    padding: 6px 8px;
-  }
-  .press-link {
-    display: none;
-  }
 }
 
 
