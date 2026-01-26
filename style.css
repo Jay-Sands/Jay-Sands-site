@@ -289,7 +289,7 @@ body {
 
 @keyframes logoGlow {
   0% { filter: brightness(1); }
-  50% { filter: brightness(1.08); }
+  50% { filter: brightness(1.25); }
   100% { filter: brightness(1); }
 }
 
