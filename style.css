@@ -288,9 +288,9 @@ body {
 }
 
 @keyframes logoGlow {
-    0% { filter: brightness(1); }
-    50% { filter: brightness(1.15); }
-    100% { filter: brightness(1); }
+    0% { filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.4)); }
+    50% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9)); }
+    100% { filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.4)); }
 }
 
 nav, .main-nav {
