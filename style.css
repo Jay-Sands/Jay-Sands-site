@@ -8,7 +8,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   opacity: 0;
-  animation: fadeIn 1.6s ease-out forwards;
+  animation: fadeIn 3.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
