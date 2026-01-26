@@ -282,7 +282,7 @@ body {
 /* Micro-animation: soft gold glow pulse on logo */
 .logo {
   animation: logoGlow 8s ease-in-out infinite;
-  height: 40px;
+  height: 25px;
   margin: 10px 20px;
   vertical-align: middle;
 }
