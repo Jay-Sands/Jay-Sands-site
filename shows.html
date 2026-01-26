@@ -1,138 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    .main-nav {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      background: transparent;
-      padding: 8px 0 4px 0;
-      border-radius: 0 0 8px 8px;
-      box-shadow: none;
-      margin-bottom: 18px;
-    }
-    .main-nav a {
-      color: #FFD700;
-      font-family: 'Dancing Script', cursive;
-      font-weight: 700;
-      padding: 4px 14px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 1.25em;
-      background: transparent;
-      box-shadow: none;
-      border: none;
-      transition: color 0.2s, border-bottom 0.2s;
-      position: relative;
-    }
-    .main-nav a:hover, .main-nav a:focus {
-      color: #FFD700;
-      background: transparent;
-      border-bottom: 2px solid #FFD700;
-    }
-    @media (max-width: 600px) {
-      .main-nav a {
-        font-size: 1em;
-        padding: 6px 8px;
-      }
-    }
-  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upcoming Shows | Jay Sands</title>
+
+  <!-- Global Styles -->
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
   <style>
-  body { background: #111; color: #FFD700; font-family: 'Dancing Script', cursive; margin: 0; }
-  .container { max-width: 600px; margin: 40px auto; background: rgba(34,34,34,0.92); border-radius: 24px; box-shadow: 0 8px 32px rgba(178,34,34,0.3); padding: 32px 24px; animation: fadeIn 1.2s ease; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  h1 { font-size: 3em; text-align: center; margin-bottom: 24px; text-shadow: 2px 2px 8px #B22222; }
-  .show-list { list-style: none; padding: 0; }
-  .show-item { margin-bottom: 32px; padding-bottom: 24px; border-bottom: none; position: relative; background: rgba(34,34,34,0.98); border-radius: 16px; box-shadow: 0 2px 12px rgba(255,215,0,0.08); transition: box-shadow 0.3s, transform 0.3s; display: flex; align-items: center; gap: 18px; }
-  .show-item:hover { box-shadow: 0 4px 24px #FFD700, 0 2px 8px #B22222; transform: scale(1.03); }
-  .show-item.featured { border: 2px solid #FFD700; box-shadow: 0 0 24px #FFD700, 0 2px 8px #B22222; }
-  .venue-img { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg,#FFD700,#B8860B); display: flex; align-items: center; justify-content: center; color: #111; font-size: 1.5em; font-weight: bold; margin-right: 12px; box-shadow: 0 2px 8px #B22222; }
-  .venue { font-size: 1.5em; font-weight: bold; color: #FFD700; }
-  .details { color: #fff; font-size: 1.1em; margin: 8px 0; }
-  .date { font-size: 1.2em; color: #FFD700; margin-top: 8px; }
-  .gold-divider { width: 80%; height: 4px; background: linear-gradient(90deg,#FFD700,#B8860B,#FFD700); border-radius: 2px; margin: 18px auto; }
+    /* Page Container (matches Booking + Feedback) */
+    .page-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: rgba(17, 17, 17, 0.92);
+      border-radius: 18px;
+      padding: 32px 28px;
+      border: 3px solid #1e90ff;
+      box-shadow: 0 0 22px rgba(30,144,255,0.45);
+    }
+
+    /* EXACT heading style from Booking + Feedback */
+    .page-title {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 2.4em;
+      font-weight: 700;
+      color: #FFD700;
+      text-align: center;
+      margin-bottom: 24px;
+      text-shadow: 0 0 8px rgba(255,215,0,0.4);
+    }
+
+    /* Show Listing Block (clean + modern) */
+    .show-card {
+      background: #111;
+      padding: 24px;
+      border-radius: 14px;
+      border: 2px solid rgba(255,215,0,0.35);
+      margin-bottom: 28px;
+      box-shadow: 0 0 12px rgba(255,215,0,0.15);
+    }
+
+    .show-title {
+      color: #FFD700;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .show-dates {
+      color: #ccc;
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.5;
+    }
+
+    .show-details p {
+      color: #eee;
+      margin: 6px 0;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .reservation-box {
+      background: #000;
+      padding: 14px;
+      border-radius: 10px;
+      border: 2px solid #FFD700;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .reservation-box p {
+      margin: 6px 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .reservation-strong {
+      color: #FFD700;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
   </style>
 </head>
+
 <body>
-  <div style="width:100%;">
-    <nav class="main-nav" style="display:flex;justify-content:center;align-items:center;gap:16px;background:transparent;padding:8px 0 4px 0;border-radius:0 0 8px 8px;box-shadow:none;margin-bottom:18px;">
-  <a href="index.html?skip-landing">Home</a>
-  <a href="shows.html" class="active">Show Dates</a>
-  <a href="booking.html">Booking</a>
-  <a href="feedback.html">Feedback</a>
-  <a href="press.html">Press</a>
 
-    </nav>
-    <style>
-      @keyframes glow-xmas {
-        0% { box-shadow: 0 0 12px 2px #1e90ff, 0 0 8px 2px #FFD700; }
-        100% { box-shadow: 0 0 24px 6px #FFD700, 0 0 16px 4px #1e90ff; }
-      }
-    </style>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="index.html?skip-landing">Home</a>
+    <a href="shows.html" class="active">Show Dates</a>
+    <a href="booking.html">Booking</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="press.html">Press</a>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="page-container">
+
+    <h1 class="page-title" style="font-family:'Dancing Script',cursive;text-decoration:underline;">Upcoming Shows</h1>
+
+    <!-- Show Card -->
+    <div class="show-card">
+
+      <div class="show-title">Jay Sands • In the Style of Sinatra</div>
+
+      <div class="show-dates">
+        Saturday • February 14th • 7:00–9:00 PM<br>
+        <span style="color: #ff4444; font-size: 1.3rem; font-family: 'Dancing Script', cursive; font-weight: 700;">Valentine's Day</span><br>
+        Saturday • March 14th • 7:00–9:00 PM
+      </div>
+
+      <div class="show-details">
+        <p><strong>Venue:</strong> Mangia Italian Restaurant</p>
+        <p><strong>Address:</strong> 3831 Avalon Park E Blvd, Orlando, FL 32828</p>
+        <p><strong>Phone:</strong> <a href="tel:+14077377499" style="color: gold;">+1 407 737 7499</a></p>
+        <p><strong>Hours:</strong> Tuesday–Sunday • 2 PM – 10 PM</p>
+      </div>
+
+      <div class="reservation-box">
+        <p class="reservation-strong">🎟️ Reservations are strongly suggested</p>
+        <p style="color:#ccc;">This show will sell out — call the venue to reserve your table.</p>
+      </div>
+
+    </div>
+
   </div>
-
-  <div class="container">
-    <h1 style="margin-bottom:8px;font-size:2em;">Upcoming Shows</h1>
-    <ul class="show-list">
-      <section class="show-listing" style="background-color: #000; color: #fff; border-left: 5px solid gold; padding: 2rem; margin: 2rem auto; max-width: 700px; font-family: 'Georgia', serif;">
-  <h2 style="color: gold; font-size: 1.8rem; margin-bottom: 0.3rem;">Jay Sands <span style="color: gold; font-size: 1.8rem;">&bull;</span> In the Style of Sinatra</h2>
-  <h3 style="color: #ccc; font-size: 1.2rem; margin-bottom: 1.5rem;">Saturday <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> February <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 14th <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 7:00-9:00 PM</h3>
-
-  <h3 style="color: #ccc; font-size: 1.2rem; margin-bottom: 1.5rem;">Saturday <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> March <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 14th <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 7:00-9:00 PM</h3>
-
-
-
-        <div style="margin-bottom: 1.5rem;">
-          <p><strong>Venue:</strong> Mangia Italian Restaurant</p>
-          <p><strong>Address:</strong> 3831 Avalon Park E Blvd, Orlando, FL 32828</p>
-          <p><strong>Phone:</strong> <a href="tel:+14077377499" style="color: gold;">+1 407 737 7499</a></p>
-          <p><strong>Hours:</strong> Tuesday–Sunday 2 PM – 10 PM</p>
-        </div>
-
-        <div style="background-color: #111; padding: 1rem; border: 2px solid gold; text-align: center;">
-          <p style="color: gold; font-weight: bold; font-size: 1.1rem;">🎟️ Reservations are strongly suggested</p>
-          <p style="color: #ccc;">This show will sell out — call the venue to reserve your table.</p>
-        </div>
-      </section>
-    </ul>
-<script>
-// Auto-remove past shows and highlight next upcoming show
-document.addEventListener('DOMContentLoaded', function() {
-  const showItems = Array.from(document.querySelectorAll('.show-item'));
-  const today = new Date();
-  let nextShow = null;
-  let nextShowDate = null;
-  showItems.forEach(item => {
-    const dateElem = item.querySelector('.date');
-    if (!dateElem) return;
-    const dateText = dateElem.textContent.trim();
-    // Try to parse date (format: Month Day, Year)
-    const parsedDate = new Date(dateText);
-    if (isNaN(parsedDate)) return;
-    // Remove shows in the past
-    if (parsedDate < today.setHours(0,0,0,0)) {
-      item.style.display = 'none';
-    } else {
-      // Find the next upcoming show
-      if (!nextShowDate || parsedDate < nextShowDate) {
-        nextShow = item;
-        nextShowDate = parsedDate;
-      }
-    }
-  });
-  // Remove featured class from all, add to next upcoming
-  showItems.forEach(item => item.classList.remove('featured'));
-  if (nextShow) nextShow.classList.add('featured');
-});
-</script>
 
 </body>
 </html>
