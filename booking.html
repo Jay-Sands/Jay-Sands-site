@@ -62,6 +62,22 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+    .logo {
+      width: 80px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 6px #FFD700) drop-shadow(0 0 12px #FFD700);
+      animation: glowPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px #FFD700) drop-shadow(0 0 12px #FFD700);
+      }
+      50% {
+        filter: drop-shadow(0 0 12px #FFD700) drop-shadow(0 0 24px #FFD700);
+      }
+    }
   </style>
   <script>
     let bookingCanSubmit = true;
