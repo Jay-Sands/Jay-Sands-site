@@ -344,7 +344,21 @@ nav, .main-nav {
 }
   height: 100%;
   display: block;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
+
+#streamStatus {
+  min-height: 20px;
+  display: block;
+}
+
+
 
 
 
