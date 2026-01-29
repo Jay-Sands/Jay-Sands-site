@@ -1,171 +1,176 @@
-/* --------------------------------------------------
-   GLOBAL BASE
--------------------------------------------------- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Stream</title>
 
+<<<<<<< HEAD
 
+=======
+  <!-- GLOBAL STYLE -->
+  <style>
+    body {
+      background: #000;
+      color: #FFD700;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+>>>>>>> site-updates
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+    /* NAV */
+    .main-nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      padding: 12px 0;
+      background: #000;
+      border-bottom: 1px solid #333;
+    }
 
-/* --------------------------------------------------
-   NAVIGATION
--------------------------------------------------- */
+    .main-nav a {
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2em;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
 
-.main-nav {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
-  background: transparent;
-  padding: 8px 0 4px 0;
-  border-radius: 0 0 8px 8px;
-  box-shadow: none;
-  margin-bottom: 18px;
-}
+    .main-nav a:hover {
+      color: #fff;
+    }
 
-.main-nav .brand {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  flex-shrink: 0;
-}
+    /* PLAYER */
+    .player-container {
+      max-width: 500px;
+      margin: 40px auto;
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #333;
+      border-radius: 12px;
+      background: #111;
+    }
 
-.main-nav .nav-logo {
-  width: 25px;
-  height: 25px;
-  display: block;
-}
+    #playPauseBtn {
+      background: #FFD700;
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      font-size: 1.5em;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: 0.2s;
+    }
 
-.main-nav .nav-links {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 16px;
-  flex-wrap: wrap;
-}
+    #playPauseBtn:hover {
+      background: #fff;
+      color: #000;
+    }
 
-.main-nav .nav-links li {
-  margin: 0;
-  padding: 0;
-}
+    #streamStatus {
+      margin-top: 10px;
+      font-size: 1.1em;
+      min-height: 24px;
+    }
 
-.main-nav a {
-  color: #FFD700;
-  font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 1.25em;
-  background: transparent;
-  border: none;
-  transition: color 0.2s, border-bottom 0.2s;
-  position: relative;
-}
+    /* ADMIN LOGIN */
+    .admin-box {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 12px;
+      text-align: center;
+    }
 
-.main-nav a:hover,
-.main-nav a:focus {
-  color: #FFD700;
-  background: transparent;
-  border-bottom: 2px solid #FFD700;
-}
+    .admin-box input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #000;
+      color: #FFD700;
+    }
 
-.main-nav a.active {
-  color: #fff !important;
-  border-bottom: 3px solid #FFD700;
-  background: rgba(34, 34, 34, 0.5);
-}
+    .admin-box button {
+      padding: 10px 20px;
+      background: #FFD700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-/* Mobile nav adjustments */
-@media (max-width: 600px) {
-  .main-nav {
-    flex-wrap: wrap;
-    gap: 4px;
-    padding: 4px 1vw 2px 1vw;
-  }
-  .main-nav .nav-links {
-    gap: 4px;
-  }
-  .main-nav a {
-    font-size: 1em;
-    padding: 6px 8px;
-  }
-  .press-link {
-    display: none;
-  }
-}
+    /* MOD PANEL */
+    #moderatorPanel {
+      display: none;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 12px;
+    }
 
-/* --------------------------------------------------
-   OTHER ARTISTS PAGE — CARD GLOW
--------------------------------------------------- */
+    #moderatorPanel button {
+      padding: 10px 20px;
+      background: #FFD700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
 
-.other-artist-card {
-  border-radius: 18px;
-  box-shadow:
-    0 0 34px 11px rgba(0, 64, 255, 0.28),
-    0 0 22px 5px rgba(0, 64, 255, 0.16),
-    0 0 13px 3px rgba(255, 215, 0, 0.07),
-    0 0 7px 1px rgba(255, 215, 0, 0.10) inset,
-    0 2px 3px rgba(255, 215, 0, 0.12);
-}
+<body>
 
-/* --------------------------------------------------
-   HOME PAGE — DESKTOP LAYOUT
--------------------------------------------------- */
+  <!-- NAV -->
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="live.html" class="active">Live</a>
+    <a href="press.html">Press</a>
+    <a href="artists.html">Artists</a>
+  </nav>
 
-@media only screen and (min-width: 701px) {
-  .home-flex-row {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 40px !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  <!-- PLAYER -->
+  <div class="player-container">
+    <button id="playPauseBtn">▶</button>
+    <div id="streamStatus">Stream stopped</div>
+    <audio id="audioPlayer" preload="none"></audio>
+  </div>
 
-  .home-flex-col {
-    min-width: 250px !important;
-    width: 50% !important;
-    box-sizing: border-box !important;
-    margin-bottom: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    min-height: 900px !important;
-  }
-}
+  <!-- ADMIN LOGIN -->
+  <div class="admin-box" id="adminLoginBox">
+    <h3>Moderator Login</h3>
+    <input type="password" id="adminPassword" placeholder="Enter password" />
+    <button id="adminLoginBtn">Login</button>
+  </div>
 
-/* --------------------------------------------------
-   HOME PAGE — MOBILE LAYOUT
--------------------------------------------------- */
+  <!-- MOD PANEL -->
+  <div id="moderatorPanel">
+    <h3>Moderator Panel</h3>
+    <button id="clearMessagesBtn">Clear All Messages</button>
+  </div>
 
-@media only screen and (max-width: 700px) {
-  .home-flex-row {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0 !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
-  }
+  <!-- JS -->
+  <script>
+    /* STREAM CONFIG */
+    const streamURL = "https://your-icecast-host:port/mountpoint";
 
-  .home-flex-col {
-    min-width: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-bottom: 24px !important;
-    display: block !important;
-  }
-}
+    const audio = document.getElementById("audioPlayer");
+    const playBtn = document.getElementById("playPauseBtn");
+    const statusBox = document.getElementById("streamStatus");
 
+<<<<<<< HEAD
 /* --------------------------------------------------
    WELCOME TEXT FADE
 -------------------------------------------------- */
@@ -359,6 +364,42 @@ img.logo {
     opacity: 1;
   }
 }
+=======
+    playBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.src = streamURL + "?nocache=" + Date.now();
+        audio.play();
+        playBtn.textContent = "⏸";
+        statusBox.textContent = "Playing…";
+      } else {
+        audio.pause();
+        playBtn.textContent = "▶";
+        statusBox.textContent = "Stream stopped";
+      }
+    });
 
+    /* ADMIN LOGIN */
+    const adminLoginBtn = document.getElementById("adminLoginBtn");
+    const adminPassword = document.getElementById("adminPassword");
+    const adminLoginBox = document.getElementById("adminLoginBox");
+    const moderatorPanel = document.getElementById("moderatorPanel");
 
+    adminLoginBtn.addEventListener("click", () => {
+      if (adminPassword.value === "YOUR_ADMIN_PASSWORD") {
+        adminLoginBox.style.display = "none";
+        moderatorPanel.style.display = "block";
+      } else {
+        alert("Incorrect password");
+      }
+    });
+>>>>>>> site-updates
+
+    /* MOD PANEL ACTIONS */
+    document.getElementById("clearMessagesBtn").addEventListener("click", () => {
+      alert("Messages cleared (placeholder)");
+    });
+  </script>
+
+</body>
+</html>
 
