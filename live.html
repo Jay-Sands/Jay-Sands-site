@@ -1,11 +1,11 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Stream – Jay Sands</title>
+  <title>Jay Sands – Now Streaming</title>
   <meta name="description" content="Watch Jay Sands perform live. Listen to streaming radio shows and chat with other listeners in real-time.">
   <link rel="stylesheet" href="style.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
     .live-container {
@@ -441,8 +441,11 @@
   <!-- Admin Controls -->
   <button class="admin-button" id="adminToggle">🔐 Mod</button>
 
-  <div class="admin-panel" id="adminPanel">
-    <h4>Moderator Panel</h4>
+  <div class="admin-panel" id="adminPanel" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+      <h4 style="margin: 0;">Moderator Panel</h4>
+      <button id="adminCloseBtn" style="background: #ff4444; color: #fff; border: none; border-radius: 3px; width: 24px; height: 24px; padding: 0; cursor: pointer; font-weight: bold;">×</button>
+    </div>
     <div class="admin-status" id="adminStatus" style="display: none;">✓ Admin Active</div>
     
     <div id="adminLoginForm">
@@ -459,12 +462,11 @@
     </div>
   </div>
 
-  <!-- Main Content -->
   <div class="live-container">
     <!-- Stream Player Section -->
     <div class="stream-player">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <h2 id="showTitle" style="margin: 0;">🎙️ Jay Sands Live - Now!</h2>
+        <h2 id="showTitle" style="margin: 0;"></h2>
         <select id="showSelector" style="padding: 6px; border-radius: 6px; border: 1px solid #00f0ff; background: #222; color: #FFD700; font-weight: bold; font-size: 0.85em; cursor: pointer;">
           <option value="singing">Jay Sands Live - Now!</option>
           <option value="sessions">Night Sessions</option>
@@ -472,7 +474,7 @@
       </div>
 
       <div class="stream-status">
-        <div class="status-live" id="streamStatus">LIVE</div>
+        <div class="status-live" id="streamStatus" style="height: 20px;"></div>
       </div>
 
       <div class="stream-status">
@@ -481,9 +483,10 @@
 
       <!-- Audio Player -->
       <div class="audio-player">
-        <audio id="streamAudio" controls style="width: 100%;">
-          Your browser does not support the audio element.
-        </audio>
+        <audio controls autoplay>
+  <source src="http://us-01.unitystreams.net:8014/Live" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
       </div>
 
       <!-- Stream Information -->
@@ -603,7 +606,20 @@
 
     // Admin panel toggle
     adminToggle.addEventListener('click', () => {
-      adminPanel.classList.toggle('active');
+      if (adminPanel.style.display === 'block') {
+        // Hide the panel
+        adminPanel.style.display = 'none';
+        isAdmin = false;
+        adminPassword.value = '';
+      } else {
+        // Show the panel with login form
+        adminPanel.style.display = 'block';
+        adminLoginForm.style.display = 'block';
+        adminControls.style.display = 'none';
+        adminStatus.style.display = 'none';
+        adminPassword.value = '';
+        adminPassword.focus();
+      }
     });
 
     // Load stream on page load
@@ -611,15 +627,40 @@
     streamAudio.src = STREAM_URL;
 
     // Admin login
-    adminLoginBtn.addEventListener('click', () => {
+    adminLoginBtn.addEventListener('click', async () => {
       if (adminPassword.value === MOD_PASSWORD) {
+        // Delete all messages for the current show
+        const currentShow = showSelector.value;
+        try {
+          const messagesRef = collection(db, 'messages');
+          const q = query(messagesRef, where('show', '==', currentShow));
+          const snapshot = await getDocs(q);
+          
+          // Delete all documents
+          snapshot.forEach(async (doc) => {
+            await deleteDoc(doc.ref);
+          });
+          
+          console.log('All messages deleted for show:', currentShow);
+        } catch (error) {
+          console.error('Error deleting messages:', error);
+          alert('Error clearing messages: ' + error.message);
+          return;
+        }
+        
+        // Show admin controls after deletion
         isAdmin = true;
+        adminPanel.style.display = 'block';
         adminLoginForm.style.display = 'none';
         adminControls.style.display = 'block';
         adminStatus.style.display = 'block';
         adminPassword.value = '';
+<<<<<<< HEAD
         alert('Moderator panel activated!');
         loadChatMessages(); // Reload messages to show delete buttons
+=======
+        alert('Moderator panel activated! All messages cleared.');
+>>>>>>> site-updates
       } else {
         alert('Incorrect password');
         adminPassword.value = '';
@@ -629,10 +670,23 @@
     // Admin logout
     adminLogout.addEventListener('click', () => {
       isAdmin = false;
+      adminPanel.style.display = 'none';
       adminLoginForm.style.display = 'block';
       adminControls.style.display = 'none';
       adminStatus.style.display = 'none';
+<<<<<<< HEAD
       loadChatMessages(); // Reload messages to hide delete buttons
+=======
+      adminPassword.value = '';
+    });
+
+    // Admin close button
+    const adminCloseBtn = document.getElementById('adminCloseBtn');
+    adminCloseBtn.addEventListener('click', () => {
+      adminPanel.style.display = 'none';
+      isAdmin = false;
+      adminPassword.value = '';
+>>>>>>> site-updates
     });
 
     function escapeHtml(text) {
@@ -654,6 +708,9 @@
       if (isAdmin && !isBanned) {
         banButtonHtml = `<button class="ban-button" data-user="${escapeHtml(username)}" data-msgid="${docId}">Ban</button>`;
         deleteButtonHtml = `<button class="ban-button" style="background: #ff8c00;" data-msgid="${docId}" title="Delete message">🗑️</button>`;
+      }
+      if (isAdmin) {
+        deleteButtonHtml = `<button class="delete-button" data-msgid="${docId}">Delete</button>`;
       }
 
       if (isBanned) {
@@ -684,12 +741,26 @@
             });
           }
 
+<<<<<<< HEAD
           const deleteBtn = messageDiv.querySelector('[title="Delete message"]');
+=======
+          // Attach delete button listener if admin
+          const deleteBtn = messageDiv.querySelector('.delete-button');
+>>>>>>> site-updates
           if (deleteBtn) {
             deleteBtn.addEventListener('click', async (e) => {
               const msgId = e.target.dataset.msgid;
               if (confirm('Delete this message?')) {
+<<<<<<< HEAD
                 await deleteMessage(msgId);
+=======
+                try {
+                  await deleteDoc(doc(db, 'messages', msgId));
+                } catch (error) {
+                  console.error('Error deleting message:', error);
+                  alert('Failed to delete message');
+                }
+>>>>>>> site-updates
               }
             });
           }
@@ -857,9 +928,19 @@
       console.log('Loading messages for show:', currentShow);
 
       try {
+<<<<<<< HEAD
         // Query all messages ordered by timestamp, filter by show in the UI
         const q = query(
           collection(db, 'messages'),
+=======
+        // Calculate timestamp for 10 minutes ago
+        const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+        
+        const q = query(
+          collection(db, 'messages'),
+          where('show', '==', currentShow),
+          where('timestamp', '>=', tenMinutesAgo),
+>>>>>>> site-updates
           orderBy('timestamp', 'asc')
         );
 
@@ -900,11 +981,43 @@
     // Stream status
     function updateStreamStatus() {
       const statusDiv = document.getElementById('streamStatus');
-      statusDiv.textContent = 'LIVE';
+      statusDiv.textContent = '';
       statusDiv.className = 'status-live';
     }
 
+<<<<<<< HEAD
     // Cleanup complete
+=======
+    // Actually check stream status
+    async function checkStreamStatus() {
+      try {
+        const response = await fetch('http://sandstream.bivman.com', { method: 'HEAD', mode: 'no-cors' });
+        const statusDiv = document.getElementById('streamStatus');
+        statusDiv.textContent = '';
+        statusDiv.className = 'status-live';
+      } catch (error) {
+        const statusDiv = document.getElementById('streamStatus');
+        statusDiv.textContent = '';
+        statusDiv.className = 'status-offline';
+      }
+    }
+
+    checkStreamStatus();
+    setInterval(checkStreamStatus, 30000); // Check every 30 seconds
+>>>>>>> site-updates
   </script>
+
+<script>
+  // CHANGE THIS to true when the stream is live, false when not
+  const isLive = false;
+
+  const showTitle = document.getElementById("showTitle");
+
+  if (isLive) {
+    showTitle.textContent = "🎙️ Jay Sands Live – Now!";
+  } else {
+    showTitle.textContent = "🎙️ Jay Sands – Off Air";
+  }
+</script>
 </body>
 </html>

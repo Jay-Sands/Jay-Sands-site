@@ -177,7 +177,7 @@ body {
   text-shadow: 0 1px 0 #fff, 0 2px 4px #FFD700;
   margin-top: 2rem;
   opacity: 0;
-  animation: fadeInEnterHome 2s ease-in 4.5s forwards;
+  EnterHome 2s ease-in 4.5s forwards;animation: fadeIn
 }
 
 @keyframes fadeInEnterHome {
@@ -192,5 +192,15 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+}
+body:not(#landing) {
+  opacity: 0;
+  animation: fadeIn 3.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 

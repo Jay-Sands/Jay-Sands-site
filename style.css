@@ -337,10 +337,21 @@ nav, .main-nav {
 }
 img.logo {
   height: 100%;
-  display: block;}
-body:not(#landing) {
-  opacity: 0;
-  animation: fadeIn 3.5s ease-out forwards;
+  display: block;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#streamStatus {
+  min-height: 20px;
+  display: block;
 }
 
 @keyframes fadeIn {
@@ -348,4 +359,6 @@ body:not(#landing) {
     opacity: 1;
   }
 }
+
+
 
