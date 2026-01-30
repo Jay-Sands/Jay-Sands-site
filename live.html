@@ -1,4 +1,3 @@
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
-    .live-container {
+    .live-container {<html lang="en">
       max-width: 750px;
       margin: 2px auto;
       padding: 0 8px;
@@ -36,8 +35,7 @@
     }
 
     .stream-status {
-      text-align: center;
-      margin: 10px 0;
+      text-ali10px 0;
       padding: 10px;
       border-radius: 8px;
       background: #222;
@@ -258,8 +256,7 @@
     }
 
     .chat-input-group {
-      display: flex;
-      gap: 6px;
+      displ6px;
       margin-top: 10px;
     }
 
@@ -477,16 +474,21 @@
         <div class="status-live" id="streamStatus" style="height: 20px;"></div>
       </div>
 
-      <div class="stream-status">
-        <div class="status-live" id="streamStatus">LIVE</div>
-      </div>
-
-      <!-- Audio Player -->
-      <div class="audio-player">
-        <audio controls autoplay>
-  <source src="http://us-01.unitystreams.net:8026/live" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+            <!-- Now Playing -->
+      <div class="now-playing">
+        <div class="now-playing-header">🎵 Now Playing</div>
+        <div class="now-playing-content">
+          <div class="album-art" id="albumArt">
+            <div class="placeholder-art">♪</div>
+          </div>
+          <div class="track-info">
+            <div class="track-title" id="trackTitle">Stream Audio</div>
+            <div class="track-artist" id="trackArtist">Jay Sands</div>
+            <div class="track-details">
+              <span class="track-time" id="trackTime">0:00</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Stream Information -->
@@ -543,9 +545,6 @@
     let isAdmin = false;
     let bannedUsers = new Set();
 
-    // Stream relay URL (Python relay server)
-    const STREAM_URL = 'http://stream.abyss-shoutcast.com:4632';
-
     // Show selector
     const showSelector = document.getElementById('showSelector');
     const showTitle = document.getElementById('showTitle');
@@ -597,12 +596,6 @@
     const adminStatus = document.getElementById('adminStatus');
     const bannedList = document.getElementById('bannedList');
     const adminLogout = document.getElementById('adminLogout');
-    const toggleStreamBtn = document.getElementById('toggleStreamBtn');
-    const streamUrlInput = document.getElementById('streamUrlInput');
-    const updateStreamBtn = document.getElementById('updateStreamBtn');
-
-    // Load saved stream URL with fallback
-    let currentStreamUrl = localStorage.getItem('streamUrl') || 'http://sandstream.bivman.com';
 
     // Admin panel toggle
     adminToggle.addEventListener('click', () => {
@@ -621,10 +614,6 @@
         adminPassword.focus();
       }
     });
-
-    // Load stream on page load
-    const streamAudio = document.getElementById('streamAudio');
-    streamAudio.src = STREAM_URL;
 
     // Admin login
     adminLoginBtn.addEventListener('click', async () => {
@@ -655,8 +644,7 @@
         adminControls.style.display = 'block';
         adminStatus.style.display = 'block';
         adminPassword.value = '';
-        alert('Moderator panel activated!');
-        loadChatMessages(); // Reload messages to show delete buttons
+        alert('Moderator panel activated! All messages cleared.');
       } else {
         alert('Incorrect password');
         adminPassword.value = '';
@@ -670,7 +658,15 @@
       adminLoginForm.style.display = 'block';
       adminControls.style.display = 'none';
       adminStatus.style.display = 'none';
-      loadChatMessages(); // Reload messages to hide delete buttons
+      adminPassword.value = '';
+    });
+
+    // Admin close button
+    const adminCloseBtn = document.getElementById('adminCloseBtn');
+    adminCloseBtn.addEventListener('click', () => {
+      adminPanel.style.display = 'none';
+      isAdmin = false;
+      adminPassword.value = '';
     });
 
     function escapeHtml(text) {
@@ -691,7 +687,6 @@
       let deleteButtonHtml = '';
       if (isAdmin && !isBanned) {
         banButtonHtml = `<button class="ban-button" data-user="${escapeHtml(username)}" data-msgid="${docId}">Ban</button>`;
-        deleteButtonHtml = `<button class="ban-button" style="background: #ff8c00;" data-msgid="${docId}" title="Delete message">🗑️</button>`;
       }
       if (isAdmin) {
         deleteButtonHtml = `<button class="delete-button" data-msgid="${docId}">Delete</button>`;
@@ -714,7 +709,7 @@
 
         // Attach ban button listener if admin
         if (isAdmin) {
-          const banBtn = messageDiv.querySelector('[data-user]');
+          const banBtn = messageDiv.querySelector('.ban-button');
           if (banBtn) {
             banBtn.addEventListener('click', async (e) => {
               const userToBan = e.target.dataset.user;
@@ -725,12 +720,18 @@
             });
           }
 
-          const deleteBtn = messageDiv.querySelector('[title="Delete message"]');
+          // Attach delete button listener if admin
+          const deleteBtn = messageDiv.querySelector('.delete-button');
           if (deleteBtn) {
             deleteBtn.addEventListener('click', async (e) => {
               const msgId = e.target.dataset.msgid;
               if (confirm('Delete this message?')) {
-                await deleteMessage(msgId);
+                try {
+                  await deleteDoc(doc(db, 'messages', msgId));
+                } catch (error) {
+                  console.error('Error deleting message:', error);
+                  alert('Failed to delete message');
+                }
               }
             });
           }
@@ -781,40 +782,6 @@
       }
     }
 
-    async function deleteMessage(messageId) {
-      try {
-        await deleteDoc(doc(db, 'messages', messageId));
-        alert('Message deleted');
-        loadChatMessages();
-      } catch (error) {
-        console.error('Error deleting message:', error);
-        alert('Failed to delete message: ' + error.message);
-      }
-    }
-
-    async function unbanUser(userToUnban) {
-      try {
-        // Remove from banned_users collection
-        const bannedRef = collection(db, 'banned_users');
-        const bannedQuery = query(
-          bannedRef,
-          where('username', '==', userToUnban),
-          where('show', '==', showSelector.value)
-        );
-        const bannedDocs = await getDocs(bannedQuery);
-        bannedDocs.forEach(async (doc) => {
-          await deleteDoc(doc.ref);
-        });
-
-        bannedUsers.delete(userToUnban);
-        updateBannedList();
-        alert(`User '${userToUnban}' has been unbanned`);
-      } catch (error) {
-        console.error('Error unbanning user:', error);
-        alert('Failed to unban user: ' + error.message);
-      }
-    }
-
     async function loadBannedUsers() {
       try {
         const bannedRef = collection(db, 'banned_users');
@@ -836,22 +803,10 @@
         bannedList.innerHTML = '<span style="color: #888; font-size: 0.75em;">None</span>';
       } else {
         bannedList.innerHTML = Array.from(bannedUsers).map((user) => `
-          <div style="color: #ff4444; font-size: 0.8em; padding: 4px; background: #2a2a2a; margin: 4px 0; border-radius: 3px; display: flex; justify-content: space-between; align-items: center;">
-            <span>⛔ ${escapeHtml(user)}</span>
-            <button style="background: #00aa00; color: #fff; border: none; padding: 2px 6px; border-radius: 3px; cursor: pointer; font-size: 0.7em;" data-unban="${escapeHtml(user)}">Unban</button>
+          <div style="color: #ff4444; font-size: 0.8em; padding: 4px; background: #2a2a2a; margin: 4px 0; border-radius: 3px;">
+            ⛔ ${escapeHtml(user)}
           </div>
         `).join('');
-
-        // Attach unban listeners
-        const unbanButtons = bannedList.querySelectorAll('[data-unban]');
-        unbanButtons.forEach((btn) => {
-          btn.addEventListener('click', async (e) => {
-            const userToUnban = e.target.dataset.unban;
-            if (confirm(`Unban user '${userToUnban}'?`)) {
-              await unbanUser(userToUnban);
-            }
-          });
-        });
       }
     }
 
@@ -898,9 +853,13 @@
       console.log('Loading messages for show:', currentShow);
 
       try {
-        // Query all messages ordered by timestamp, filter by show in the UI
+        // Calculate timestamp for 10 minutes ago
+        const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+        
         const q = query(
           collection(db, 'messages'),
+          where('show', '==', currentShow),
+          where('timestamp', '>=', tenMinutesAgo),
           orderBy('timestamp', 'asc')
         );
 
@@ -910,17 +869,14 @@
           chatMessages.innerHTML = '';
           querySnapshot.forEach((doc) => {
             const data = doc.data();
-            // Filter by show on the client side
-            if (data.show === currentShow) {
-              console.log('Adding message:', data.username, data.text);
-              addMessageToUI(
-                doc.id,
-                data.username,
-                data.text,
-                data.timestamp.toDate(),
-                data.isBanned
-              );
-            }
+            console.log('Adding message:', data.username, data.text);
+            addMessageToUI(
+              doc.id,
+              data.username,
+              data.text,
+              data.timestamp.toDate(),
+              data.isBanned
+            );
           });
         }, (error) => {
           console.error('Listener error:', error);
@@ -945,7 +901,22 @@
       statusDiv.className = 'status-live';
     }
 
-    // Cleanup complete
+    // Actually check stream status
+    async function checkStreamStatus() {
+      try {
+        const response = await fetch('http://sandstream.bivman.com', { method: 'HEAD', mode: 'no-cors' });
+        const statusDiv = document.getElementById('streamStatus');
+        statusDiv.textContent = '';
+        statusDiv.className = 'status-live';
+      } catch (error) {
+        const statusDiv = document.getElementById('streamStatus');
+        statusDiv.textContent = '';
+        statusDiv.className = 'status-offline';
+      }
+    }
+
+    checkStreamStatus();
+    setInterval(checkStreamStatus, 30000); // Check every 30 seconds
   </script>
 
 <script>
