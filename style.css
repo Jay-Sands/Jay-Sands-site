@@ -160,7 +160,7 @@
   <!-- JS -->
   <script>
     /* STREAM CONFIG */
-    const streamURL = "https://your-icecast-host:port/mountpoint";
+    const streamURL = "https://us-01.unitystreams.net:8026/Live";
 
     const audio = document.getElementById("audioPlayer");
     const playBtn = document.getElementById("playPauseBtn");
