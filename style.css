@@ -274,5 +274,31 @@ body {
   display: block;
 }
 
+/* --------------------------------------------------
+   DIVIDER
+-------------------------------------------------- */
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #FFD700; /* gold */
+  margin: 0 12px;
+}
+
+.divider span {
+  color: #FFD700; /* gold */
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
 
 
