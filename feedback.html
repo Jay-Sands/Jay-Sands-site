@@ -206,9 +206,14 @@
     <a href="booking.html">Booking</a>
     <a href="feedback.html" class="active">Feedback</a>
   </nav>
-  <div style="max-width: 600px; margin: 32px auto; padding: 0 16px;">
-    <h1 style="text-align: center; color: #FFD700;">Show Feedback</h1>
-    <p style="text-align: center; color: #ccc;">Thank you for attending! Please share your experience below.</p>
+
+  <!-- Main container with form on left and testimonials on right -->
+  <div style="display: grid; grid-template-columns: 1fr 350px; gap: 24px; max-width: 1100px; margin: 32px auto; padding: 0 16px;">
+    
+    <!-- Form Container (Left) -->
+    <div style="max-width: 600px;">
+      <h1 style="text-align: center; color: #FFD700;">Show Feedback</h1>
+      <p style="text-align: center; color: #ccc;">Thank you for attending! Please share your experience below.</p>
       <form id="feedbackForm" action="https://formspree.io/f/maqeqlae" method="POST" onsubmit="handleFeedbackSubmit(event)">
         <div id="successMessage" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#0a0a2a;border:3px solid #00f0ff;border-radius:12px;padding:32px;text-align:center;color:#00f0ff;font-weight:bold;font-size:1.5em;box-shadow:0 0 24px 4px #00f0ff;z-index:1000;max-width:500px;">
           ✓ Thank you! Your feedback has been received. We appreciate your support!
@@ -228,31 +233,33 @@
         <div style="display:flex;justify-content:center;gap:16px;margin-top:18px;">
           <button type="submit" style="background:#FFD700;color:#111;font-weight:bold;padding:8px 18px;border-radius:12px;border:none;cursor:pointer;font-size:0.95em;">Send Feedback</button>
         </div>
-    </form>
+      </form>
+    </div>
+
+    <!-- Testimonials Sidebar (Right) -->
+    <div style="display: flex; flex-direction: column; gap: 0;">
+      <h2 style="color: #FFD700; font-size: 1.3em; text-align: center; margin: 0 0 16px 0; text-decoration: underline;">What Audiences Say</h2>
+      <div id="testimonialsList" style="flex: 1; overflow-y: auto; padding-right: 8px; display: flex; flex-direction: column; gap: 16px; max-height: 600px;">
+        
+        <!-- Testimonial 1 -->
+        <div style="background: rgba(34,34,34,0.85); border-radius: 12px; padding: 12px; border-left: 3px solid #00f0ff;">
+          <p style="color: #FFD700; font-size: 0.95em; font-style: italic; margin: 0 0 8px 0; font-family: Palatino, serif; font-weight: 700; line-height: 1.4;">
+            "An absolutely captivating performance. Jay's voice transported us back to the golden era of music. Simply unforgettable!"
+          </p>
+          <p style="color: #fff; font-size: 0.9em; margin: 0; text-align: right;">— Sarah M.</p>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div style="background: rgba(34,34,34,0.85); border-radius: 12px; padding: 12px; border-left: 3px solid #00f0ff;">
+          <p style="color: #FFD700; font-size: 0.95em; font-style: italic; margin: 0 0 8px 0; font-family: Palatino, serif; font-weight: 700; line-height: 1.4;">
+            "Jay brings elegance and soul to every note. A true professional who makes you feel the music. Highly recommended!"
+          </p>
+          <p style="color: #fff; font-size: 0.9em; margin: 0; text-align: right;">— Michael T.</p>
+        </div>
+
+      </div>
+    </div>
   </div>
 
-  <!-- Testimonials Showcase Section -->
-  <div style="max-width: 1200px; margin: 2px auto; padding: 32px 16px;">
-    <h2 style="text-align: center; font-size: 2em; color: #FFD700; margin-bottom: 32px; font-family: 'Dancing Script', cursive; text-shadow: 2px 2px 8px #B22222; text-decoration: underline;">What Audiences Say</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-    
-    <!-- Testimonial 1 -->
-    <div>
-      <p style="color: #FFD700; font-size: 1.2em; font-style: italic; margin: 0 0 12px 0; font-family: Palatino, serif; font-weight: 700;">
-        "An absolutely captivating performance. Jay's voice transported us back to the golden era of music. Simply unforgettable!"
-      </p>
-      <p style="color: #fff; font-size: 1.3em; margin: 0; text-align: right;">— Sarah M.</p>
-    </div>
-
-    <!-- Testimonial 2 -->
-    <div>
-      <p style="color: #FFD700; font-size: 1.2em; font-style: italic; margin: 0 0 12px 0; font-family: Palatino, serif; font-weight: 700;">
-        "Jay brings elegance and soul to every note. A true professional who makes you feel the music. Highly recommended!"
-      </p>
-      <p style="color: #fff; font-size: 1.3em; margin: 0; text-align: right;">— Michael T.</p>
-    </div>
-
-    </div>
-  </div>
 </body>
 </html>
