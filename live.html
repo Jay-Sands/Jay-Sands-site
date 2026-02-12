@@ -821,13 +821,11 @@
           });
         }, (error) => {
           console.error('Listener error:', error);
-          alert('Firebase listener error: ' + error.message);
         });
 
         return unsubscribe;
       } catch (error) {
         console.error('Error setting up listener:', error);
-        alert('Setup error: ' + error.message);
       }
     }
 
