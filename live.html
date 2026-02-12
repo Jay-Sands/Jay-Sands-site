@@ -37,7 +37,8 @@
     }
 
     .stream-status {
-      text-ali10px 0;
+      text-align: center;
+      margin: 10px 0;
       padding: 10px;
       border-radius: 8px;
       background: #222;
@@ -258,7 +259,8 @@
     }
 
     .chat-input-group {
-      displ6px;
+      display: flex;
+      gap: 6px;
       margin-top: 10px;
     }
 
@@ -477,7 +479,7 @@
       <!-- Audio Player -->
       <div class="audio-player">
         <audio id="streamAudio" controls>
-          <source src="http://sandstream.bivman.com" type="audio/mpeg">
+          <source src="http://us-01.unitystreams.net:8026/live" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
       </div>
@@ -833,29 +835,14 @@
     loadChatMessages();
     loadBannedUsers();
 
-    // Stream status
+    // Stream status - always show LIVE since stream is managed externally
     function updateStreamStatus() {
       const statusDiv = document.getElementById('streamStatus');
       statusDiv.textContent = 'LIVE';
       statusDiv.className = 'status-live';
     }
 
-    // Actually check stream status
-    async function checkStreamStatus() {
-      try {
-        const response = await fetch('http://sandstream.bivman.com', { method: 'HEAD', mode: 'no-cors' });
-        const statusDiv = document.getElementById('streamStatus');
-        statusDiv.textContent = 'LIVE';
-        statusDiv.className = 'status-live';
-      } catch (error) {
-        const statusDiv = document.getElementById('streamStatus');
-        statusDiv.textContent = 'OFFLINE';
-        statusDiv.className = 'status-offline';
-      }
-    }
-
-    checkStreamStatus();
-    setInterval(checkStreamStatus, 30000); // Check every 30 seconds
+    updateStreamStatus();
   </script>
 </body>
 </html>
