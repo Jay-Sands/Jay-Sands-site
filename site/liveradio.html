@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <style>
@@ -36,7 +36,7 @@
   </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upcoming Shows | Jay Sands</title>
+  <title>Live Radio | Jay Sands</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -101,71 +101,71 @@
   <div style="width:100%;">
     <nav class="main-nav" style="display:flex;justify-content:center;align-items:center;gap:16px;background:transparent;padding:8px 0 4px 0;border-radius:0 0 8px 8px;box-shadow:none;margin-bottom:18px;">
   <a href="index.html">Home</a>
-  <a href="shows.html" class="active">Show Dates</a>
   <a href="booking.html">Booking</a>
   <a href="feedback.html">Feedback</a>
-  <a href="press.html">Press</a>
     </nav>
   </div>
 
-  <div class="container">
-    <h1 style="margin-bottom:8px;font-size:2em;">Upcoming Shows</h1>
-    <ul class="show-list">
-      <section class="show-listing" style="background-color: #000; color: #fff; border-left: 5px solid gold; padding: 2rem; margin: 2rem auto; max-width: 700px; font-family: 'Georgia', serif;">
-  <h2 style="color: gold; font-size: 1.8rem; margin-bottom: 0.3rem;">Jay Sands <span style="color: gold; font-size: 1.8rem;">&bull;</span> In the Style of Sinatra</h2>
-  <h3 style="color: #ccc; font-size: 1.2rem; margin-bottom: 1.5rem;">Saturday <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> November <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 8th <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 7:00-9:30 PM</h3>
+  <div class="container" id="streamPanel" style="margin-bottom:24px;">
+    <h1 style="margin-bottom:8px;font-size:2em;text-align:center;">Jay Sands OnAir</h1>
+    <div id="liveBadge" style="text-align:center;margin-bottom:16px;font-family:'Dancing Script',cursive;font-size:1.3em;">
+      <span id="liveDot" style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#666;margin-right:8px;vertical-align:middle;"></span>
+      <span id="liveStatusText">Checking stream…</span>
+    </div>
+    <div style="text-align:center;">
+      <audio id="streamAudio" controls preload="none" style="width:100%;max-width:400px;">
+        <source src="https://us-01.unitystreams.net:8026/live" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+    <p style="text-align:center;color:#ccc;font-size:0.95em;margin-top:10px;font-family:'Georgia',serif;">
+      Press play any time, if Jay isn't live, you'll just hear silence. Check back during show hours!
+    </p>
+  </div>
 
-  <h3 style="color: #ccc; font-size: 1.2rem; margin-bottom: 1.5rem;">Saturday <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> December <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 13th <span style="color: gold; font-size: 1.2rem; vertical-align: middle;">&bull;</span> 7:00-9:30 PM</h3>
-
-  <div style="color: gold; font-size: 1.1rem; margin-top: -0.5rem; margin-bottom: 1.2rem; text-align: center;">(Possible end of year show coming stay tuned)</div>
-
-        <div style="margin-bottom: 1.5rem;">
-          <p><strong>Venue:</strong> Mangia Italian Restaurant</p>
-          <p><strong>Address:</strong> 3831 Avalon Park E Blvd, Orlando, FL 32828</p>
-          <p><strong>Phone:</strong> <a href="tel:+14077377499" style="color: gold;">+1 407 737 7499</a></p>
-          <p><strong>Hours:</strong> Tuesday–Sunday 2 PM – 10 PM</p>
-        </div>
-
-        <div style="background-color: #111; padding: 1rem; border: 2px solid gold; text-align: center;">
-          <p style="color: gold; font-weight: bold; font-size: 1.1rem;">🎟️ Reservations are strongly suggested</p>
-          <p style="color: #ccc;">This show will sell out — call the venue to reserve your table.</p>
-        </div>
-      </section>
-    </ul>
 <script>
-// Auto-remove past shows and highlight next upcoming show
-document.addEventListener('DOMContentLoaded', function() {
-  const showItems = Array.from(document.querySelectorAll('.show-item'));
-  const today = new Date();
-  let nextShow = null;
-  let nextShowDate = null;
-  showItems.forEach(item => {
-    const dateElem = item.querySelector('.date');
-    if (!dateElem) return;
-    const dateText = dateElem.textContent.trim();
-    // Try to parse date (format: Month Day, Year)
-    const parsedDate = new Date(dateText);
-    if (isNaN(parsedDate)) return;
-    // Remove shows in the past
-    if (parsedDate < today.setHours(0,0,0,0)) {
-      item.style.display = 'none';
+(function() {
+  const dot = document.getElementById('liveDot');
+  const statusText = document.getElementById('liveStatusText');
+
+  function setStatus(isLive) {
+    if (isLive) {
+      dot.style.background = '#00ff9d';
+      dot.style.boxShadow = '0 0 8px #00ff9d';
+      statusText.textContent = 'LIVE NOW';
     } else {
-      // Find the next upcoming show
-      if (!nextShowDate || parsedDate < nextShowDate) {
-        nextShow = item;
-        nextShowDate = parsedDate;
-      }
+      dot.style.background = '#666';
+      dot.style.boxShadow = 'none';
+      statusText.textContent = 'Offline, check back during show hours';
     }
-  });
-  // Remove featured class from all, add to next upcoming
-  showItems.forEach(item => item.classList.remove('featured'));
-  if (nextShow) nextShow.classList.add('featured');
-});
+  }
+
+  function checkStreamStatus() {
+    fetch('https://us-01.unitystreams.net:8026/live', { method: 'HEAD', mode: 'no-cors', cache: 'no-store' })
+      .then(function() {
+        setStatus(true);
+      })
+      .catch(function() {
+        setStatus(false);
+      });
+  }
+
+  checkStreamStatus();
+  setInterval(checkStreamStatus, 30000);
+})();
+</script>
+
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a72bf2d6299c31d47e7243f/1jv83lioh';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
 </script>
 
 </body>
 </html>
-
-
-
-
