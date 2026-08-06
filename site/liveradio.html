@@ -139,19 +139,14 @@
       statusText.textContent = 'Offline, check back during show hours';
     }
   }
+var streamAudio = document.getElementById('streamAudio');
+streamAudio.addEventListener('playing', function() { setStatus(true); });
+streamAudio.addEventListener('pause', function() { setStatus(false); });
+streamAudio.addEventListener('waiting', function() { setStatus(false); });
+streamAudio.addEventListener('stalled', function() { setStatus(false); });
+streamAudio.addEventListener('ended', function() { setStatus(false); });
+setStatus(false);
 
-  function checkStreamStatus() {
-    fetch('https://us-01.unitystreams.net:8026/live', { method: 'HEAD', mode: 'no-cors', cache: 'no-store' })
-      .then(function() {
-        setStatus(true);
-      })
-      .catch(function() {
-        setStatus(false);
-      });
-  }
-
-  checkStreamStatus();
-  setInterval(checkStreamStatus, 30000);
 })();
 </script>
 
