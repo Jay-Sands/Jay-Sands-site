@@ -41,6 +41,7 @@
     padding:0 28px;
   }
 
+  /* ---------- Top bar ---------- */
   .topbar{
     border-bottom:1px solid var(--hairline);
     padding:22px 0;
@@ -73,6 +74,7 @@
   }
   .backlink:hover{ color:var(--gold-bright); border-color:var(--gold); }
 
+  /* ---------- Hero ---------- */
   .hero{
     padding:64px 0 40px;
     text-align:center;
@@ -135,6 +137,7 @@
     color:var(--brass);
   }
 
+  /* ---------- Stage: player + chat ---------- */
   .stage{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -162,6 +165,7 @@
     margin:0 0 22px;
   }
 
+  /* Player */
   .dial{
     width:150px; height:150px;
     margin:0 auto 28px;
@@ -254,6 +258,7 @@
     margin-top:22px;
   }
 
+  /* Chat panel */
   .chat-copy p{
     color:var(--cream);
     font-size:17px;
@@ -280,6 +285,7 @@
   }
   .chat-open-btn:hover{ background:var(--gold-bright); }
 
+  /* ---------- Footer ---------- */
   footer{
     padding:28px 0 48px;
     text-align:center;
@@ -366,6 +372,9 @@
       audio.volume = parseFloat(volume.value);
     });
 
+    // If this page is served over https but the stream is plain http,
+    // most browsers silently block the audio (mixed content). Warn up front
+    // instead of waiting for a failed play attempt.
     const streamSrc = audio.querySelector('source').src;
     const isMixedContent = window.location.protocol === 'https:' && streamSrc.startsWith('http://');
 
@@ -387,6 +396,8 @@
         status.textContent = 'Connecting…';
         audio.load();
 
+        // If it's mixed content, the browser may never fire 'error' at all —
+        // it just hangs. Give it a few seconds, then show the fallback.
         clearTimeout(stallTimer);
         stallTimer = setTimeout(() => {
           if (!isPlaying) {
