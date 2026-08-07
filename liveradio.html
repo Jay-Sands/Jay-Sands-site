@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On the Air — Jay Sands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Cormorant+Garamond:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:        #0b0b0d;
+    --black-2:      #141417;
+    --gold:         #cda349;
+    --gold-bright:  #e8c46c;
+    --cream:        #f2ead9;
+    --brass:        #8c7853;
+    --velvet:       #3c1418;
+    --live-red:     #b23b3b;
+    --hairline:     rgba(205,163,73,0.25);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(205,163,73,0.10), transparent 55%),
+      var(--black);
+    color:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.55;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    border-bottom:1px solid var(--hairline);
+    padding:22px 0;
+  }
+  .topbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    letter-spacing:0.06em;
+    font-size:20px;
+    color:var(--gold-bright);
+    text-decoration:none;
+  }
+  .brand span{ color:var(--cream); font-weight:500; }
+  .backlink{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brass);
+    text-decoration:none;
+    border:1px solid var(--hairline);
+    padding:8px 14px;
+    border-radius:2px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .backlink:hover{ color:var(--gold-bright); border-color:var(--gold); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:64px 0 40px;
+    text-align:center;
+    border-bottom:1px solid var(--hairline);
+  }
+  .on-air{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--live-red);
+    border:1px solid rgba(178,59,59,0.5);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:26px;
+  }
+  .on-air::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--live-red);
+    border-radius:50%;
+    box-shadow:0 0 10px 2px rgba(178,59,59,0.7);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.45; transform:scale(0.8); }
+  }
+  .hero h1{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:clamp(34px, 5vw, 54px);
+    margin:0 0 14px;
+    color:var(--gold-bright);
+    letter-spacing:0.01em;
+  }
+  .hero .subtitle{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 22px;
+  }
+  .hero p{
+    max-width:560px;
+    margin:0 auto;
+    color:var(--brass);
+    font-size:19px;
+  }
+  .hero .venue-note{
+    margin-top:18px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  /* ---------- Stage: player + chat ---------- */
+  .stage{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border-bottom:1px solid var(--hairline);
+  }
+  @media (max-width:820px){
+    .stage{ grid-template-columns:1fr; }
+  }
+  .panel{
+    padding:48px 28px;
+  }
+  .panel + .panel{
+    border-left:1px solid var(--hairline);
+  }
+  @media (max-width:820px){
+    .panel + .panel{ border-left:none; border-top:1px solid var(--hairline); }
+  }
+  .panel-label{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 22px;
+  }
+
+  /* Player */
+  .dial{
+    width:150px; height:150px;
+    margin:0 auto 28px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 35% 30%, rgba(232,196,108,0.35), transparent 60%),
+      conic-gradient(from 220deg, var(--black-2), #1c1a14, var(--black-2));
+    border:1px solid var(--hairline);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    box-shadow:0 0 0 6px rgba(0,0,0,0.4), inset 0 0 30px rgba(0,0,0,0.6);
+  }
+  .dial::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border-radius:50%;
+    border:1px solid var(--hairline);
+  }
+  #playBtn{
+    width:64px; height:64px;
+    border-radius:50%;
+    background:var(--gold);
+    border:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .2s ease, transform .15s ease;
+    position:relative;
+    z-index:2;
+  }
+  #playBtn:hover{ background:var(--gold-bright); transform:scale(1.04); }
+  #playBtn svg{ width:22px; height:22px; fill:var(--black); }
+
+  .player-status{
+    text-align:center;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:24px;
+    min-height:16px;
+  }
+  .player-status.live{ color:var(--live-red); }
+
+  .volume-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    justify-content:center;
+    margin-bottom:6px;
+  }
+  .volume-row label{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+  input[type="range"]{
+    -webkit-appearance:none;
+    width:140px;
+    height:2px;
+    background:var(--hairline);
+    outline:none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:12px; height:12px;
+    border-radius:50%;
+    background:var(--gold);
+    cursor:pointer;
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:12px; height:12px;
+    border-radius:50%;
+    background:var(--gold);
+    border:none;
+    cursor:pointer;
+  }
+
+  .panel-note{
+    text-align:center;
+    color:var(--brass);
+    font-size:15px;
+    margin-top:22px;
+  }
+
+  /* Chat panel */
+  .chat-copy p{
+    color:var(--cream);
+    font-size:17px;
+    margin:0 0 16px;
+  }
+  .chat-copy p.muted{
+    color:var(--brass);
+    font-size:15px;
+  }
+  .chat-open-btn{
+    display:inline-block;
+    margin-top:6px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--black);
+    background:var(--gold);
+    border:none;
+    padding:13px 22px;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .chat-open-btn:hover{ background:var(--gold-bright); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:28px 0 48px;
+    text-align:center;
+    color:var(--brass);
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html">JAY <span>SANDS</span></a>
+      <a class="backlink" href="index.html">&larr; Back to site</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="wrap">
+      <span class="on-air" id="onAirBadge">Off Air</span>
+      <h1>Jay Sands Live</h1>
+      <p class="subtitle">On the Air</p>
+      <p>Tune into the live show and chat with Jay while it's happening.</p>
+      <div class="venue-note">Streaming live</div>
+    </div>
+  </div>
+
+  <div class="stage">
+
+    <div class="panel">
+      <p class="panel-label">Listen Live</p>
+      <div class="dial">
+        <button id="playBtn" aria-label="Play stream">
+          <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
+      </div>
+      <div class="player-status" id="playerStatus">Press play to listen</div>
+      <div class="volume-row">
+        <label for="volume">Vol</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.8">
+      </div>
+      <p class="panel-note">Best experienced with headphones or good speakers.</p>
+      <p class="panel-note" id="fallbackNote" style="display:none;">
+        Your browser blocked the direct stream. <a id="fallbackLink" href="http://us-01.unitystreams.net:6026/live" target="_blank" rel="noopener" style="color:var(--gold-bright); text-decoration:underline;">Click here to open it in a new tab</a>.
+      </p>
+      <audio id="streamAudio" preload="none">
+        <source src="http://us-01.unitystreams.net:6026/live" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="panel">
+      <p class="panel-label">Chat With Jay</p>
+      <div class="chat-copy">
+        <p>See something worth saying while the music's playing? Open the chat and I'll answer live — same as talking to me between songs.</p>
+        <p class="muted">The chat opens in the corner of this page. Keep this tab open while you listen.</p>
+        <button class="chat-open-btn" onclick="if(window.Tawk_API && Tawk_API.toggle){Tawk_API.toggle();}">Open Chat</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; <span id="year"></span> JAY SANDS &nbsp;·&nbsp; STYLE. CLASS. EXCELLENCE.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const audio = document.getElementById('streamAudio');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const status = document.getElementById('playerStatus');
+    const onAirBadge = document.getElementById('onAirBadge');
+    const volume = document.getElementById('volume');
+    const fallbackNote = document.getElementById('fallbackNote');
+
+    audio.volume = parseFloat(volume.value);
+
+    volume.addEventListener('input', () => {
+      audio.volume = parseFloat(volume.value);
+    });
+
+    // If this page is served over https but the stream is plain http,
+    // most browsers silently block the audio (mixed content). Warn up front
+    // instead of waiting for a failed play attempt.
+    const streamSrc = audio.querySelector('source').src;
+    const isMixedContent = window.location.protocol === 'https:' && streamSrc.startsWith('http://');
+
+    let isPlaying = false;
+    let stallTimer = null;
+
+    function showFallback(message){
+      status.textContent = message;
+      status.classList.remove('live');
+      fallbackNote.style.display = 'block';
+      isPlaying = false;
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        fallbackNote.style.display = 'none';
+        status.textContent = 'Connecting…';
+        audio.load();
+
+        // If it's mixed content, the browser may never fire 'error' at all —
+        // it just hangs. Give it a few seconds, then show the fallback.
+        clearTimeout(stallTimer);
+        stallTimer = setTimeout(() => {
+          if (!isPlaying) {
+            showFallback(isMixedContent ? 'Browser blocked the stream (insecure link)' : 'Stream isn\'t responding');
+          }
+        }, 6000);
+
+        audio.play().then(() => {
+          clearTimeout(stallTimer);
+          isPlaying = true;
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+          status.textContent = 'Listening now';
+          status.classList.add('live');
+          onAirBadge.textContent = 'On Air';
+        }).catch(() => {
+          clearTimeout(stallTimer);
+          showFallback('Stream unavailable right now');
+        });
+      } else {
+        audio.pause();
+        isPlaying = false;
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        status.textContent = 'Paused';
+        status.classList.remove('live');
+      }
+    });
+
+    audio.addEventListener('waiting', () => { status.textContent = 'Buffering…'; });
+    audio.addEventListener('playing', () => {
+      clearTimeout(stallTimer);
+      status.textContent = 'Listening now';
+      status.classList.add('live');
+      fallbackNote.style.display = 'none';
+    });
+    audio.addEventListener('error', () => {
+      clearTimeout(stallTimer);
+      showFallback(isMixedContent ? 'Browser blocked the stream (insecure link)' : 'Stream is offline');
+      onAirBadge.textContent = 'Off Air';
+    });
+  </script>
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/6a70eac42539311d47e45724/1jv4ha3iv';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
+
+</body>
+</html>
