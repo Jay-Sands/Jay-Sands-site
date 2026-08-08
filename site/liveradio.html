@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Radio | Jay Sands</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
+    body { background: #111; color: #FFD700; font-family: 'Dancing Script', cursive; margin: 0; }
+
+    /* NAV */
     .main-nav {
       width: 100%;
       display: flex;
@@ -10,8 +18,6 @@
       gap: 16px;
       background: transparent;
       padding: 8px 0 4px 0;
-      border-radius: 0 0 8px 8px;
-      box-shadow: none;
       margin-bottom: 18px;
     }
     .main-nav a {
@@ -23,134 +29,209 @@
       text-decoration: none;
       font-size: 2em;
       background: transparent;
-      box-shadow: none;
       border: none;
       transition: color 0.2s, border-bottom 0.2s;
-      position: relative;
     }
     .main-nav a:hover, .main-nav a:focus {
       color: #FFD700;
       background: transparent;
       border-bottom: 2px solid #FFD700;
     }
-  </style>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Radio | Jay Sands</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-  <style>
-  body { background: #111; color: #FFD700; font-family: 'Dancing Script', cursive; margin: 0; }
-  .container { max-width: 600px; margin: 40px auto; background: rgba(34,34,34,0.92); border-radius: 24px; box-shadow: 0 8px 32px rgba(178,34,34,0.3); padding: 32px 24px; animation: fadeIn 1.2s ease; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  h1 { font-size: 3em; text-align: center; margin-bottom: 24px; text-shadow: 2px 2px 8px #B22222; }
-  .show-list { list-style: none; padding: 0; }
-  .show-item { margin-bottom: 32px; padding-bottom: 24px; border-bottom: none; position: relative; background: rgba(34,34,34,0.98); border-radius: 16px; box-shadow: 0 2px 12px rgba(255,215,0,0.08); transition: box-shadow 0.3s, transform 0.3s; display: flex; align-items: center; gap: 18px; }
-  .show-item:hover { box-shadow: 0 4px 24px #FFD700, 0 2px 8px #B22222; transform: scale(1.03); }
-  .show-item.featured { border: 2px solid #FFD700; box-shadow: 0 0 24px #FFD700, 0 2px 8px #B22222; }
-  .venue-img { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg,#FFD700,#B8860B); display: flex; align-items: center; justify-content: center; color: #111; font-size: 1.5em; font-weight: bold; margin-right: 12px; box-shadow: 0 2px 8px #B22222; }
-  .venue { font-size: 1.5em; font-weight: bold; color: #FFD700; }
-  .details { color: #fff; font-size: 1.1em; margin: 8px 0; }
-  .date { font-size: 1.2em; color: #FFD700; margin-top: 8px; }
-  .gold-divider { width: 80%; height: 4px; background: linear-gradient(90deg,#FFD700,#B8860B,#FFD700); border-radius: 2px; margin: 18px auto; }
-  .main-nav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  background: transparent;
-  padding: 8px 0 4px 0;
-  border-radius: 0 0 8px 8px;
-  box-shadow: none;
-  margin-bottom: 18px;
-    color: #FFD700;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 1em;
-    background: transparent;
-    box-shadow: none;
-    border: none;
-    transition: color 0.2s, border-bottom 0.2s;
-    position: relative;
-  }
-  .main-nav a {
-    color: #FFD700;
-    font-family: 'Dancing Script', cursive;
-    font-weight: 900;
-    padding: 8px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 2em;
-    background: transparent;
-    box-shadow: none;
-    border: none;
-    transition: color 0.2s, border-bottom 0.2s;
-    position: relative;
-  }
-  .main-nav a:hover, .main-nav a:focus {
-    color: #FFD700;
-    background: transparent;
-    border-bottom: 2px solid #FFD700;
-  }
+
+    /* SIDE BY SIDE LAYOUT */
+    .main-layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 24px;
+      max-width: 1100px;
+      margin: 30px auto 40px auto;
+      padding: 0 20px;
+    }
+
+    /* PLAYER - LEFT */
+    .player-panel {
+      flex: 0 0 340px;
+      background: rgba(34,34,34,0.92);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(178,34,34,0.3);
+      padding: 28px 20px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    /* CHAT - RIGHT */
+    .chat-panel {
+      flex: 0 0 280px;
+      background: rgba(34,34,34,0.92);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(178,34,34,0.3);
+      padding: 24px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    .chat-panel h2 {
+      text-align: center;
+      color: #FFD700;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8em;
+      margin: 0 0 12px 0;
+      text-shadow: 2px 2px 8px #B22222;
+    }
+    .gold-divider {
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(90deg,#FFD700,#B8860B,#FFD700);
+      border-radius: 2px;
+      margin: 0 auto 16px auto;
+    }
+    .minnit-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,215,0,0.2);
+      box-shadow: 0 2px 16px rgba(255,215,0,0.08);
+    }
+    .powered-by-minnit {
+      text-align: center;
+      margin: 10px 0 0 0;
+      font-family: 'Georgia', serif;
+      font-size: 0.8em;
+    }
+    .powered-by-minnit a { color: #888; text-decoration: none; }
+    .powered-by-minnit a:hover { color: #FFD700; }
+
+    /* MOBILE: stack vertically on small screens */
+    @media (max-width: 768px) {
+      .main-layout {
+        flex-direction: column;
+      }
+      .player-panel {
+        flex: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
   </style>
 </head>
 <body>
+
+
+  <!-- NAV -->
   <div style="width:100%;">
-    <nav class="main-nav" style="display:flex;justify-content:center;align-items:center;gap:16px;background:transparent;padding:8px 0 4px 0;border-radius:0 0 8px 8px;box-shadow:none;margin-bottom:18px;">
-  <a href="index.html">Home</a>
-  <a href="booking.html">Booking</a>
-  <a href="feedback.html">Feedback</a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="booking.html">Booking</a>
+      <a href="feedback.html">Feedback</a>
     </nav>
   </div>
 
-  <div class="container" id="streamPanel" style="margin-bottom:24px;">
-    <h1 style="margin-bottom:8px;font-size:2em;text-align:center;">Jay Sands OnAir</h1>
-    <div id="liveBadge" style="text-align:center;margin-bottom:16px;font-family:'Dancing Script',cursive;font-size:1.3em;">
-      <span id="liveDot" style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#666;margin-right:8px;vertical-align:middle;"></span>
-      <span id="liveStatusText">Checking stream…</span>
+
+
+  <!-- SIDE BY SIDE: PLAYER LEFT, CHAT RIGHT -->
+  <div class="main-layout">
+
+    <!-- PLAYER - LEFT -->
+    <div class="player-panel" id="streamPanel">
+      <h1 style="margin-bottom:8px;font-size:1.8em;text-align:center;">Jay Sands OnAir</h1>
+      <div id="liveBadge" style="text-align:center;margin-bottom:16px;font-family:'Dancing Script',cursive;font-size:1.2em;">
+        <span id="liveDot" style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#666;margin-right:8px;vertical-align:middle;"></span>
+        <span id="liveStatusText">Checking stream…</span>
+      </div>
+      <div style="text-align:center;">
+        <audio id="streamAudio" controls preload="none" style="width:100%;">
+          <source src="https://listen.unitystreams.net/8026" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div id="listenerCount" style="text-align:center;margin-top:14px;font-family:'Georgia',serif;font-size:0.95em;color:#FFD700;min-height:1.4em;"></div>
+      <p style="text-align:center;color:#ccc;font-size:0.9em;margin-top:8px;font-family:'Georgia',serif;">
+        Welcome to The SandsNet Radio Network - thank you for helping us create the magic.
+      </p>
     </div>
-    <div style="text-align:center;">
-      <audio id="streamAudio" controls preload="none" style="width:100%;max-width:400px;">
-        <source src="https://listen.unitystreams.net/8026" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+
+    <!-- CHAT - RIGHT -->
+    <div class="chat-panel">
+      <h2>🎙️ Live Listener Chat</h2>
+      <div class="gold-divider"></div>
+      <div class="minnit-wrapper">
+        <script src="https://minnit.chat/js/embed.js?c=1772345192" defer></script>
+        <span style="display: none;" class="minnit-chat-sembed"
+          data-chatname="https://organizations.minnit.chat/841290097985571/c/Main?embed"
+          data-style="width:100%; height:280px; max-height:90vh;"
+          data-version="1.55">Chat</span>
+      </div>
+      <p class="powered-by-minnit"><a href="https://minnit.chat" target="_blank">Chatroom embedded via Minnit Chat</a></p>
     </div>
-    <p style="text-align:center;color:#ccc;font-size:0.95em;margin-top:10px;font-family:'Georgia',serif;">
-      Press play any time, if Jay isn't live, you'll just hear silence. Check back during show hours!
-    </p>
+
   </div>
 
-<script>
-(function() {
-  const dot = document.getElementById('liveDot');
-  const statusText = document.getElementById('liveStatusText');
-
-  function setStatus(isLive) {
-    if (isLive) {
-      dot.style.background = '#00ff9d';
-      dot.style.boxShadow = '0 0 8px #00ff9d';
-      statusText.textContent = 'LIVE NOW';
-    } else {
-      dot.style.background = '#666';
-      dot.style.boxShadow = 'none';
-      statusText.textContent = 'Offline, check back during show hours';
+  <!-- LISTENER COUNT SCRIPT -->
+  <script>
+  (function() {
+    function fetchListeners() {
+      fetch('https://listen.unitystreams.net:8026/status-json.xsl')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var count = null;
+          try {
+            var src = data.icestats.source;
+            if (Array.isArray(src)) {
+              count = src[0].listeners;
+            } else {
+              count = src.listeners;
+            }
+          } catch(e) {}
+          var el = document.getElementById('listenerCount');
+          if (count !== null && count !== undefined) {
+            el.textContent = '👥 ' + count + ' listener' + (count === 1 ? '' : 's') + ' tuned in';
+          }
+        })
+        .catch(function() {
+          // Silently fail - no count shown if endpoint unavailable
+        });
     }
-  }
-var streamAudio = document.getElementById('streamAudio');
-streamAudio.addEventListener('playing', function() { setStatus(true); });
-streamAudio.addEventListener('pause', function() { setStatus(false); });
-streamAudio.addEventListener('waiting', function() { setStatus(false); });
-streamAudio.addEventListener('stalled', function() { setStatus(false); });
-streamAudio.addEventListener('ended', function() { setStatus(false); });
-setStatus(false);
+    fetchListeners();
+    setInterval(fetchListeners, 30000); // refresh every 30 seconds
+  })();
+  </script>
 
-})();
-</script>
+  <!-- STREAM STATUS SCRIPT -->
+  <script>
+  (function() {
+    const dot = document.getElementById('liveDot');
+    const statusText = document.getElementById('liveStatusText');
+    function setStatus(isLive) {
+      if (isLive) {
+        dot.style.background = '#00ff9d';
+        dot.style.boxShadow = '0 0 8px #00ff9d';
+        statusText.textContent = 'LIVE NOW';
+      } else {
+        dot.style.background = '#666';
+        dot.style.boxShadow = 'none';
+        statusText.textContent = 'Offline, check back during show hours';
+      }
+    }
+    var streamAudio = document.getElementById('streamAudio');
+    streamAudio.addEventListener('playing', function() { setStatus(true); });
+    streamAudio.addEventListener('pause', function() { setStatus(false); });
+    streamAudio.addEventListener('waiting', function() { setStatus(false); });
+    streamAudio.addEventListener('stalled', function() { setStatus(false); });
+    streamAudio.addEventListener('ended', function() { setStatus(false); });
+    setStatus(false);
+  })();
+  </script>
 
-<!-- Tawk chat widget removed -->
+
+
+  <!-- NSS FOOTER -->
+  <div style="text-align:center;padding:30px 20px 20px 20px;margin-top:-50px;">
+    <div style="width:80%;max-width:600px;height:2px;background:linear-gradient(90deg,transparent,#FFD700,transparent);margin:0 auto 24px auto;"></div>
+    <img src="nsslogo_k.png" alt="Night Sands Studios" style="width:180px;height:auto;display:block;margin:0 auto 12px auto;opacity:0.9;">
+    <p style="font-family:'Georgia',serif;font-size:0.85em;color:#888;margin:0;">SandsNet Radio Network is a Night Sands Studios Production</p>
+    <p style="font-family:'Georgia',serif;font-size:0.75em;color:#555;margin:6px 0 0 0;">&copy; Night Sands Studios. All rights reserved.</p>
+  </div>
 
 </body>
 </html>
